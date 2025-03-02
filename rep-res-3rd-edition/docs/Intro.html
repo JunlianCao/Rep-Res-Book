@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introducing Reproducible Research | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 1 Introducing Reproducible Research | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introducing Reproducible Research | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 1 Introducing Reproducible Research | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introducing Reproducible Research | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 1 Introducing Reproducible Research | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="additional-resources.html"/>
+<link rel="next" href="GettingStartedRR.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introducing Reproducible Research<a href="Intro.html#Intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Research is typically presented in very selective containers: slideshows,
+journal articles, books, or websites. These presentation
+documents announce a project’s findings and try to convince us that the
+results are correct <span class="citation">(<a href="#ref-mesirov2010">Mesirov 2010</a>)</span>. It’s important to remember that
+these documents are not the research. Especially in the computational
+and statistical sciences, these documents are the “advertising”. The
+research is the “full software environment, code, and data that produced
+the results” <span class="citation">(<a href="#ref-buckheit1995">Buckheit and Donoho 1995</a>; <a href="#ref-donoho2010">Donoho 2010, 385</a>)</span>. When we separate the
+research from its advertisement, we are making it difficult for others to
+verify the findings by reproducing them.</p>
+<p>This book gives you the tools to dynamically combine your research with
+the presentation of your findings. The first tool is a workflow for
+reproducible research that weaves the principles of reproducibility
+throughout your entire research project, from data gathering to the
+statistical analysis, and the presentation of results. You will also
+learn how to use a number of computer tools that make this workflow
+easier and more robust. These tools include:</p>
+<ul>
+<li><p>the <strong>R</strong> statistical language that will allow you to gather data
+and analyze it;</p></li>
+<li><p>the <strong>LaTeX</strong> and <strong>Markdown</strong> markup languages that you can use to
+create documents–slideshows, articles, books, and webpages–for
+presenting your findings;</p></li>
+<li><p>the <em>knitr</em> and <em>rmarkdown</em> <strong>packages</strong> for R and other tools,
+including <strong>command-line programs</strong> like GNU Make and Git
+version control, for dynamically tying your data gathering,
+analysis, and presentation documents together so that they can be
+easily reproduced;</p></li>
+<li><p><strong>RStudio</strong>, a program that brings all of these tools together.</p></li>
+</ul>
+<div id="what-is-reproducible-research" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> What Is Reproducible Research?<a href="Intro.html#what-is-reproducible-research" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Though there is some debate over the necessary and sufficient
+conditions for a full replication <span class="citation">(<a href="#ref-makel2014">Makel and Plucker 2014, 2</a>)</span>, research results are
+generally considered<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> <em>replicable</em> if there is sufficient information
+available for independent researchers to make the same findings using
+the same procedures with new data.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> For research that relies on
+experiments, this can mean a researcher not involved in the original
+research being able to rerun the experiment, including sampling, and
+validate that the new results are comparable to the original results. In
+computational and quantitative empirical sciences, results are
+replicable if independent researchers can recreate findings by following
+the procedures originally used to gather the data and run the computer
+code. Of course, it is sometimes difficult to replicate the original
+data set because of issues such as limited resources to gather new data
+or because the original study already sampled the full universe of
+cases. So as a next-best standard, we can aim for “<em>really reproducible
+research</em>” <span class="citation">(<a href="#ref-peng2011">Roger D. Peng 2011, 1226</a>)</span>.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> In computational sciences<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>
+this means:</p>
+<blockquote>
+<p>the data and code used to make a finding are available and they are sufficient for an independent researcher to recreate the finding.</p>
+</blockquote>
+<p>In practice, research needs to be <em>easy</em> for independent researchers to
+reproduce <span class="citation">(<a href="#ref-ball2012">Ball and Medeiros 2011</a>)</span>. If a study is difficult to reproduce, it’s more
+likely that no one will reproduce it. If someone does attempt to
+reproduce this research, it will be difficult for them to tell if any
+errors they find were in the original research or problems they
+introduced during the reproduction. In this book, you will learn how to
+avoid these problems.</p>
+<p>In particular, you will learn tools for dynamically “<em>knitting</em>”<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> the
+data and the source code together with your presentation documents.
+Combined with well-organized source files and clearly and completely
+commented code, independent researchers will be able to understand how
+you obtained your results. This will make your computational research
+easily reproducible.</p>
+</div>
+<div id="why-should-research-be-reproducible" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Why Should Research Be Reproducible?<a href="Intro.html#why-should-research-be-reproducible" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Reproducible research is one of the main components of science. If
+that’s not enough reason for you to make your research reproducible,
+consider that the tools of reproducible research also have direct
+benefits for you as a researcher.</p>
+<div id="for-science" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> For science<a href="Intro.html#for-science" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Replicability has been a key part of scientific inquiry from perhaps the
+1200s <span class="citation">(<a href="#ref-bacon1267">Bacon 1859</a>; <a href="#ref-nosek2012">Nosek, Spies, and Motyl 2012</a>)</span>. It has even been called the “demarcation
+between science and non-science” <span class="citation">(<a href="#ref-braude1979">Braude 1979, 2</a>)</span>. Why is replication so
+important for scientific inquiry?</p>
+<div id="standard-to-judge-scientific-claims" class="section level4 unnumbered hasAnchor">
+<h4>Standard to judge scientific claims<a href="Intro.html#standard-to-judge-scientific-claims" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><em>Replication</em> opens claims to scrutiny, allowing us to keep what works
+and discard what doesn’t. Science, according to the American Physical
+Society, “is the systematic enterprise of gathering knowledge . . . organizing and condensing that knowledge into testable laws and
+theories”. The “ultimate standard” for evaluating scientific claims is
+whether or not the claims can be replicated <span class="citation">(<a href="#ref-peng2011">Roger D. Peng 2011</a>; <a href="#ref-kelly2006">Kelly 2006</a>)</span>.
+Research findings cannot even really be considered “genuine
+contributions to human knowledge” until they have been verified
+through replication <span class="citation">(<a href="#ref-stodden2009">Stodden 2009a, 38</a>)</span>. Replication “requires the
+complete and open exchange of data, procedures, and materials”.
+Scientific conclusions that are not replicable should be abandoned or
+modified “when confronted with more complete or reliable . . . evidence”.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<p><em>Reproducibility enhances replicability</em>. If other researchers are able
+to clearly understand how a finding was originally made, then they will
+be better able to conduct comparable research in meaningful attempts to
+replicate the original findings. Sometimes strict replicability is not
+feasible, for example, when it is only possible to gather one data set
+on a population of interest. In these cases reproducibility is a
+“minimum standard” for judging scientific claims <span class="citation">(<a href="#ref-peng2011">Roger D. Peng 2011</a>)</span>.</p>
+<p>It is important to note that though reproducibility is a minimum
+standard for judging scientific claims, “a study can be reproducible and
+still be wrong” <span class="citation">(<a href="#ref-peng2014">Roger D. Peng 2014</a>)</span>. For example, a statistically significant
+finding in one study may remain statistically significant when
+reproduced using the original data/code, but when researchers try to
+replicate it using new data and even methods, they are unable to find a
+similar result. The original finding could have been noise, even
+though it is fully reproducible.</p>
+</div>
+<div id="avoiding-effort-duplication-and-encouraging-cumulative-knowledge-development" class="section level4 unnumbered hasAnchor">
+<h4>Avoiding effort duplication and encouraging cumulative knowledge development<a href="Intro.html#avoiding-effort-duplication-and-encouraging-cumulative-knowledge-development" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Not only is reproducibility important for evaluating scientific claims,
+it can also contribute to the cumulative growth of scientific knowledge
+<span class="citation">(<a href="#ref-kelly2006">Kelly 2006</a>; <a href="#ref-king1995">G. King 1995</a>)</span>. Reproducible research cuts down on the amount
+of time scientists have to spend gathering data or developing procedures
+that have already been collected or figured out. Because researchers do
+not have to discover on their own things that have already been done,
+they can more quickly build on established findings and develop new
+knowledge.</p>
+</div>
+</div>
+<div id="for-you" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> For you<a href="Intro.html#for-you" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Working to make your research reproducible does require extra upfront
+effort. For example, you need to put effort into learning the tools of
+reproducible research by doing things such as reading this book. But
+beyond the clear benefits for science, why should you make this effort?
+Using reproducible research tools can make your research process more
+effective and (hopefully) ultimately easier.</p>
+<div id="better-work-habits" class="section level4 unnumbered hasAnchor">
+<h4>Better work habits<a href="Intro.html#better-work-habits" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Making a project reproducible from the start encourages you to use
+better work habits. It can spur you to more effectively plan and
+organize your research. It should push you to bring your data and source
+code up to a higher level of quality than you might if you “thought ‘no
+one was looking’” <span class="citation">(<a href="#ref-donoho2010">Donoho 2010, 386</a>)</span>. This forces you to root out
+errors–a ubiquitous part of computational research–earlier in the
+research process <span class="citation">(<a href="#ref-donoho2010">Donoho 2010, 385</a>)</span>. Clear documentation also makes it
+easier to find errors.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>Reproducible research needs to be stored so that other researchers can
+actually access the data and source code. By taking steps to make your
+research accessible for others, you are also making it easier for
+yourself to find your data and methods when you revise your work or
+begin a new project. You are avoiding personal effort duplication,
+allowing you to cumulatively build on your own work more effectively.</p>
+</div>
+<div id="better-teamwork" class="section level4 unnumbered hasAnchor">
+<h4>Better teamwork<a href="Intro.html#better-teamwork" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The steps you take to make sure an independent researcher can figure out
+what you have done also make it easier for your collaborators to
+understand your work and build on it. This applies not only to current
+collaborators, but also to future collaborators. Bringing new members of a
+research team up to speed on a cumulatively growing research project is
+faster if they can easily understand what has been done already
+<span class="citation">(<a href="#ref-donoho2010">Donoho 2010, 386</a>)</span>.</p>
+</div>
+<div id="changes-are-easier" class="section level4 unnumbered hasAnchor">
+<h4>Changes are easier<a href="Intro.html#changes-are-easier" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A third person may or may not actually reproduce your research even if
+you make it easy for them to do so. But, <em>you will almost certainly
+reproduce parts or even all of your own research</em>. No actual research
+process is completely linear. You almost never gather data, run
+analyses, and present your results without going backwards to add
+variables, make changes to your statistical models, create new graphs,
+alter results tables in light of new findings, and so on. You will
+probably try to make these changes long after you last worked on the
+project and long since you remembered the details of how you did it.
+Whether your changes are because of journal reviewers’ and conference
+participants’ comments or you discover that new and better data has been
+made available since beginning the project, designing your research to
+be reproducible from the start makes it much easier to change things
+later on.</p>
+<p>Dynamic reproducible documents make changes
+much easier. Changes made to one part of a research project have a way
+of cascading through the other parts. For example, adding a new variable
+to a largely completed analysis requires gathering new data and merging
+it with existing data sets. If you used data imputation or matching
+methods, you may need to rerun these models. You then have to update your
+main statistical analyses, and recreate the tables and graphs you used
+to present the results. Adding a new variable essentially forces you to
+reproduce large portions of your research. If when you started the
+project you used tools that make it easier for others to reproduce your
+research, you also made it easier to reproduce the work yourself. You
+will have taken steps to have a “better relationship with your
+future self” <span class="citation">(<a href="#ref-bowers2011">Bowers 2011, 2</a>)</span>.</p>
+</div>
+<div id="higher-research-impact" class="section level4 unnumbered hasAnchor">
+<h4>Higher research impact<a href="Intro.html#higher-research-impact" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Reproducible research is more likely to be useful for other researchers
+than non-reproducible research. Useful research is cited more frequently
+<span class="citation">(<a href="#ref-donoho2002">Donoho 2002</a>; <a href="#ref-piwowar2007">Piwowar, Day, and Fridsma 2007</a>; <a href="#ref-vandewalle2012">Patrick Vandewalle 2012</a>)</span>. Research that is fully
+reproducible contains more information, i.e. more reasons to use and
+cite it, than presentation documents merely showing findings.
+Independent researchers may use the reproducible data or code to look at
+other, often unanticipated, questions. When they use your work for a new
+purpose they will (should) cite your work. Because of this, Vandewalle
+et al. even argue that “the goal of reproducible research is to have
+more impact with our research” <span class="citation">(<a href="#ref-vandewalle2007">2007, 1253</a>)</span>.</p>
+<p>A reason researchers often avoid making their research fully
+reproducible is that they are afraid other people will use their data
+and code to compete with them. I’ll let Donoho et al. address this one:</p>
+<blockquote>
+<p><em>True. But competition means that strangers will read your papers, try
+to learn from them, cite them, and try to do even better. If you
+prefer obscurity, why are you publishing?</em> <span class="citation">(<a href="#ref-donoho2009">2009, 16</a>)</span></p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="who-should-read-this-book" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Who Should Read This Book?<a href="Intro.html#who-should-read-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This book is intended primarily for researchers who want to use a
+systematic workflow that encourages reproducibility as well as practical
+state-of-the-art computational tools to put this workflow into practice.
+These people include professional researchers, upper-level
+undergraduate, and graduate students working on computational
+data-driven projects. Hopefully, editors at academic publishers will
+also find the book useful for improving their ability to evaluate and
+edit reproducible research.</p>
+<p>The more researchers that use the tools of reproducibility, the better.
+So I include enough information in the book for people who have very
+limited experience with these tools, including limited experience with
+R, LaTeX, and Markdown. They will be able to start incorporating
+reproducible research tools into their workflow right away. The book
+will also be helpful for people who already have general experience
+using technologies such as R and LaTeX, but would like to know how to
+tie them together for reproducible research.</p>
+<div id="academic-researchers" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Academic researchers<a href="Intro.html#academic-researchers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hopefully so far in this chapter I’ve convinced you that reproducible
+research has benefits for you as a member of the scientific community
+and personally as a computational researcher. This book is intended to
+be a practical guide for how to actually make your research
+reproducible. Even if you already use tools such as R and LaTeX, you may
+not be getting their full potential. This book will teach you useful
+ways to get the most out of them as part of a reproducible research
+workflow.</p>
+</div>
+<div id="students" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Students<a href="Intro.html#students" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Upper-level undergraduate and graduate students conducting original
+computational research should make their research reproducible for the
+same reasons that professional researchers should. Forcing yourself to
+clearly document the steps you took will also encourage you to think
+more clearly about what you are doing and reinforce what you are
+learning. It will hopefully give you a greater appreciation of research
+accountability and integrity early in your career <span class="citation">(<a href="#ref-barr2012">Barr 2012</a>; <a href="#ref-ball2012">Ball and Medeiros 2011, 183</a>)</span>.</p>
+<p>Even if you don’t have extensive experience with computer languages,
+this book will teach you specific habits and tools that you can use
+throughout your student research and hopefully your careers. Learning
+these things earlier will save you considerable time and effort later.</p>
+</div>
+<div id="instructors" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Instructors<a href="Intro.html#instructors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When instructors incorporate the tools of reproducible research into
+their assignments, they not only build students’ understanding of
+research best practice, but are also better able to evaluate and provide
+meaningful feedback on students’ work <span class="citation">(<a href="#ref-ball2012">Ball and Medeiros 2011, 183</a>)</span>. This book
+provides a resource that you can use with students to put
+reproducibility into practice.</p>
+<p>If you are teaching computational courses, you may also benefit from
+making your lecture material dynamically reproducible. Your slides will
+be easier to update for the same reasons that it is easier to update
+research. Making the methods you used to create the material available
+to students will give them more information. Clearly documenting how you
+created lecture material can also pass information on to future
+instructors.</p>
+</div>
+<div id="editors" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Editors<a href="Intro.html#editors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the first edition of this book was published, there was a worrying lack of reproduciblity in published research. The infrastructure was weak <span class="citation">(<a href="#ref-peng2011">Roger D. Peng 2011</a>)</span> and many journals did not require it. However, the situation has largely changed for the better: many journals require all analyses to be in some sense reproducible. The journal <em>Biostatistics</em> is a good example of a publication that is encouraging (actually requiring)
+reproducible research. From 2009 the journal has had an editor for
+reproducibility that ensures replication files are available and that
+results can be replicated using these files <span class="citation">(<a href="#ref-peng2009">Roger D. Peng 2009</a>)</span>. The more
+editors there are with the skills to work with reproducible research, the
+more likely it is that researchers will do it.</p>
+<p>We need to maintain and continuously improve these standards. This book is useful for editors at academic publishers who want to be better at evaluating reproducible research, editing it, and developing systems to
+make it more widely available.</p>
+</div>
+<div id="private-sector-researchers" class="section level3 hasAnchor" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Private sector researchers<a href="Intro.html#private-sector-researchers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Researchers in the private sector may or may not want to make their work
+easily reproducible outside of their organization. Data compliance legislation, such as the European Union’s General Data Protection Regulation (GDPR), may even make it legally problematic to share data even within a company in order to protect personal information. However, that does not mean that significant benefits cannot be gained from using the
+methods of reproducible research, even if only in part.</p>
+<p>Even if a company has only one person doing research, it benefits from using reproducible research methods. Just as with academic research, this person actually does have a collaborator: their future self. As discussed above, reproducible research makes this collaboration easier.</p>
+<p>Companies with more than one researcher do (or likely should) act as a research
+community, even if public reproducibility
+is ruled out to guard proprietary information.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Making as much of your research
+reproducible (e.g. your source code, but not the raw data if it contains personal information) to members of your organization can spread valuable
+information about how analyses were done and data was collected. This
+will help build your organization’s knowledge and avoid effort
+duplication. Just as a lack of reproducibility hinders the spread of
+information in the scientific community, it can hinder it inside of a
+private organization. Using the sort of dynamic automated processes run
+with clearly documented source code we will learn in this book can also
+help create robust data analysis methods that help your organization
+avoid errors that may come from cutting-and-pasting data across
+spreadsheets.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<!-- The tools of reproducible research covered in this book enable you
+to create professional standardized reports that can be easily updated
+or changed when new information is available. In particular, you will
+learn how to create batch reports based on quantitative data. -->
+</div>
+</div>
+<div id="the-tools-of-reproducible-research" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> The Tools of Reproducible Research<a href="Intro.html#the-tools-of-reproducible-research" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This book will teach you the tools you need to make your research highly
+reproducible. Reproducible research involves two broad sets of tools.
+The first is a <strong>reproducible research environment</strong> that includes the
+statistical tools you need to run your analyses as well as “the ability
+to automatically track the provenance of data, analyses, and results and
+to package them (or pointers to persistent versions of them) for
+redistribution”. The second set of tools is a <strong>reproducible research
+publisher</strong>, which prepares dynamic documents for presenting results and
+is easily linked to the reproducible research environment <span class="citation">(<a href="#ref-mesirov2010">Mesirov 2010, 415</a>)</span>.</p>
+<p>In this book, we will focus on learning how to use the widely available
+and highly flexible reproducible research environment–R/RStudio
+<span class="citation">(<a href="#ref-rlanguage">R Core Team 2019</a>; <a href="#ref-rstudiocite">RStudio, Inc. 2019</a>)</span>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> R/RStudio can be linked to numerous
+reproducible research publishers such as LaTeX and Markdown with Yihui
+Xie’s <em>knitr</em> package <span class="citation">(<a href="#ref-R-knitr">2023a</a>)</span> or the related <em>rmarkdown</em> package
+<span class="citation">(<a href="#ref-R-rmarkdown">Allaire et al. 2024</a>)</span>. The main tools covered in this book include:</p>
+<ul>
+<li><p><strong>R</strong>: a programming language primarily for statistics and graphics.
+It can also be useful for data gathering and creating presentation
+documents.</p></li>
+<li><p><strong><em>knitr</em> and <em>rmarkdown</em></strong>: related R packages for literate
+programming. They allow you to combine your statistical analysis and
+the presentation of the results into one document. They work with R
+and a number of other languages such as Bash, Python, and Ruby.</p></li>
+<li><p><strong>Markup languages</strong>: instructions for how to format a presentation
+document. In this book, we cover LaTeX, Markdown, and a little HTML.</p></li>
+<li><p><strong>RStudio</strong>: an integrated developer environment (IDE) for R that
+tightly combines R, <em>knitr</em>, <em>rmarkdown</em>, and markup languages.</p></li>
+<li><p><strong>Cloud storage and versioning</strong>: Git/GitHub that can store data, code, and presentation files, save previous versions of these files, and make this information widely available.</p></li>
+<li><p><strong>Unix-like shell programs</strong>: These tools are useful for working
+with large research projects.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> They also allow us to use
+command-line tools including GNU Make for compiling projects and
+Pandoc, a program useful for converting documents from one markup
+language to another.</p></li>
+</ul>
+<div id="why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?<a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="why-use-r" class="section level4 unnumbered hasAnchor">
+<h4>Why use R?<a href="Intro.html#why-use-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Why use a statistical programming language like R for reproducible
+research? R has a very active development community that is constantly
+expanding what it is capable of. As we will see in this book, R enables
+researchers across a wide range of disciplines to gather data and run
+statistical analyses. Using the <em>knitr</em> or <em>rmarkdown</em> package, you can
+connect your R-based analyses to presentation documents created with
+markup languages such as LaTeX and Markdown. This allows you to
+dynamically and reproducibly present results in articles, slideshows,
+and webpages.</p>
+<p>The way you interact with R has benefits for reproducible research. In
+general you interact with R (or any other programming and markup
+language) by explicitly writing down your steps as source code. This
+promotes reproducibility more than your typical interactions with
+Graphical User Interface (GUI) programs like SPSS<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> and Microsoft
+Word. When you write R code and embed it in presentation documents
+created using markup languages, you are forced to explicitly state the
+steps you took to do your research. When you do research by clicking
+through drop-down menus in GUI programs, your steps are lost, or at
+least documenting them requires considerable extra effort. Also it is
+generally more difficult to dynamically embed your analysis in
+presentation documents created by GUI word processing programs in a way
+that will be accessible to other researchers both now and in the future.
+I’ll come back to these points in Chapter <a href="GettingStartedRR.html#GettingStartedRR">2</a>.</p>
+</div>
+<div id="why-use-knitr-and-r-markdown" class="section level4 unnumbered hasAnchor">
+<h4>Why use knitr and R Markdown?<a href="Intro.html#why-use-knitr-and-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Literate programming is a crucial part of reproducible quantitative
+research.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> Being able to directly link your analyses, your results,
+and the code you used to produce the results makes tracing your steps
+much easier. There are many different literate programming tools for a
+number of different programming languages.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> Previously, one of the
+most common tools for researchers using R and the LaTeX markup language
+was <em>Sweave</em> <span class="citation">(<a href="#ref-leisch2002">Leisch 2002</a>)</span>. The packages I am going to focus on in this
+book are newer and have more capabilities. They are called <em>knitr</em> and
+<em>rmarkdown</em>. Why are we going to use these tools in this book and not
+<em>Sweave</em> or some other tool?</p>
+<p>The simple answer is that they are more capable than <em>Sweave</em>. Both
+<em>knitr</em> and <em>rmarkdown</em> can work with markup languages other than LaTeX
+including Markdown and HTML. <em>rmarkdown</em> can even output Microsoft Word
+documents. They can work with programming languages other than R. They
+highlight R code in presentation documents making it easier for your
+readers to follow.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> They give you better control over the inclusion
+of graphics and can cache code chunks, i.e. save the output for later.
+<em>knitr</em> has the ability to understand <em>Sweave</em>-like syntax, so it will
+be easy to convert backwards to <em>Sweave</em> if you want to.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> You also
+have the choice to use much simpler and more straightforward syntax with
+<em>knitr</em> and <em>rmarkdown</em>.</p>
+<p><em>knitr</em> and <em>rmarkdown</em> have broadly similar capabilities and syntax.
+They both are literate programming tools that can produce presentation
+documents from multiple markup languages. They have almost identical
+syntax when used in Markdown. Their main difference is that they take
+different approaches to creating presentation documents. <em>knitr</em>
+documents must be written using the markup language associated with the
+desired output. For example, with <em>knitr</em>, LaTeX must be used to create
+PDF output documents and Markdown or HTML must be used to create
+webpages. R Markdown builds directly on knitr, the key difference
+being that it uses the straightforward Markdown markup language to
+generate PDF, HTML, and MS Word documents.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+<p>Because you write with the simple Markdown syntax, R Markdown is
+generally easier to use. It has the advantage of being able to take the
+same markup document and output multiple types of presentation
+documents. Nonetheless, for complex documents like books and long
+articles or work that requires custom formatting, knitr LaTeX is often
+preferable and extremely flexible, though the syntax is more
+complicated.</p>
+</div>
+<div id="why-use-rstudio" class="section level4 unnumbered hasAnchor">
+<h4>Why use RStudio?<a href="Intro.html#why-use-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Why use the RStudio integrated development environment for reproducible
+research? R by itself has the capabilities necessary to gather data,
+analyze it, and, with a little help from knitr/R Markdown and markup
+languages, present results in a way that is highly reproducible. RStudio
+allows you to do all of these things, but simplifies many of them and
+allows you to navigate through them more easily. It also is a happy
+medium between R’s text-based interface and a pure GUI.</p>
+<p>Not only does RStudio do many of the things that R can do but more
+easily, it is also a very good standalone editor for writing documents
+with LaTeX and Markdown. For LaTeX documents it can, for example, insert
+frequently used commands like <code>\section{}</code> for numbered sections (see
+Chapter <a href="LatexChapter.html#LatexChapter">11</a>).<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> There are many LaTeX editors available,
+both open source and paid. But RStudio is currently the best program for
+creating reproducible LaTeX and Markdown documents. It has full syntax
+highlighting. Its syntax highlighting can even distinguish between R
+code and markup commands in the same document. It can spell check LaTeX
+and Markdown documents. It handles knitr/R Markdown code chunks
+beautifully (see Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>).</p>
+<p>Finally, RStudio not only has tight integration with various markup
+languages, it also has capabilities for using other tools such as C++,
+CSS, JavaScript, Python, and a few other programming languages. It is closely
+integrated with the version control programs Git and SVN. Both of these
+programs allow you to keep track of the changes you make to your
+documents (see Chapter <a href="Storing.html#Storing">5</a>). This is important for reproducible research since
+version control programs can document many of your research steps. It
+also has a built-in ability to make HTML slideshows from
+knitr/R Markdown documents. Basically, RStudio makes it easy to
+create and navigate through complex reproducible research documents.</p>
+</div>
+</div>
+</div>
+<div id="InstallR" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Installing the main software<a href="Intro.html#InstallR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before you read this book you should install the main software. All of
+the software programs covered in this book are open source and can be
+easily downloaded for free. They are available for Windows, Mac, and
+Linux operating systems. They should run well on most modern computers.</p>
+<p>You should install R before installing RStudio. You can download the
+programs from the following websites:</p>
+<ul>
+<li><p><strong>R</strong>: <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>,</p></li>
+<li><p><strong>RStudio Desktop (Open Source License)</strong>:
+<a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>.</p></li>
+</ul>
+<p>The webpages for downloading these programs have comprehensive information
+on how to install them. Please refer to those pages for more
+information.</p>
+<p>After installing R and RStudio, you will probably also want to install a
+number of user-written packages that are covered in this book. To
+install all of these user-written packages, please see this chapter’s Appendix.</p>
+<div id="InstallMarkup" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Installing markup languages<a href="Intro.html#InstallMarkup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will need to install the R package <em>rmarkdown</em> <span class="citation">(<a href="#ref-R-rmarkdown">Allaire et al. 2024</a>)</span> to turn your markdown documents into polished output that can be presented (e.g. as a website or PDF). To do this in R, use:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Intro.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<p>If you plan to render your R Markdown documents from the console without RStudio, you will need to install Pandoc. For instructions, see Pandoc’s download page: <a href="https://pandoc.org/installing.html" class="uri">https://pandoc.org/installing.html</a>. If you use RStudio, this step is unnecessary as Pandoc will be installed automatically.</p>
+<p>If you want to create LaTeX (PDF) documents, you can install a TeX
+distribution.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> The simplest way to get all of the LaTeX capabilities you will need for this book is to use the <em>tinytex</em> <span class="citation">(<a href="#ref-R-tinytex">Xie 2023b</a>)</span> R package:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Intro.html#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb2-2"><a href="Intro.html#cb2-2" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<p>If you want a full LaTeX distribution, see <a href="https://www.latex-project.org/get/" class="uri">https://www.latex-project.org/get/</a> for installation information.</p>
+</div>
+<div id="InstallMake" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> GNU Make<a href="Intro.html#InstallMake" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you are using a Linux computer, you already have GNU
+Make installed.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
+Mac users will need to install the command-line developer tools. There
+are two ways to do this. One is go to the App Store and download Xcode
+(it’s free). Once Xcode is installed, install command-line tools, which
+you will find by opening Xcode then clicking on <code>Preference</code>
+<code>Downloads</code>. However, Xcode is a very large download and you only need
+the command-line tools for Make. To install just the command-line tools,
+open the Terminal and try to run Make by typing <code>make</code> and hitting
+return. A box should appear asking you if you want to install the
+command-line developer tools. Click <code>Install</code>. Windows users will have
+Make installed if they have already installed <em>Rtools</em> (see this chapter’s Appendix). Mac
+and Windows users will need to install this software not only so that
+GNU Make runs properly, but also so that other command-line tools work
+well.</p>
+</div>
+<div id="other-tools" class="section level3 hasAnchor" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Other tools<a href="Intro.html#other-tools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will discuss other tools such as Git that can be a useful part of a
+reproducible research workflow. Installation instructions for these
+tools will be discussed below.</p>
+</div>
+</div>
+<div id="OtherBooks" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Book Overview<a href="Intro.html#OtherBooks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The purpose of this book is to give you the tools that you will need to
+do reproducible research with R and RStudio. This book describes a
+workflow for reproducible research primarily using R and RStudio. It is
+designed to give you the necessary tools to use this workflow for your
+own research. It is not designed to be a complete reference for R,
+RStudio, <em>knitr</em>/<em>rmarkdown</em>, Git, or any other program that is a part
+of this workflow. Instead, it shows you how these tools can fit together
+to make your research more reproducible. To get the most out of these
+individual programs, I will along the way point you to other resources
+that cover these programs in more detail.</p>
+<p>To that end, I can recommend a number of resources that cover more of
+the nitty-gritty:</p>
+<ul>
+<li><p>Michael J. Crawley’s <span class="citation">(<a href="#ref-crawley2013">2013</a>)</span> encyclopedic R book,
+appropriately titled <strong><em>The R Book</em></strong>, published by Wiley.</p></li>
+<li><p>Hadley Whickham <span class="citation">(<a href="#ref-whickham2014book">2014a</a>)</span> has a great new book out from
+Chapman &amp; Hall on <strong><em>Advanced R</em></strong>.</p></li>
+<li><p>Yihui Xie’s <span class="citation">(<a href="#ref-xie2018">2015</a>)</span> book <strong><em>R Markdown: The Definitive Guide</em></strong>,
+published by Chapman &amp; Hall, is needless to say the definitive guide on
+R Markdown syntax. It’s a good complement
+to this book’s generally more research project–level focus.</p></li>
+<li><p>Cathy O’Neil and Rachel Schutt <span class="citation">(<a href="#ref-oneil2013">2013</a>)</span> give an
+introduction to the field of data science generally in <strong><em>Doing Data
+Science</em></strong>, published by O’Reilly Media Inc.</p></li>
+<li><p>For many real-world examples of reproducible research in action see
+Kitzes et al.’s <span class="citation">(<a href="#ref-kitzes2018">2018</a>)</span> collection of case studies
+<strong><em>The Practice of Reproducible Research</em></strong>.</p></li>
+<li><p>For an excellent introduction to the command-line in Linux and Mac,
+see William E. Shotts Jr.’s <span class="citation">(<a href="#ref-shottsjr2012">2012</a>)</span> book <strong><em>The Linux
+Command-line: A Complete Introduction</em></strong> published by No Starch
+Press. It is also helpful for Windows users running PowerShell (see
+Chapter <a href="DirectoriesChapter.html#DirectoriesChapter">4</a>). Sean Kross’ <span class="citation">(<a href="#ref-kross2018">2018</a>)</span> <strong><em>The Unix
+Workbench</em></strong> is also a great freely available online introduction to the topic.</p></li>
+<li><p>The RStudio website (<a href="https://support.rstudio.com/hc/en-us/categories/200035113-Documentation" class="uri">https://support.rstudio.com/hc/en-us/categories/200035113-Documentation</a>) has a
+number of useful tutorials on how to use <em>knitr</em> with LaTeX and
+Markdown. They also have very good documentation for <em>rmarkdown</em> at
+<a href="https://rmarkdown.rstudio.com/" class="uri">https://rmarkdown.rstudio.com/</a>.</p></li>
+</ul>
+<p>That being said, my goal is for this book to be <em>self-sufficient</em>. A
+reader without a detailed understanding of these programs will be able
+to understand and use the commands and procedures I cover in this book.
+While learning how to use R and the other programs, I personally often
+encountered illustrative examples that included commands, variables, and
+other things that were not well explained in the texts that I was
+reading. This caused me to waste many hours trying to figure out, for
+example, what the <code>$</code> is used for (preview: it’s the component selector). I hope to save you from this wasted time
+by either providing a brief explanation of possibly frustrating and
+mysterious things and/or pointing you in the direction of good
+explanations.</p>
+<div id="how-to-read-this-book" class="section level3 hasAnchor" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> How to read this book<a href="Intro.html#how-to-read-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This book gives you a workflow. It has a beginning, middle, and end. So,
+unlike a reference book, it can and should be read linearly as it takes
+you through the organizational steps of an empirical research process from an empty folder to a
+completed set of documents that reproducibly showcase your findings.</p>
+<p>That being said, readers with more experience using tools like R or
+LaTeX may want to skip over the nitty-gritty parts of the book that
+describe how to manipulate data frames or compile LaTeX documents into
+PDFs. Please feel free to skip these sections.</p>
+<div id="more-experienced-r-users" class="section level4 unnumbered hasAnchor">
+<h4>More experienced R users<a href="Intro.html#more-experienced-r-users" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you are an experienced R user you may want to skip over the first
+section of Chapter
+<a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>: Getting Started with R, RStudio, and
+<em>knitr</em>/<em>rmarkdown</em>. But don’t skip over the whole chapter. The latter
+parts contain important information on the <em>knitr</em>/<em>rmarkdown</em> packages.
+If you are experienced with R data manipulation, you may also want to
+skip all of Chapter <a href="DataClean.html#DataClean">7</a>.</p>
+</div>
+<div id="more-experienced-latex-users" class="section level4 unnumbered hasAnchor">
+<h4>More experienced LaTeX users<a href="Intro.html#more-experienced-latex-users" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you are familiar with LaTeX, you might want to skip the first part of
+Chapter <a href="LatexChapter.html#LatexChapter">11</a>. The second part may be useful as it includes
+information on how to dynamically create BibTeX bibliographies with
+<em>knitr</em> and how to include <em>knitr</em>/<em>rmarkdown</em> output in a Beamer slideshow.</p>
+</div>
+<div id="less-experienced-latexmarkdown-users" class="section level4 unnumbered hasAnchor">
+<h4>Less experienced LaTeX/Markdown users<a href="Intro.html#less-experienced-latexmarkdown-users" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you do not have experience with LaTeX or Markdown, you may benefit
+from reading, or at least skimming, the introductory chapters on these
+top topics (Chapters <a href="LatexChapter.html#LatexChapter">11</a> and <a href="MarkdownChapter.html#MarkdownChapter">12</a>) before
+reading Part III.</p>
+</div>
+</div>
+<div id="reproduce-this-book" class="section level3 hasAnchor" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Reproduce this book<a href="Intro.html#reproduce-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This book practices what it preaches. It can be reproduced. I wrote the
+book using the programs and methods that I describe. Full documentation
+and source files can be found at the book’s GitHub repository. Feel free
+to read and even use (within reason and with attribution, of course) the
+book’s source code. You can find it at:
+<a href="https://github.com/christophergandrud/Rep-Res-Book" class="uri">https://github.com/christophergandrud/Rep-Res-Book</a>. This is especially
+useful if you want to know how to do something in the book that I don’t
+directly cover in the text.</p>
+<p>If you notice any errors or places where the book can be improved please
+report them on the book’s GitHub Issues page:
+<a href="https://github.com/christophergandrud/Rep-Res-Book/issues" class="uri">https://github.com/christophergandrud/Rep-Res-Book/issues</a>. Corrections
+will be posted at:
+<a href="http://christophergandrud.github.io/RepResR-RStudio/errata.htm" class="uri">http://christophergandrud.github.io/RepResR-RStudio/errata.htm</a>.</p>
+</div>
+<div id="contents-overview" class="section level3 hasAnchor" number="1.6.3">
+<h3><span class="header-section-number">1.6.3</span> Contents overview<a href="Intro.html#contents-overview" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The book is broken into four parts. Chapters
+<a href="GettingStartedRR.html#GettingStartedRR">2</a>,
+<a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>, and <a href="DirectoriesChapter.html#DirectoriesChapter">4</a> give an overview of the reproducible
+research workflow as well as the general computer skills that you’ll
+need to use this workflow. Each of the next three parts of the book
+guides you through the specific skills you will need for each part of
+the reproducible research process. Chapters
+<a href="Storing.html#Storing">5</a>, <a href="DataGather.html#DataGather">6</a>, and <a href="DataClean.html#DataClean">7</a>
+cover the data gathering and file storage process. Chapters <a href="StatsModel.html#StatsModel">8</a>, <a href="TablesChapter.html#TablesChapter">9</a>, and <a href="FiguresChapter.html#FiguresChapter">10</a>
+teach you how to dynamically incorporate
+your statistical analysis, results figures, and tables into your
+presentation documents. Finally, Chapters <a href="LatexChapter.html#LatexChapter">11</a> and <a href="MarkdownChapter.html#MarkdownChapter">12</a> cover how to create reproducible
+presentation documents including LaTeX articles, slideshows, and webpages.</p>
+</div>
+</div>
+<div id="appendix-additional-r-setup" class="section level2 unnumbered hasAnchor">
+<h2>Appendix: Additional R Setup<a href="Intro.html#appendix-additional-r-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Some setup is required to reproduce this book. Here are key R packages you should consider installing and specific instructions for Windows and Linux users.</p>
+<div id="r-packages" class="section level3 unnumbered hasAnchor">
+<h3>R Packages<a href="Intro.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this book, I discuss how to use a number of user-written R packages for reproducible research. Many of these packages are not included in the default R installation. They need to be installed separately.</p>
+<p></p>
+<p><strong>Note:</strong> in general you should aim to minimize the number of packages that your research depends on. Doing so will lessen the possibility that your code will “break” when a package is updated. This book depends on relatively many packages because of its special and unusual purpose of illustrating a variety of tools that you can use for reproducible research.</p>
+<p>To install key user-written packages discussed in this book, copy the following code and paste it into your R console:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Intro.html#cb3-1" tabindex="-1"></a><span class="co"># Packages to install</span></span>
+<span id="cb3-2"><a href="Intro.html#cb3-2" tabindex="-1"></a>pkg_to_install <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;brew&quot;</span>, <span class="st">&quot;brms&quot;</span>, <span class="st">&quot;bookdown&quot;</span>, <span class="st">&quot;devtools&quot;</span>,</span>
+<span id="cb3-3"><a href="Intro.html#cb3-3" tabindex="-1"></a>                    <span class="st">&quot;googleVis&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;rio&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>,</span>
+<span id="cb3-4"><a href="Intro.html#cb3-4" tabindex="-1"></a>                    <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;WDI&quot;</span>, <span class="st">&quot;xfun&quot;</span>, <span class="st">&quot;texreg&quot;</span>,</span>
+<span id="cb3-5"><a href="Intro.html#cb3-5" tabindex="-1"></a>                    <span class="st">&quot;xtable&quot;</span>)</span>
+<span id="cb3-6"><a href="Intro.html#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="Intro.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="Intro.html#cb3-8" tabindex="-1"></a><span class="co"># Check if the packages are installed, if not install them</span></span>
+<span id="cb3-9"><a href="Intro.html#cb3-9" tabindex="-1"></a><span class="fu">lapply</span>(</span>
+<span id="cb3-10"><a href="Intro.html#cb3-10" tabindex="-1"></a>    pkg_to_install,</span>
+<span id="cb3-11"><a href="Intro.html#cb3-11" tabindex="-1"></a>    <span class="cf">function</span>(pkg) {</span>
+<span id="cb3-12"><a href="Intro.html#cb3-12" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">system.file</span>(<span class="at">package =</span> pkg) <span class="sc">==</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb3-13"><a href="Intro.html#cb3-13" tabindex="-1"></a>            <span class="fu">install.packages</span>(pkg,</span>
+<span id="cb3-14"><a href="Intro.html#cb3-14" tabindex="-1"></a>                <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span></span>
+<span id="cb3-15"><a href="Intro.html#cb3-15" tabindex="-1"></a>            )</span>
+<span id="cb3-16"><a href="Intro.html#cb3-16" tabindex="-1"></a>        }</span>
+<span id="cb3-17"><a href="Intro.html#cb3-17" tabindex="-1"></a>    }</span>
+<span id="cb3-18"><a href="Intro.html#cb3-18" tabindex="-1"></a>)</span></code></pre></div>
+<p>Note that I specified a US based R Project CRAN “mirror” to download the packages from.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> There are many others to choose from. See: <a href="https://cran.r-project.org/mirrors.html" class="uri">https://cran.r-project.org/mirrors.html</a>.</p>
+<p>The <em>xfun</em> package <span class="citation">(<a href="#ref-R-xfun">Xie 2025b</a>)</span> contains a function called <code>pkg_attach2()</code>. When supplied with a vector of package names like those in <code>pkg_to_install</code> above, will install all non-installed packages. <code>p_load()</code> from the <em>pacman</em> package <span class="citation">(<a href="#ref-R-pacman">Rinker and Kurkiewicz 2019</a>)</span> works in a similar way. These functions are much less verbose than the example above, but they do require the user to install the package separately before <code>pkg_attach2()</code> or <code>p_load()</code> can be used. The example above relies only on functions available in the basic <strong>R</strong> installation.</p>
+<p></p>
+</div>
+<div id="special-issues" class="section level3 unnumbered hasAnchor">
+<h3>Special issues<a href="Intro.html#special-issues" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You may need to install ImageMagick <a href="https://www.imagemagick.org/script/index.php" class="uri">https://www.imagemagick.org/script/index.php</a> compile the book from source.</p>
+<p></p>
+<p>If you are using Windows, you will also need to install <em>Rtools</em>. You can install <em>Rtools</em> from: <a href="http://cran.r-project.org/bin/windows/Rtools/" class="uri">http://cran.r-project.org/bin/windows/Rtools/</a>. Please use the recommended installation to ensure that your system PATH is set up correctly. Otherwise, your computer will not know where the tools are. Alternatively, use the <code>install.Rtools()</code> function from the <em>installr</em> <span class="citation">(<a href="#ref-galili2018">Galili et al. 2018</a>)</span> package to install it.</p>
+<p></p>
+<p></p>
+<p>On Linux, you will need to install the <em>RCurl</em> <span class="citation">(<a href="#ref-R-RCurl"><strong>R-RCurl?</strong></a>)</span> package separately. Use your
+Terminal to install these packages with the following (or similar depending on your system) code:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="Intro.html#cb4-1" tabindex="-1"></a><span class="ex">apt-get</span> update</span>
+<span id="cb4-2"><a href="Intro.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="Intro.html#cb4-3" tabindex="-1"></a><span class="ex">apt-get</span> install libcurl4-gnutls-dev</span>
+<span id="cb4-4"><a href="Intro.html#cb4-4" tabindex="-1"></a><span class="ex">apt-get</span> install r-cran-rcurl-dev</span></code></pre></div>
+<p></p>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-R-rmarkdown" class="csl-entry">
+Allaire, JJ, Yihui Xie, Christophe Dervieux, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, et al. 2024. <em>Rmarkdown: Dynamic Documents for r</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.
+</div>
+<div id="ref-bacon1267" class="csl-entry">
+Bacon, Fr. Rogeri. 1859. <em>Opera Quaedam Hactenus Inedita. Vol. I. Containing i.–Opus Tertium. II.–Opus Minus. III.–Compendium Philosophiae.</em> Google eBook.
+</div>
+<div id="ref-ball2012" class="csl-entry">
+Ball, Richard, and Norm Medeiros. 2011. <span>“<span class="nocase">Teaching integrity in empirical research: A protocol for documenting data management and analysis</span>.”</span> <em>The Journal of Economic Education</em> 43 (2): 182–89.
+</div>
+<div id="ref-barr2012" class="csl-entry">
+Barr, Christopher D. 2012. <span>“<span class="nocase">Establishing a culture of reproducibility and openness in medical research with an emphasis on the training years</span>.”</span> <em>Chance</em> 25 (3): 8–10.
+</div>
+<div id="ref-bowers2011" class="csl-entry">
+Bowers, Jake. 2011. <span>“Six Steps to a Better Relationship with Your Future Self.”</span> <em>The Political Methodologist</em> 18 (2): 2–8.
+</div>
+<div id="ref-braude1979" class="csl-entry">
+Braude, S. E. 1979. <em>ESP and Psychokinesis. A Philosophical Examination</em>. Philadelphia, PA: Temple University Press.
+</div>
+<div id="ref-buckheit1995" class="csl-entry">
+Buckheit, Jonathan B., and David L. Donoho. 1995. <span>“Wavelab and Reproducible Research.”</span> In <em>Wavelets and Statistics</em>, edited by A. Antoniadis, 55–81. New York: Springer.
+</div>
+<div id="ref-crawley2013" class="csl-entry">
+———. 2013. <em>The r Book</em>. 2nd ed. Chichester: John Wiley &amp; Sons Ltd.
+</div>
+<div id="ref-donoho2002" class="csl-entry">
+Donoho, David L. 2002. <span>“How to Be a Highly Cited Author in Mathematical Sciences.”</span> <em>In-Cites</em>.
+</div>
+<div id="ref-donoho2010" class="csl-entry">
+———. 2010. <span>“<span class="nocase">An invitation to reproducible computational research</span>.”</span> <em>Biostatistics</em> 11 (3): 385–88.
+</div>
+<div id="ref-donoho2009" class="csl-entry">
+Donoho, David L, Arian Maleki, Morteza Shahram, Inam Ur Rahman, and Victoria Stodden. 2009. <span>“<span class="nocase">Reproducible research in computational harmonic analysis</span>.”</span> <em>Computing in Science <span>&amp;</span> Engineering</em> 11 (1): 8–18.
+</div>
+<div id="ref-fomel2009" class="csl-entry">
+Fomel, Sergey, and Jon F Claerbout. 2009. <span>“<span>Reproducible Research</span>.”</span> <em>Computing in Science <span>&amp;</span> Engineering</em> 11 (1): 5–7.
+</div>
+<div id="ref-galili2018" class="csl-entry">
+Galili, Tal, Barry Rowlingson, Boris Hejblum, Dason, G. Grothendieck, Gergely Daroczi, Heuristic Andrew, et al. 2018. <em>Installr: Using r to Install Stuff (Such as: R, ’Rtools’, ’RStudio’, ’Git’, and More!)</em>. <a href="https://cran.r-project.org/package=installr">https://cran.r-project.org/package=installr</a>.
+</div>
+<div id="ref-kelly2006" class="csl-entry">
+Kelly, Clint D. 2006. <span>“<span class="nocase">Replicating empirical research in behavioral ecology: How and why it should be done but rarely ever is</span>.”</span> <em>The Quarterly Review of Biology</em> 81 (3): 221–36.
+</div>
+<div id="ref-king1995" class="csl-entry">
+King, Gary. 1995. <span>“<span class="nocase">Replication, replication</span>.”</span> <em>PS: Political Science and Politics</em> 28 (3): 444–52.
+</div>
+<div id="ref-king1994" class="csl-entry">
+King, Gary., Robert Keohane, and S. Verba. 1994. <em><span>Designing Social Inquiry</span></em>. Princeton: Princeton University Press.
+</div>
+<div id="ref-kitzes2018" class="csl-entry">
+Kitzes, Justin, Daniel Turek, and Fatma Deniz, eds. 2018. <em>The Practice of Reproducible Research: Case Studies and Lessons from the Data-Intensive Sciences</em>. Oakland, CA: University of California Press.
+</div>
+<div id="ref-knuth1992" class="csl-entry">
+———. 1992. <em>Literate Programming</em>. CSLI Lecture Notes. Stanford, CA: Center for the Study of Language; Information.
+</div>
+<div id="ref-kross2018" class="csl-entry">
+Kross, Sean. 2018. <em>The Unix Workbench</em>. self published.
+</div>
+<div id="ref-leisch2002" class="csl-entry">
+Leisch, Friedrich. 2002. <span>“Sweave: Dynamic Generation of Statistical Reports Using Literate Data Analysis.”</span> In <em>Compstat 2002: Proceedings in Computational Statistics</em>, edited by Wolfgang Härdle and Bernd Rönz, 575–80. Physica Verlag, Heidelberg.
+</div>
+<div id="ref-lykken1968" class="csl-entry">
+Lykken, David T. 1968. <span>“Statistical Significance in Psychological Research.”</span> <em>Psychologial Bulletin</em> 70: 151–59.
+</div>
+<div id="ref-pandoc2014" class="csl-entry">
+MacFarlane, John. 2019. <em>Pandoc: A Universal Document Converter</em>. <a href="http://pandoc.org/index.html">http://pandoc.org/index.html</a>.
+</div>
+<div id="ref-makel2014" class="csl-entry">
+Makel, M C, and J A Plucker. 2014. <span>“<span class="nocase">Facts are more important than novelty: Replication in the education sciences</span>.”</span> <em>Educational Researcher</em> 43 (6): 304–16.
+</div>
+<div id="ref-mesirov2010" class="csl-entry">
+Mesirov, Jill P. 2010. <span>“<span class="nocase">Accessible reproducible research</span>.”</span> <em>Science</em> 327 (5964): 415–16.
+</div>
+<div id="ref-nosek2012" class="csl-entry">
+Nosek, Brian A, Jeffrey R Spies, and Matt Motyl. 2012. <span>“<span class="nocase">Scientific utopia: II. Restructring incentives and practices to promote truth over publishability</span>.”</span> <em>Perspectives on Psychological Science</em> 7 (6): 615–31.
+</div>
+<div id="ref-oneil2013" class="csl-entry">
+O’Neal, Cathy, and Rachel Schutt. 2013. <em>Doing Data Science: Straight Talk from the Frontline</em>. Sebastopol, CA: O’Reilly Media Inc.
+</div>
+<div id="ref-peng2009" class="csl-entry">
+Peng, Roger D. 2009. <span>“<span class="nocase">Reproducible research and biostatistics</span>.”</span> <em>Biostatistics</em> 10 (3): 405–8.
+</div>
+<div id="ref-peng2011" class="csl-entry">
+———. 2011. <span>“<span class="nocase">Reproducible research in computational science</span>.”</span> <em>Science</em> 334: 1226–27.
+</div>
+<div id="ref-peng2014" class="csl-entry">
+Peng, Roger D. 2014. <span>“The Real Reason Reproducible Research Is Important.”</span> <em>Simply Statistics</em>.
+</div>
+<div id="ref-piwowar2007" class="csl-entry">
+Piwowar, Heather A, Roger S Day, and Douglas B Fridsma. 2007. <span>“<span class="nocase">Sharing detailed research data is associated with increased citation rate</span>.”</span> <em>PLoS ONE</em> 2 (3): 1–5.
+</div>
+<div id="ref-rlanguage" class="csl-entry">
+R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing.
+</div>
+<div id="ref-R-pacman" class="csl-entry">
+Rinker, Tyler, and Dason Kurkiewicz. 2019. <em>Pacman: Package Management Tool</em>. <a href="https://github.com/trinker/pacman">https://github.com/trinker/pacman</a>.
+</div>
+<div id="ref-rokem2018" class="csl-entry">
+Rokem, Ariel, Ben Marwick, and Valentina Staneva. 2018. <span>“Assessing Reproducibility.”</span> In <em>The Practice of Reproducible Research: Case Studies and Lessons from the Data-Intensive Sciences</em>, edited by Justin Kitzes, Daniel Turek, and Fatma Deniz, 3–18. Oakland, CA: University of California Press.
+</div>
+<div id="ref-rstudiocite" class="csl-entry">
+RStudio, Inc. 2019. <em>RStudio: Integrated Development Environment for r</em>. Boston, MA. <a href="\url{https://www.rstudio.com/}">\url{https://www.rstudio.com/}</a>.
+</div>
+<div id="ref-shottsjr2012" class="csl-entry">
+Shotts Jr., William E. 2012. <em>The Linux Command-Line: A Complete Introduction</em>. San Francisco: No Starch Press.
+</div>
+<div id="ref-stodden2009" class="csl-entry">
+Stodden, Victoria. 2009a. <span>“<span class="nocase">The legal framework for reproducible scientific research</span>.”</span> <em>Computing in Science <span>&amp;</span> Engineering</em> 11 (1): 35–40.
+</div>
+<div id="ref-stodden2009b" class="csl-entry">
+———. 2009b. <span>“The Reproducible Research Standard: Reducing Legal Barriers to Scientific Knowledge and Innovation.”</span> In <em>Communia: Global Science &amp; Economics of Knowledge-Sharing Institutions Torino, Italy June 30</em>.
+</div>
+<div id="ref-vandewalle2012" class="csl-entry">
+Vandewalle, Patrick. 2012. <span>“<span class="nocase">Code sharing is associated with research impact in image processing</span>.”</span> <em>Computing in Science <span>&amp;</span> Engineering</em> 14 (4): 42–47.
+</div>
+<div id="ref-vandewalle2007" class="csl-entry">
+Vandewalle, P, G Barrenetxea, I Jovanovic, A Ridolfi, and M Vetterli. 2007. <span>“<span class="nocase">Experiences with reproducible research in various facets of signal processing research</span>.”</span> <em>Acoustics, Speech and Signal Processing</em> 4: 1253–56.
+</div>
+<div id="ref-whickham2014book" class="csl-entry">
+———. 2014a. <em>Advanced r</em>. Boca Raton, FL: Chapman &amp; Hall/CRC Press.
+</div>
+<div id="ref-xie2018" class="csl-entry">
+Xie, Yihui. 2015. <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman &amp; Hall/CRC.
+</div>
+<div id="ref-R-knitr" class="csl-entry">
+———. 2023a. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+</div>
+<div id="ref-R-tinytex" class="csl-entry">
+———. 2023b. <em>Tinytex: Helper Functions to Install and Maintain TeX Live, and Compile LaTeX Documents</em>. <a href="https://github.com/rstudio/tinytex">https://github.com/rstudio/tinytex</a>.
+</div>
+<div id="ref-R-xfun" class="csl-entry">
+———. 2025b. <em>Xfun: Supporting Functions for Packages Maintained by Yihui Xie</em>. <a href="https://github.com/yihui/xfun">https://github.com/yihui/xfun</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p><span class="citation">Rokem, Marwick, and Staneva (<a href="#ref-rokem2018">2018, 3–4</a>)</span> note that some disciplines, e.g. computing
+machinery and meteorology, give “replicable” and “reproducible” the exact
+opposite meanings from the way they are used in this book and many other
+disciplines such as biology, economics, and epidemiology.<a href="Intro.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>This is close to what <span class="citation">Lykken (<a href="#ref-lykken1968">1968</a>)</span> calls “operational
+replication”.<a href="Intro.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>The really reproducible computational research originates
+in the 1980s and early 1990s with Jon Claerbout and the
+Stanford Exploration Project
+<span class="citation">(<a href="#ref-fomel2009">Fomel and Claerbout 2009</a>; <a href="#ref-donoho2009">Donoho et al. 2009</a>)</span>. Further seminal advances were made by
+Jonathan B. Buckheit and David L. Donoho who created the Wavelab
+library of MATLAB routines for their research on wavelets in the
+mid-1990s <span class="citation">(<a href="#ref-buckheit1995">Buckheit and Donoho 1995</a>)</span>.<a href="Intro.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Reproducibility is important for both quantitative and qualitative
+research <span class="citation">(<a href="#ref-king1994">Gary. King, Keohane, and Verba 1994</a>)</span>. Nonetheless, we will focus mainly on on
+methods for reproducibility in quantitative computational research.<a href="Intro.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Much of the reproducible computational research and literate
+programming literatures have traditionally used the term “weave” to
+describe the process of combining source code and presentation
+documents <span class="citation">(see <a href="#ref-knuth1992">Knuth 1992, 101</a>)</span>. In the R community, the term “weave” is usually
+used to describe the combination of source code and LaTeX documents.
+The term “knit” reflects the vocabulary of the <em>knitr</em> R package
+(knit + R). It is used more generally to describe weaving with a
+variety of markup languages. The term is used by RStudio if you are
+using the <em>rmarkdown</em> package, which is similar to <em>knitr</em>. We also
+cover the <em>rmarkdown</em> package in this book. Because of this, I use
+the term knit rather than weave in this book.<a href="Intro.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>See the American Physical Society’s website at
+<a href="http://www.aps.org/policy/statements/99_6.cfm" class="uri">http://www.aps.org/policy/statements/99_6.cfm</a>. See also
+<span class="citation">Fomel and Claerbout (<a href="#ref-fomel2009">2009</a>)</span>.<a href="Intro.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Of course, it’s important to keep in mind that reproducibility is
+“neither necessary nor sufficient to prevent mistakes”
+<span class="citation">(<a href="#ref-stodden2009b">Stodden 2009b</a>)</span>.<a href="Intro.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>There are ways to enable some public reproducibility without
+revealing confidential information. See <span class="citation">(<a href="#ref-vandewalle2007">P. Vandewalle et al. 2007</a>)</span> for a
+discussion of one approach.<a href="Intro.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>See this post by David Smith about how the J.P. Morgan “London
+Whale” problem may have been prevented with the type of processes
+covered in this book:
+<a href="http://blog.revolutionanalytics.com/2013/02/did-an-excel-error-bring-down-the-london-whale.html" class="uri">http://blog.revolutionanalytics.com/2013/02/did-an-excel-error-bring-down-the-london-whale.html</a>
+(posted 11 February 2013).<a href="Intro.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>The book was created with R version 3.6.2 and
+RStudio preview release version 1.2.5019.<a href="Intro.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>In this book, I cover the Bash shell for Linux and Mac as well as
+Windows PowerShell.<a href="Intro.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>I know you can write scripts in statistical programs like SPSS,
+but doing so is not encouraged by the program’s interface and you
+often have to learn multiple languages for writing scripts that run
+analyses, create graphics, and deal with matrices.<a href="Intro.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>Donald Knuth coined the term literate programming in the 1970s to
+refer to a source file that could be both run by a computer and
+“woven” with a formatted presentation document <span class="citation">(<a href="#ref-knuth1992">Knuth 1992</a>)</span>.<a href="Intro.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>A very interesting tool that is worth taking a look at for the
+Python programming language is HTML Notebooks created with Jupyter.
+For more details see <a href="http://jupyter.org/" class="uri">http://jupyter.org/</a>. We will also discuss these at the end of Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>.<a href="Intro.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>Syntax highlighting uses different colors and fonts to
+distinguish different types of text.<a href="Intro.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>Note that the Sweave-style syntax is not identical to actual
+<em>Sweave</em> syntax. See Yihui Xie’s discussion of the differences
+between the two at: <a href="http://yihui.name/knitr/demo/sweave/" class="uri">http://yihui.name/knitr/demo/sweave/</a>. <em>knitr</em>
+has a function (<code>Sweave2knitr</code>) for converting <em>Sweave</em> to <em>knitr</em>
+syntax.<a href="Intro.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>It does this by relying on a tool called Pandoc <span class="citation">(<a href="#ref-pandoc2014">MacFarlane 2019</a>)</span>.
+<a href="Intro.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>If you are more comfortable with a what-you-see-is-what-you-get
+(WYSIWYG) word processor like Microsoft Word, you might be
+interested in exploring Lyx. It is a WYSIWYG-like LaTeX editor that
+works with <em>knitr</em>. It doesn’t work with the other markup languages
+covered in this book. For more information, see:
+<a href="https://www.lyx.org/" class="uri">https://www.lyx.org/</a>. I give some brief information on using Lyx
+with <em>knitr</em> in Chapter 3’s Appendix.<a href="Intro.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>LaTeX is really a set of macros for the TeX typesetting
+system. It is included in all major TeX distributions.<a href="Intro.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>To verify this, open the Terminal and type: <code>make –version</code> (I
+used version 3.81 for this book). This should output details about
+the current version of Make installed on your computer.<a href="Intro.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>CRAN stands for the Comprehensive R Archive Network.<a href="Intro.html#fnref23" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="additional-resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="GettingStartedRR.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/03-introduction.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

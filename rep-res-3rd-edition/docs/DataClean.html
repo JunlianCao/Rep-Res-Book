@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Preparing Data for Analysis | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 7 Preparing Data for Analysis | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Preparing Data for Analysis | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 7 Preparing Data for Analysis | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Preparing Data for Analysis | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 7 Preparing Data for Analysis | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="DataGather.html"/>
+<link rel="next" href="appendix.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="DataClean" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Preparing Data for Analysis<a href="DataClean.html#DataClean" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Once we have gathered the raw data that we want to include in our
+statistical analyses, we generally need to clean it up so that it can be
+merged into a single data set that we can easily use for statistical analysis.
+In this chapter we will learn how to
+create the data gathering and merging files we saw in the last chapter. This includes recoding and transforming
+variables in the data set so that the data sets can be easily merged. This will also be useful
+information in later chapters as well. If you are very familiar with
+data transformations in R, you may want to skip to the next chapter.</p>
+<div id="cleaning-data-for-merging" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Cleaning Data for Merging<a href="DataClean.html#cleaning-data-for-merging" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to successfully merge two or more data frames, we need to make
+sure that they are in the same format. Let’s look at some of the
+important formatting issues and how to reformat your data frames so that
+they can be easily merged.</p>
+<div id="get-a-handle-on-your-data" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Get a handle on your data<a href="DataClean.html#get-a-handle-on-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before doing anything to your data, it is a good idea to ‘look at
+it’ to see what needs to be done. Taking a little time to become
+acquainted with your data will help you avoid many error messages and
+much frustration.</p>
+<p>You could type a data frame object’s name into the R console. This will
+print the entire data frame in your console. For data frames with more
+than a few variables and observations, this is impractical. We have
+already seen a number of functions that are useful for looking at parts
+of your data. As we saw in Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>, the <code>names()</code> function shows you the
+variable names in a data frame object. The <code>head()</code> function shows the
+names plus the first few observations in a data frame. <code>tail()</code> shows
+the last few. <code>str()</code> returns a summary of a data frame, including the number of observations and variables as well as the variable types.</p>
+<p>Use the <code>dim()</code> (dimensions) function to quickly see the number of
+observations and variables (the number of rows and columns) in a data
+frame object. For example, let’s test out <code>dim()</code> with the <em>fert_cons_data</em> object we
+created in Chapter <a href="DataGather.html#DataGather">6</a>:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="DataClean.html#cb178-1" tabindex="-1"></a><span class="fu">dim</span>(fert_cons_data)</span></code></pre></div>
+<pre><code>## [1] 1862    5</code></pre>
+<p>The first number is the number of rows in the data frame (1862), and the
+second is the number of columns (5). You can also use the <code>nrow()</code> function
+to find just the number of rows and <code>ncol()</code> to see only the columns.</p>
+<p>The <code>summary()</code> function is especially helpful for seeing basic descriptive
+statistics for all of the variables in a data frame and also the
+variable types. Here is an example:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="DataClean.html#cb180-1" tabindex="-1"></a><span class="fu">summary</span>(fert_cons_data)</span></code></pre></div>
+<pre><code>##    country             iso2c          
+##  Length:1862        Length:1862       
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+##                                       
+##                                       
+##     iso3c                year      AG.CON.FERT.ZS  
+##  Length:1862        Min.   :2010   Min.   :   0.0  
+##  Class :character   1st Qu.:2011   1st Qu.:  18.6  
+##  Mode  :character   Median :2013   Median :  86.2  
+##                     Mean   :2013   Mean   : 139.1  
+##                     3rd Qu.:2015   3rd Qu.: 164.2  
+##                     Max.   :2016   Max.   :2263.4  
+##                                    NA&#39;s   :188</code></pre>
+<p>We can immediately see that the variables <strong>iso2c</strong> and <strong>country</strong> are
+character strings. Because <code>summary()</code> is able to calculate means,
+medians, and so on for <strong>AG.CON.FERT.ZS</strong> and <strong>year</strong>, we know they are
+numeric. Have a look over the summary to see if there is anything
+unexpected like lots of missing values (<strong>NA’s</strong>) or unusual maximum and minimum values. You can of course, run <code>summary()</code> on a particular
+variable by using the component selector (<code>$</code>): </p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="DataClean.html#cb182-1" tabindex="-1"></a><span class="co"># Summarize fertilizer consumption variable from fert_cons_data</span></span>
+<span id="cb182-2"><a href="DataClean.html#cb182-2" tabindex="-1"></a><span class="fu">summary</span>(fert_cons_data<span class="sc">$</span>AG.CON.FERT.ZS)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    18.6    86.2   139.1   164.2  2263.4 
+##    NA&#39;s 
+##     188</code></pre>
+<p>We’ll come back to why knowing this type of information is important for merging and data analysis later in this chapter.</p>
+<p>Another important function for quickly summarizing a data frame is <code>table()</code>. This creates a contingency table with counts of the number of observations per combination of factor variables.</p>
+<p>You can view a portion of a data frame object with <code>View()</code> This will open a new window that lets you see a selection of the data frame. If you are using RStudio, you can click on the data frame in the <em>Environment</em> tab and you will get something similar. Note that neither of these viewers are interactive in that you can’t use them to manipulate the data. They are only data viewers. To be able to see similar windows that you can interactively edit, use the <code>fix()</code> function in the same way that you use <code>View()</code>. This can be useful for small edits, but remember that the edits are not reproducible.</p>
+</div>
+<div id="tibbles" class="section level3 unnumbered hasAnchor">
+<h3>Tibbles<a href="DataClean.html#tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most of these data summary capabilities come “for free” when you use an alternate type of data frame called a “tibble” <span class="citation">(<a href="#ref-R-tibble">Müller and Wickham 2023</a>)</span> For example: </p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="DataClean.html#cb184-1" tabindex="-1"></a><span class="co"># Create example tibble data frame</span></span>
+<span id="cb184-2"><a href="DataClean.html#cb184-2" tabindex="-1"></a>tbl_ex <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">numbers =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">26</span>, <span class="at">letters =</span> letters)</span>
+<span id="cb184-3"><a href="DataClean.html#cb184-3" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="DataClean.html#cb184-4" tabindex="-1"></a>tbl_ex</span></code></pre></div>
+<pre><code>## # A tibble: 26 × 2
+##    numbers letters
+##      &lt;int&gt; &lt;chr&gt;  
+##  1       1 a      
+##  2       2 b      
+##  3       3 c      
+##  4       4 d      
+##  5       5 e      
+##  6       6 f      
+##  7       7 g      
+##  8       8 h      
+##  9       9 i      
+## 10      10 j      
+## # ℹ 16 more rows</code></pre>
+<p>Entering a tibble’s object name in the console returns the condensed output, the data dimmensions, and the variable types with the first 10 entries.</p>
+<p>Tibbles are the data structure favored by the tidy data/tidyverse R data paradigm <span class="citation">(<a href="#ref-wickham2014article">Wickham 2014b</a>)</span>. We will work with other packages of the Tidyverse, e.g. <em>dplyr</em> and <em>ggplot2</em>, in later chapters. Note that these packages often work with traditional data frames as well (or will convert data frames to tibbles automatically).</p>
+</div>
+<div id="GatherReshape" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Reshaping data<a href="DataClean.html#GatherReshape" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>It is often a good idea if your data sets are kept in data frame type objects if that is the format you will use for analysis. See Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a> for how to convert objects into data frames with the <code>data.frame()</code> function. Not only do data sets (generally) need to be stored in data frame objects, they also need to have the same layout before they can be merged. Most R statistical analysis tools assume that your data is in “long” format. For an excellent discussion of ideal data formats for statistical analysis, see <span class="citation">Wickham (<a href="#ref-wickham2014article">2014b</a>)</span>. Long formatted data usually has columns that represent variables. Rows contain specific observations. For example:</p>
+<p>In this chapter we will mostly use examples of time-series cross-sectional data (TSCS) that we want to have in long-format. Long-formatted TSCS data is a data frame where rows identify observations of a particular subject at particular points in time and there are multiple observations per subject (see Table <a href="#ExampleTSCSLong"><strong>??</strong></a>). In this chapter our TSCS data is specifically going to be countries that are observed in multiple years.</p>
+<p>If one of our raw data sets is not in this format, then we will need to reshape or, using Wickham’s <span class="citation">(<a href="#ref-wickham2014article">2014b</a>)</span> terminology, “tidy” it. Some data sets are in “wide” format, where one of the columns in what would be long formatted data is “widened” to cover multiple columns. This is confusing to imagine without an example. Table <a href="#ExampleWide"><strong>??</strong></a> shows how Table <a href="#ExampleTSCSLong"><strong>??</strong></a> looks when we widen the time variable.</p>
+<p>The process of tidying data often causes confusion and frustration. Though probably never easy, there are a number of useful R functions for changing data from wide-format to long and vice versa. These include the matrix transpose function (<code>t()</code>)<a href="#fn140" class="footnote-ref" id="fnref140"><sup>140</sup></a> and the <code>reshape()</code> function, both are loaded in R by default. <em>tidyr</em> <span class="citation">(<a href="#ref-R-tidyr">Wickham, Vaughan, and Girlich 2023</a>)</span> is a very helpful package for reshaping data. This package has more general tools for reshaping data and is worth investing some time to learn well. In this section, we will look at <em>tidyr</em>’s <code>pivot_longer()</code> function and use it to reshape a TSCS data frame from wide- to long-format. We will also encounter this function again in Chapter <a href="FiguresChapter.html#FiguresChapter">10</a> when we want to transform data so that it can be graphed. Note that if you want to go from long to wide-format, use <em>tidyr</em>’s <code>pivot_wider()</code> function.</p>
+<p>For illustration, let’s imagine that the fertilizer consumption data we previously downloaded from the World Bank is in wide, rather than long, format and is in a data frame object called <em>fert_wide</em>. It looks like this:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="DataClean.html#cb186-1" tabindex="-1"></a>fert_wide[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## # A tibble: 266 × 4
+##    country                     iso2c iso3c `2016`
+##    &lt;chr&gt;                       &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
+##  1 Afghanistan                 AF    AFG    13.7 
+##  2 Africa Eastern and Southern ZH    AFE    21.1 
+##  3 Africa Western and Central  ZI    AFW    11.7 
+##  4 Albania                     AL    ALB   126.  
+##  5 Algeria                     DZ    DZA    21.0 
+##  6 American Samoa              AS    ASM    34.2 
+##  7 Andorra                     AD    AND    NA   
+##  8 Angola                      AO    AGO     6.64
+##  9 Antigua and Barbuda         AG    ATG    18.2 
+## 10 Arab World                  1A    ARB    51.7 
+## # ℹ 256 more rows</code></pre>
+<p>See the chapter’s Appendix for the full code I used to reshape the data from long- to wide-format.</p>
+<p>Let’s think about how we want to tidy the data. We want to create two new columns from the many columns that are now labeled by year. Let’s call the new columns <strong>Year</strong> and <strong>Fert</strong>. The <strong>Year</strong> column will clearly contain the year of each observation and <strong>Fert</strong> will contain the fertilizer consumption. <strong>Year</strong> will be what <code>pivot_longer()</code> calls the variable’s “name” and <strong>Fert</strong> is the “value”. In our <em>fert_wide</em> data, we don’t want the <strong>iso2c</strong> and <strong>country</strong> variables to be gathered. These variables identify the data set’s subjects. So we can tell <code>pivot_longer()</code> that we only want the columns with the between <strong>2016</strong> and <strong>2010</strong> to be used for the long variable. Note that the back ticks in the code below allow us to specify numeric values as column names.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="DataClean.html#cb188-1" tabindex="-1"></a><span class="co"># Gather fert_wide</span></span>
+<span id="cb188-2"><a href="DataClean.html#cb188-2" tabindex="-1"></a>fert_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(fert_wide,</span>
+<span id="cb188-3"><a href="DataClean.html#cb188-3" tabindex="-1"></a>                                 <span class="at">cols =</span> <span class="st">`</span><span class="at">2016</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2010</span><span class="st">`</span>,</span>
+<span id="cb188-4"><a href="DataClean.html#cb188-4" tabindex="-1"></a>                                 <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb188-5"><a href="DataClean.html#cb188-5" tabindex="-1"></a>                                 <span class="at">values_to =</span> <span class="st">&quot;Fert&quot;</span>)</span>
+<span id="cb188-6"><a href="DataClean.html#cb188-6" tabindex="-1"></a></span>
+<span id="cb188-7"><a href="DataClean.html#cb188-7" tabindex="-1"></a>fert_long</span></code></pre></div>
+<pre><code>## # A tibble: 1,862 × 5
+##    country                     iso2c iso3c Year   Fert
+##    &lt;chr&gt;                       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 Afghanistan                 AF    AFG   2016  13.7 
+##  2 Afghanistan                 AF    AFG   2015  13.3 
+##  3 Afghanistan                 AF    AFG   2014  10.2 
+##  4 Afghanistan                 AF    AFG   2013   4.88
+##  5 Afghanistan                 AF    AFG   2012   2.38
+##  6 Afghanistan                 AF    AFG   2011   3.83
+##  7 Afghanistan                 AF    AFG   2010   1.78
+##  8 Africa Eastern and Southern ZH    AFE   2016  21.1 
+##  9 Africa Eastern and Southern ZH    AFE   2015  19.2 
+## 10 Africa Eastern and Southern ZH    AFE   2014  19.9 
+## # ℹ 1,852 more rows</code></pre>
+</div>
+<div id="renaming-variables" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Renaming variables<a href="DataClean.html#renaming-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>Frequently, in the data cleaning process we want to change the names of our variables. This will make our data easier to understand and may even be necessary to properly combine data sets (see below). In the previous example, for instance, our <code>fert_long</code> data frame has two variables: <strong>Year</strong> and <strong>Fert</strong>. Imagine, for the sake of demonstration, that we want to rename them <strong>year</strong> and <strong>fert_cons</strong>. Renaming data frame variables is straightforward with the <code>rename()</code> function in the <em>dplyr</em> package . To rename both <strong>variable</strong> and <strong>value</strong> with the <code>rename()</code> function type:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="DataClean.html#cb190-1" tabindex="-1"></a>fert_long <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(fert_long,</span>
+<span id="cb190-2"><a href="DataClean.html#cb190-2" tabindex="-1"></a>                           <span class="at">year =</span> Year,</span>
+<span id="cb190-3"><a href="DataClean.html#cb190-3" tabindex="-1"></a>                           <span class="at">fert_cons =</span> Fert)</span>
+<span id="cb190-4"><a href="DataClean.html#cb190-4" tabindex="-1"></a></span>
+<span id="cb190-5"><a href="DataClean.html#cb190-5" tabindex="-1"></a>fert_long</span></code></pre></div>
+<pre><code>## # A tibble: 1,862 × 5
+##    country                  iso2c iso3c year  fert_cons
+##    &lt;chr&gt;                    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+##  1 Afghanistan              AF    AFG   2016      13.7 
+##  2 Afghanistan              AF    AFG   2015      13.3 
+##  3 Afghanistan              AF    AFG   2014      10.2 
+##  4 Afghanistan              AF    AFG   2013       4.88
+##  5 Afghanistan              AF    AFG   2012       2.38
+##  6 Afghanistan              AF    AFG   2011       3.83
+##  7 Afghanistan              AF    AFG   2010       1.78
+##  8 Africa Eastern and Sout… ZH    AFE   2016      21.1 
+##  9 Africa Eastern and Sout… ZH    AFE   2015      19.2 
+## 10 Africa Eastern and Sout… ZH    AFE   2014      19.9 
+## # ℹ 1,852 more rows</code></pre>
+</div>
+<div id="ordering-data" class="section level3 hasAnchor" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Ordering data<a href="DataClean.html#ordering-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>You may have noticed that as a result of gathering <em>fert_wide</em> the data is now ordered by country-year. Imagine that for some substantive reason that makes the data easier to read, we rather want it ordered by year-country. Though not required for merging in R, some statistical analyses assume that the data is ordered in a specific way.</p>
+<p>We can order observations in our data set using the <code>order()</code> function. For example, to order <em>fert_long</em> by year-country, we type:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="DataClean.html#cb192-1" tabindex="-1"></a><span class="co"># Order fert_long by year-country</span></span>
+<span id="cb192-2"><a href="DataClean.html#cb192-2" tabindex="-1"></a>fert_long <span class="ot">&lt;-</span> fert_long[<span class="fu">order</span>(fert_long<span class="sc">$</span>year,</span>
+<span id="cb192-3"><a href="DataClean.html#cb192-3" tabindex="-1"></a>                                     fert_long<span class="sc">$</span>country), ]</span>
+<span id="cb192-4"><a href="DataClean.html#cb192-4" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="DataClean.html#cb192-5" tabindex="-1"></a><span class="fu">head</span>(fert_long)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   country                   iso2c iso3c year  fert_cons
+##   &lt;chr&gt;                     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1 Afghanistan               AF    AFG   2010       1.78
+## 2 Africa Eastern and South… ZH    AFE   2010      20.2 
+## 3 Africa Western and Centr… ZI    AFW   2010       9.60
+## 4 Albania                   AL    ALB   2010      85.0 
+## 5 Algeria                   DZ    DZA   2010      15.8 
+## 6 American Samoa            AS    ASM   2010      67.1</code></pre>
+<p><em>dplyr</em> has a function called <code>arrange()</code> that can also be useful for ordering your data. <code>arrange()</code>’s syntax is much cleaner and easier to remember for data frames than the operation we did with <code>order()</code>. To arrange the <em>fert_long</em> data back to country-year with <code>arrange()</code> use:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="DataClean.html#cb194-1" tabindex="-1"></a>fert_long <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(fert_long, country, year)</span></code></pre></div>
+<p>To arrange a variable in descending order, place it in the <code>desc()</code> function from <em>dplyr</em>, e.g. <code>arrange(fert_long, country, desc(year))</code>.</p>
+</div>
+<div id="subsetting-data" class="section level3 hasAnchor" number="7.1.5">
+<h3><span class="header-section-number">7.1.5</span> Subsetting data<a href="DataClean.html#subsetting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>Sometimes you may want to use only a subset of a data frame. For example, the density plot in the following figure shows us that the <em>fert_long</em> data has a few very extreme values (see the chapter’s Appendix for the source code to create this figure).</p>
+<p><img src="bookdown_files/figure-html/fert_consDens-1.png" width="288" style="display: block; margin: auto;" /></p>
+<p>We can use the <code>subset()</code> function to examine these outliers, for example, countries that have fertilizer consumption greater than 1000 kilograms per hectare.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="DataClean.html#cb195-1" tabindex="-1"></a><span class="co"># Create outlier data frame</span></span>
+<span id="cb195-2"><a href="DataClean.html#cb195-2" tabindex="-1"></a>fert_outliers <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> fert_long,</span>
+<span id="cb195-3"><a href="DataClean.html#cb195-3" tabindex="-1"></a>                        fert_cons <span class="sc">&gt;</span> <span class="dv">1000</span>)</span>
+<span id="cb195-4"><a href="DataClean.html#cb195-4" tabindex="-1"></a></span>
+<span id="cb195-5"><a href="DataClean.html#cb195-5" tabindex="-1"></a>fert_outliers</span></code></pre></div>
+<pre><code>## # A tibble: 27 × 5
+##    country iso2c iso3c year  fert_cons
+##    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+##  1 Bahrain BH    BHR   2010      1336.
+##  2 Bahrain BH    BHR   2012      1567.
+##  3 Bahrain BH    BHR   2013      1327.
+##  4 Bahrain BH    BHR   2014      1383.
+##  5 Bahrain BH    BHR   2015      1040.
+##  6 Ireland IE    IRL   2010      1065.
+##  7 Ireland IE    IRL   2012      1139.
+##  8 Ireland IE    IRL   2013      1110.
+##  9 Ireland IE    IRL   2014      1131.
+## 10 Ireland IE    IRL   2015      1166.
+## # ℹ 17 more rows</code></pre>
+<p>If we want to drop these outliers from our data set, we can use <code>subset()</code> again:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="DataClean.html#cb197-1" tabindex="-1"></a>fert_long_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> fert_long,</span>
+<span id="cb197-2"><a href="DataClean.html#cb197-2" tabindex="-1"></a>                            fert_cons <span class="sc">&lt;=</span> <span class="dv">1000</span>)</span></code></pre></div>
+<p>In this example, non-country units like “Arab World” are included. We might also want to drop these units with <code>subset()</code>. For example:</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="DataClean.html#cb198-1" tabindex="-1"></a>fert_long_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> fert_long_sub,</span>
+<span id="cb198-2"><a href="DataClean.html#cb198-2" tabindex="-1"></a>                            country <span class="sc">!=</span> <span class="st">&quot;Arab World&quot;</span>)</span></code></pre></div>
+<p>We can also use <code>subset()</code> to remove observations with missing values (<code>NA</code>) for <strong>fert_cons</strong>.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="DataClean.html#cb199-1" tabindex="-1"></a><span class="co"># Remove observations of fert_cons</span></span>
+<span id="cb199-2"><a href="DataClean.html#cb199-2" tabindex="-1"></a><span class="co"># with missing values</span></span>
+<span id="cb199-3"><a href="DataClean.html#cb199-3" tabindex="-1"></a>fert_long_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> fert_long_sub,</span>
+<span id="cb199-4"><a href="DataClean.html#cb199-4" tabindex="-1"></a>                            <span class="sc">!</span><span class="fu">is.na</span>(fert_cons))</span>
+<span id="cb199-5"><a href="DataClean.html#cb199-5" tabindex="-1"></a></span>
+<span id="cb199-6"><a href="DataClean.html#cb199-6" tabindex="-1"></a><span class="co"># Summarize fert_cons</span></span>
+<span id="cb199-7"><a href="DataClean.html#cb199-7" tabindex="-1"></a><span class="fu">summary</span>(fert_long_sub<span class="sc">$</span>fert_cons)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    18.2    84.9   116.9   160.0   995.7</code></pre>
+<p>Let’s step back. I’ve introduced a number of new logical
+operators and a new function in the subsetting examples. The first
+example included the greater than sign (<code>&gt;</code>). The
+second example included the less than or equal to operator: <code>&lt;=</code>. The
+third example included the not equal operator: <code>!=</code>. In R, exclamation
+points (<code>!</code>) generally denote ‘not’. We used this again in the final
+example in combination with the <code>is.na</code> function. This function indicates
+if an element is missing, so <code>!is.na</code> means “not missing”. See Table <a href="#LogicalOp"><strong>??</strong></a> for a list of R’s logical operators.
+You can use these operators and functions when subsetting data and
+throughout R.</p>
+</div>
+<div id="recoding-stringnumeric-variables" class="section level3 hasAnchor" number="7.1.6">
+<h3><span class="header-section-number">7.1.6</span> Recoding string/numeric variables<a href="DataClean.html#recoding-stringnumeric-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You may want to recode your variables. In particular, when you merge
+data sets you need to have <strong>identical</strong> identification values
+that R can use to match each observation. If in one data set
+observations for the Republic of Korea are referred to as “Korea, Rep.”
+and in another they are labeled “South Korea”, R will not know to merge
+them. We need to recode values in the variables that we want to match
+our data sets on. For example, in <em>fert_long_sub</em> the southern Korean
+country is labeled “Korea, Rep.”. To recode it to “South Korea”, type:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="DataClean.html#cb201-1" tabindex="-1"></a><span class="co"># Recode country == &quot;Korea, Rep.&quot; to &quot;South Korea&quot;</span></span>
+<span id="cb201-2"><a href="DataClean.html#cb201-2" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>country[fert_long_sub<span class="sc">$</span>country <span class="sc">==</span></span>
+<span id="cb201-3"><a href="DataClean.html#cb201-3" tabindex="-1"></a>                            <span class="st">&quot;Korea, Rep.&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;South Korea&quot;</span></span></code></pre></div>
+<p>This code assigns “South Korea” to all values of the <strong>country</strong>
+variable that equal “Korea, Rep.”.<a href="#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a> You can use a similar technique
+to recode numeric variables as well. The only difference is that you
+omit the quotation marks. We will look at how to code factor variables
+later.</p>
+</div>
+<div id="creating-new-variables-from-old" class="section level3 hasAnchor" number="7.1.7">
+<h3><span class="header-section-number">7.1.7</span> Creating new variables from old<a href="DataClean.html#creating-new-variables-from-old" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As part of your data cleanup process (or later during statistical
+analysis), you may want to create new variables based on existing
+variables. For example, we could create a new variable that is the
+natural logarithm of <strong>fert_cons</strong>. To do this, we run the
+variable through the <code>log()</code> function and assign a new variable that we’ll
+call <strong>fert_cons_log</strong>.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="DataClean.html#cb202-1" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_log <span class="ot">&lt;-</span> <span class="fu">log</span>(fert_long_sub<span class="sc">$</span>fert_cons)</span>
+<span id="cb202-2"><a href="DataClean.html#cb202-2" tabindex="-1"></a></span>
+<span id="cb202-3"><a href="DataClean.html#cb202-3" tabindex="-1"></a><span class="fu">summary</span>(fert_long_sub<span class="sc">$</span>fert_cons_log)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    -Inf    2.90    4.44    -Inf    5.08    6.90</code></pre>
+<p>Imagine that when we summarized the new log transformed variable that we had a minimum (and mean) value
+of <code>-Inf</code>. This would indicate that by logging the variable we have created
+observations with the value negative infinity. R calculates the natural
+logarithm of zero as negative infinity.<a href="#fn142" class="footnote-ref" id="fnref142"><sup>142</sup></a> We probably don’t want
+negative infinity values. There are a few ways to deal with this. We
+could drop all observations of <strong>fert_cons</strong> with the value
+zero before log transforming it. Another common solution is recoding
+zeros as some small nonnegative number like 0.001. For example:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="DataClean.html#cb204-1" tabindex="-1"></a><span class="co"># Recode zeros in Fertilizer Consumption</span></span>
+<span id="cb204-2"><a href="DataClean.html#cb204-2" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons[fert_long_sub<span class="sc">$</span>fert_cons <span class="sc">==</span></span>
+<span id="cb204-3"><a href="DataClean.html#cb204-3" tabindex="-1"></a>                              <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="fl">0.001</span></span>
+<span id="cb204-4"><a href="DataClean.html#cb204-4" tabindex="-1"></a></span>
+<span id="cb204-5"><a href="DataClean.html#cb204-5" tabindex="-1"></a><span class="co"># Natural log transform Fertilizer Consumption</span></span>
+<span id="cb204-6"><a href="DataClean.html#cb204-6" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_log <span class="ot">&lt;-</span> <span class="fu">log</span>(fert_long_sub<span class="sc">$</span>fert_cons)</span></code></pre></div>
+<p>Note that this example is included to demonstrate R syntax rather than
+to prescribe a certain transformation of skewed data with zeros. The
+choice of which transformation to make should ultimately be made based
+on the data, model, and context. See <span class="citation">Hyndman (<a href="#ref-hyndman2010">2010</a>)</span> for more information
+on various alternatives including Box-Cox <span class="citation">(<a href="#ref-box1964analysis">Box and Cox 1964</a>)</span> and inverse
+hyperbolic sine transformations <span class="citation">(<a href="#ref-burbidge1988">Burbidge and Robb 1988</a>)</span>.</p>
+<div id="creating-factor-variables" class="section level4 unnumbered hasAnchor">
+<h4>Creating factor variables<a href="DataClean.html#creating-factor-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can create factor variables from numeric or string variables. For
+example, we may want to turn the continuous numeric
+<strong>fert_cons</strong> variable into an ordered categorical (i.e.
+factor) variable. Imagine that we want to create a factor variable
+called <strong>fert_cons_group</strong> with four levels called ‘low’, ‘medium low’,
+‘medium high’, and ‘high’. To do this, let’s first create a new numeric
+variable based on the values listed in Table <a href="#ExampleFactorRecode"><strong>??</strong></a>. Now let’s use a procedure that is
+similar to the variable recoding we did earlier:<a href="#fn143" class="footnote-ref" id="fnref143"><sup>143</sup></a></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="DataClean.html#cb205-1" tabindex="-1"></a><span class="co"># Create numeric factor levels variable</span></span>
+<span id="cb205-2"><a href="DataClean.html#cb205-2" tabindex="-1"></a></span>
+<span id="cb205-3"><a href="DataClean.html#cb205-3" tabindex="-1"></a><span class="co"># Attach fert_long_sub data frame</span></span>
+<span id="cb205-4"><a href="DataClean.html#cb205-4" tabindex="-1"></a><span class="fu">attach</span>(fert_long_sub)</span>
+<span id="cb205-5"><a href="DataClean.html#cb205-5" tabindex="-1"></a></span>
+<span id="cb205-6"><a href="DataClean.html#cb205-6" tabindex="-1"></a><span class="co"># Created new fert_cons_group variable based on # fert_cons</span></span>
+<span id="cb205-7"><a href="DataClean.html#cb205-7" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_group[fert_cons <span class="sc">&lt;</span> <span class="dv">18</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb205-8"><a href="DataClean.html#cb205-8" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_group[fert_cons <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span></span>
+<span id="cb205-9"><a href="DataClean.html#cb205-9" tabindex="-1"></a>                                    fert_cons <span class="sc">&lt;</span> <span class="dv">81</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb205-10"><a href="DataClean.html#cb205-10" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_group[fert_cons <span class="sc">&gt;=</span> <span class="dv">81</span> <span class="sc">&amp;</span></span>
+<span id="cb205-11"><a href="DataClean.html#cb205-11" tabindex="-1"></a>                                    fert_cons <span class="sc">&lt;</span> <span class="dv">158</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb205-12"><a href="DataClean.html#cb205-12" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_group[fert_cons <span class="sc">&gt;=</span> <span class="dv">158</span>] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb205-13"><a href="DataClean.html#cb205-13" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_group[<span class="fu">is.na</span>(fert_cons)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb205-14"><a href="DataClean.html#cb205-14" tabindex="-1"></a></span>
+<span id="cb205-15"><a href="DataClean.html#cb205-15" tabindex="-1"></a><span class="co"># Detach data frame</span></span>
+<span id="cb205-16"><a href="DataClean.html#cb205-16" tabindex="-1"></a><span class="fu">detach</span>(fert_long_sub)</span>
+<span id="cb205-17"><a href="DataClean.html#cb205-17" tabindex="-1"></a></span>
+<span id="cb205-18"><a href="DataClean.html#cb205-18" tabindex="-1"></a><span class="fu">summary</span>(fert_long_sub<span class="sc">$</span>fert_cons_group)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    2.00    3.00    2.52    4.00    4.00</code></pre>
+<p>You’ll notice that we don’t have a factor variable yet; our new variable
+is numeric. We can use the <code>factor()</code> function to convert <em>fert_cons_group</em>
+into a factor variable with the labels we want.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="DataClean.html#cb207-1" tabindex="-1"></a><span class="co"># Create vector of factor level labels</span></span>
+<span id="cb207-2"><a href="DataClean.html#cb207-2" tabindex="-1"></a>fc_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium low&quot;</span>, <span class="st">&quot;medium high&quot;</span>, <span class="st">&quot;high&quot;</span>)</span>
+<span id="cb207-3"><a href="DataClean.html#cb207-3" tabindex="-1"></a></span>
+<span id="cb207-4"><a href="DataClean.html#cb207-4" tabindex="-1"></a><span class="co"># Convert fert_cons_group to a factor</span></span>
+<span id="cb207-5"><a href="DataClean.html#cb207-5" tabindex="-1"></a>fert_long_sub<span class="sc">$</span>fert_cons_group <span class="ot">&lt;-</span></span>
+<span id="cb207-6"><a href="DataClean.html#cb207-6" tabindex="-1"></a>                    <span class="fu">factor</span>(fert_long_sub<span class="sc">$</span>fert_cons_group,</span>
+<span id="cb207-7"><a href="DataClean.html#cb207-7" tabindex="-1"></a>                           <span class="at">labels =</span> fc_labels)</span>
+<span id="cb207-8"><a href="DataClean.html#cb207-8" tabindex="-1"></a></span>
+<span id="cb207-9"><a href="DataClean.html#cb207-9" tabindex="-1"></a><span class="fu">summary</span>(fert_long_sub<span class="sc">$</span>fert_cons_group)</span></code></pre></div>
+<pre><code>##         low  medium low medium high        high 
+##         408         389         428         415</code></pre>
+<p>We first created a character vector with the factor-level labels and
+then applied using <code>factor</code>’s <code>labels</code> argument. Using <code>summary()</code> with a
+factor variable gives us its level labels as well as the number of
+observations per level.</p>
+<p>The <code>cut()</code> function provides a less code-intensive way of creating
+factors from numeric ones and labeling factor levels. For example:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="DataClean.html#cb209-1" tabindex="-1"></a><span class="co"># Create a factor variable with the cut function</span></span>
+<span id="cb209-2"><a href="DataClean.html#cb209-2" tabindex="-1"></a>fert_factor <span class="ot">&lt;-</span> <span class="fu">cut</span>(fert_long_sub<span class="sc">$</span>fert_cons,</span>
+<span id="cb209-3"><a href="DataClean.html#cb209-3" tabindex="-1"></a>                   <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>, <span class="fl">17.99</span>, <span class="fl">80.99</span>,</span>
+<span id="cb209-4"><a href="DataClean.html#cb209-4" tabindex="-1"></a>                              <span class="fl">157.99</span>, <span class="fl">999.99</span>),</span>
+<span id="cb209-5"><a href="DataClean.html#cb209-5" tabindex="-1"></a>                   <span class="at">labels =</span> fc_labels)</span>
+<span id="cb209-6"><a href="DataClean.html#cb209-6" tabindex="-1"></a></span>
+<span id="cb209-7"><a href="DataClean.html#cb209-7" tabindex="-1"></a><span class="fu">summary</span>(fert_factor)</span></code></pre></div>
+<pre><code>##         low  medium low medium high        high 
+##         408         389         427         416</code></pre>
+<p>The <code>labels</code> argument lets us specify the factor levels’ names. The
+<code>breaks</code> argument lets us specify what values separate the factor
+levels. Note that we set the first break as <code>-0.01</code>, not because any
+country had negative fertilizer consumption, but because the intervals
+created by <code>break()</code> exclude the left value and include the right
+value.<a href="#fn144" class="footnote-ref" id="fnref144"><sup>144</sup></a> If we had used <code>0</code>, then all of the observations where a
+country used effectively no fertilizer would be excluded from the “low”
+category.</p>
+</div>
+</div>
+<div id="changing-variable-types" class="section level3 hasAnchor" number="7.1.8">
+<h3><span class="header-section-number">7.1.8</span> Changing variable types<a href="DataClean.html#changing-variable-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes a variable will have the wrong type. For example, a numeric
+variable may be incorrectly made a character string when a data set is
+imported from Excel. You can change variable types with a number of
+functions. We already saw how to convert a numeric variable to a factor
+variable with the <code>factor()</code> function. Unsurprisingly, to convert a
+variable to a character, use <code>character()</code> and <code>numeric()</code> to convert it to a numeric type variable. We can place <code>as.</code> before these functions (e.g.
+<code>as.factor()</code>) as a way of coercing a change in type.</p>
+<p><strong>Warning:</strong> Though these functions have straightforward names, a word of
+caution is necessary. Always try to understand why a variable is not of
+the type you would expect. Often variables have unexpected types
+because they are coded (or miscoded) in a way that you didn’t
+anticipate. Changing the variable types, especially when using <code>as.</code>,
+can introduce new errors. Make sure that the conversion made the changes
+you expected.</p>
+</div>
+</div>
+<div id="merging-data-sets" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Merging Data Sets<a href="DataClean.html#merging-data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous section, we learned crucial skills for cleaning up data
+sets. When your data sets are (a) in the same format and (b) have
+variables with identically matching ID values, you can merge your data
+sets. In this section, we’ll look at two different ways to merge
+data sets: binding and the <code>merge()</code> function. We’ll also look at ways to address a common issue when merging data: duplicated observations and
+columns.</p>
+<div id="binding" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Binding<a href="DataClean.html#binding" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As we saw in Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>, if your data sets are in the same
+order—rows in all of the data sets represent the same observation of
+the same subject—then you can use the <code>cbind()</code> function to bind
+columns from the data sets together. This situation is unusual when
+merging real-world data. If your data sets are not in exactly the same
+order you will create a data set with nonsensical rows that combine data
+from multiple observations. Therefore, you should avoid using <code>cbind()</code>
+for merging most real-world data.</p>
+<p>If you have data sets with the exact same columns and variable types and
+you just want to attach one under the other, you can use the <code>rbind()</code>
+function. It binds the rows in one object to the rows in another.<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> It
+has the same syntax as <code>cbind()</code>. Again, you should be
+cautious when using this function, though it is more difficult to
+accidentally create a nonsensical data set with <code>rbind()</code>. R will give you
+an error if it cannot match your objects’ columns.</p>
+</div>
+<div id="merging-data-frames" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Merging data frames<a href="DataClean.html#merging-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Generally, the <code>merge()</code> function is the safest and most effective way to merge two data sets. Imagine that we want to merge our
+<em>fert_long_sub</em> data frame with two other data frames we created in
+Chapter <a href="DataGather.html#DataGather">6</a>: <em>fin_regulator</em> and <em>disprop_data</em>. The
+simplest way to do this is to use the merge function twice, i.e.:</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="DataClean.html#cb211-1" tabindex="-1"></a><span class="co"># Merge fin_regulator and disprop_data</span></span>
+<span id="cb211-2"><a href="DataClean.html#cb211-2" tabindex="-1"></a>merged_data_1 <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> fin_regulator, <span class="at">y =</span> disprop_data,</span>
+<span id="cb211-3"><a href="DataClean.html#cb211-3" tabindex="-1"></a>                     <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb211-4"><a href="DataClean.html#cb211-4" tabindex="-1"></a></span>
+<span id="cb211-5"><a href="DataClean.html#cb211-5" tabindex="-1"></a><span class="co"># Merge combined data set with and fert_long_sub</span></span>
+<span id="cb211-6"><a href="DataClean.html#cb211-6" tabindex="-1"></a>merged_data_1 <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> merged_data_1, <span class="at">y =</span> fert_long_sub,</span>
+<span id="cb211-7"><a href="DataClean.html#cb211-7" tabindex="-1"></a>                       <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb211-8"><a href="DataClean.html#cb211-8" tabindex="-1"></a></span>
+<span id="cb211-9"><a href="DataClean.html#cb211-9" tabindex="-1"></a><span class="fu">names</span>(merged_data_1)</span></code></pre></div>
+<pre><code>##  [1] &quot;iso2c&quot;              &quot;idn&quot;               
+##  [3] &quot;country.x&quot;          &quot;year.x&quot;            
+##  [5] &quot;reg_4state&quot;         &quot;country.y&quot;         
+##  [7] &quot;year.y&quot;             &quot;disproportionality&quot;
+##  [9] &quot;country&quot;            &quot;iso3c&quot;             
+## [11] &quot;year&quot;               &quot;fert_cons&quot;         
+## [13] &quot;fert_cons_log&quot;      &quot;fert_cons_group&quot;</code></pre>
+<p>Let’s go through this code. The <code>x</code> and <code>y</code> arguments specify
+which data frames we want to merge. The <code>by</code> argument specifies what
+variable(s) in the two frames identify the observations so that we can
+match them. In this example, we are merging by countries’ ISO country
+two-letter codes.<a href="#fn146" class="footnote-ref" id="fnref146"><sup>146</sup></a> We set the argument <code>all = TRUE</code> so that we keep
+all of the observations from both of the data frames. If the argument is
+set to <code>FALSE</code>, only observations that are common to both data frames
+will be included in the merged data frame. The others will not be
+included.</p>
+<p>You might have noticed that this isn’t actually the merge that we want
+to accomplish with these data frames. Remember that observations are not
+identified in this time-series cross-section data by one country
+name or other country code variable. Instead, they are identified by both
+country and year variables. To merge data frames based on the overlap of
+two variables (e.g. match Afghanistan-2010 in one data frame with
+Afghanistan-2010 in the other), we need to add the <code>union()</code> function to <code>merge</code>’s <code>by</code> argument. Here is a full example:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="DataClean.html#cb213-1" tabindex="-1"></a><span class="co"># Merge fin_regulator and disprop_data</span></span>
+<span id="cb213-2"><a href="DataClean.html#cb213-2" tabindex="-1"></a>merged_data_2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(fin_regulator, disprop_data,</span>
+<span id="cb213-3"><a href="DataClean.html#cb213-3" tabindex="-1"></a>                       <span class="fu">union</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;year&quot;</span>),</span>
+<span id="cb213-4"><a href="DataClean.html#cb213-4" tabindex="-1"></a>                       <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb213-5"><a href="DataClean.html#cb213-5" tabindex="-1"></a></span>
+<span id="cb213-6"><a href="DataClean.html#cb213-6" tabindex="-1"></a><span class="co"># Merge combined data frame with fert_long_sub</span></span>
+<span id="cb213-7"><a href="DataClean.html#cb213-7" tabindex="-1"></a>merged_data_2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(merged_data_2, fert_long_sub,</span>
+<span id="cb213-8"><a href="DataClean.html#cb213-8" tabindex="-1"></a>                       <span class="fu">union</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;year&quot;</span>),</span>
+<span id="cb213-9"><a href="DataClean.html#cb213-9" tabindex="-1"></a>                       <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb213-10"><a href="DataClean.html#cb213-10" tabindex="-1"></a></span>
+<span id="cb213-11"><a href="DataClean.html#cb213-11" tabindex="-1"></a><span class="fu">names</span>(merged_data_2)</span></code></pre></div>
+<pre><code>##  [1] &quot;iso2c&quot;              &quot;year&quot;              
+##  [3] &quot;idn&quot;                &quot;country.x&quot;         
+##  [5] &quot;reg_4state&quot;         &quot;country.y&quot;         
+##  [7] &quot;disproportionality&quot; &quot;country&quot;           
+##  [9] &quot;iso3c&quot;              &quot;fert_cons&quot;         
+## [11] &quot;fert_cons_log&quot;      &quot;fert_cons_group&quot;</code></pre>
+<p>After merging data frames, it is always a good idea to look at the result
+and make sure it is what you expected. Some post-merging cleanup may be
+required to get the data frame ready for statistical analysis.</p>
+</div>
+<div id="bigger-data" class="section level3 unnumbered hasAnchor">
+<h3>Bigger data<a href="DataClean.html#bigger-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before discussing post-merge cleanup, it is important to highlight ways
+to handle large data sets. The <code>merge()</code> function and many of the other
+data frame manipulation functions covered so far in this chapter may not
+perform well with very large data sets. If you are using very large data
+sets, it might be worth investing time learning how to use packages like
+<em>dbplyr</em> <span class="citation">(<a href="#ref-R-dbplyr">Wickham, Girlich, and Ruiz 2023</a>)</span> and <em>data.table</em> packages <span class="citation">(<a href="#ref-R-data.table">Dowle and Srinivasan 2023</a>)</span>. They have many
+capabilities for working efficiently with large data sets. Likely, if you have very large data, you will need to learn SQL (Structured Query Language) or another special purpose data handling
+language.<a href="#fn147" class="footnote-ref" id="fnref147"><sup>147</sup></a> Once you know how these languages work, you can
+incorporate them into your R workflow with R packages like <em>dbplyr</em>.</p>
+</div>
+<div id="duplicate-values" class="section level3 unnumbered hasAnchor">
+<h3>Duplicate values<a href="DataClean.html#duplicate-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Duplicate observations are one thing to look out for after (and before)
+merging. You can use the <code>duplicated()</code> function to check for duplicates.
+Use the function in conjunction with subscripts to remove duplicate
+observations. For example, let’s create a new object called
+<em>data_duplicates</em> from the iso2c-years that are duplicated in
+<em>merged_data_2</em>. Remember that <strong>iso2c</strong> and <strong>year</strong> are in the first and
+second columns of the data frame.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="DataClean.html#cb215-1" tabindex="-1"></a><span class="co"># Created a data frame of duplicated country-years</span></span>
+<span id="cb215-2"><a href="DataClean.html#cb215-2" tabindex="-1"></a>data_duplicates <span class="ot">&lt;-</span> merged_data_2[</span>
+<span id="cb215-3"><a href="DataClean.html#cb215-3" tabindex="-1"></a>                      <span class="fu">duplicated</span>(merged_data_2[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), ]</span>
+<span id="cb215-4"><a href="DataClean.html#cb215-4" tabindex="-1"></a></span>
+<span id="cb215-5"><a href="DataClean.html#cb215-5" tabindex="-1"></a><span class="co"># Show the number of rows in data_duplicates</span></span>
+<span id="cb215-6"><a href="DataClean.html#cb215-6" tabindex="-1"></a><span class="fu">nrow</span>(data_duplicates)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>In this data frame, there are duplicated iso2c-year observations. We know
+this because <code>nrow</code> tells us that the data frame with the duplicated
+values has rows, i.e. observations.</p>
+<p>To create a data set without duplicated observations (if there are
+duplicates), add an exclamation point (<code>!</code>) before
+<code>duplicated</code>, i.e. not duplicated, in the above code.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="DataClean.html#cb217-1" tabindex="-1"></a><span class="co"># Created a data frame of unique country-years</span></span>
+<span id="cb217-2"><a href="DataClean.html#cb217-2" tabindex="-1"></a>data_not_duplicates <span class="ot">&lt;-</span> merged_data_2[</span>
+<span id="cb217-3"><a href="DataClean.html#cb217-3" tabindex="-1"></a>                          <span class="sc">!</span><span class="fu">duplicated</span>(merged_data_2[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), ]</span></code></pre></div>
+<p>Note that if you do have duplicated values in your data set and you run
+a similar procedure on it, it will drop duplicated values that have a
+lower order in the data frame. To keep the lowest ordered value and drop
+duplicates higher in the data set, use <code>duplicated</code>’s <code>fromLast</code>
+argument like this: <code>fromLast = TRUE</code>.</p>
+<p><strong>Warning:</strong> Look over your data set and the source code that created
+the data set to try to understand why duplicates occurred. There may be
+a fundamental problem in the way you are handling your data that
+resulted in the duplicated observations.</p>
+</div>
+<div id="duplicate-columns" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Duplicate columns<a href="DataClean.html#duplicate-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another common post-merge cleanup issue is duplicate columns, i.e.
+variables. These are variables from the two data frames with the same
+name that were not included in <code>merge</code>’s <code>by</code> argument. For example, in
+our previous merged data examples, there are three country name
+variables: <strong>country.x</strong>, <strong>country.y</strong>, and <strong>country</strong> to signify
+which data frame they are from.<a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a></p>
+<p>You should decide what to do with these variables on a
+case-by-case basis. But if you decide to drop one of the variables and
+rename the other, you can use subscripts (as we saw in Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>). The <em>dplyr</em> package has a
+useful function called <code>select()</code> that can also remove variables from data frames. To remove variables, write a minus sign (<code>-</code>) and then the
+variable name without quotes. For example, imagine that we want to keep
+<strong>country.x</strong> and drop the other variables.<a href="#fn149" class="footnote-ref" id="fnref149"><sup>149</sup></a> Let’s also remove the
+<strong>idn</strong> variable:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="DataClean.html#cb218-1" tabindex="-1"></a><span class="co"># Remove country.y, country, X, and idn</span></span>
+<span id="cb218-2"><a href="DataClean.html#cb218-2" tabindex="-1"></a>final_cleaned <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(data_not_duplicates, <span class="sc">-</span>country.y,</span>
+<span id="cb218-3"><a href="DataClean.html#cb218-3" tabindex="-1"></a>                               <span class="sc">-</span>country, <span class="sc">-</span>idn)</span>
+<span id="cb218-4"><a href="DataClean.html#cb218-4" tabindex="-1"></a></span>
+<span id="cb218-5"><a href="DataClean.html#cb218-5" tabindex="-1"></a><span class="co"># Rename country.x = country</span></span>
+<span id="cb218-6"><a href="DataClean.html#cb218-6" tabindex="-1"></a>final_cleaned <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(final_cleaned,</span>
+<span id="cb218-7"><a href="DataClean.html#cb218-7" tabindex="-1"></a>                               <span class="at">country =</span> country.x)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="DataClean.html#cb219-1" tabindex="-1"></a><span class="fu">names</span>(final_cleaned)</span></code></pre></div>
+<pre><code>## [1] &quot;iso2c&quot;              &quot;year&quot;              
+## [3] &quot;country&quot;            &quot;reg_4state&quot;        
+## [5] &quot;disproportionality&quot; &quot;iso3c&quot;             
+## [7] &quot;fert_cons&quot;          &quot;fert_cons_log&quot;     
+## [9] &quot;fert_cons_group&quot;</code></pre>
+<p>Alternatively, you can select specific variables to keep with the
+<code>select</code> function by writing the variables’ names without a minus sign.
+<strong>Note</strong>: If you are merging many data sets, it can sometimes be good to
+clean up duplicate columns between each <code>merge()</code> call.</p>
+</div>
+<div id="chapter-summary-4" class="section level3 unnumbered hasAnchor">
+<h3>Chapter summary<a href="DataClean.html#chapter-summary-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This chapter has provided you with many tools for cleaning up your data
+to get it ready for statistical analysis. Before moving on to the next
+chapter to learn how to incorporate statistical analysis as part of a
+reproducible workflow with knitr/R Markdown, it’s important to
+reiterate that the function we’ve covered in this chapter should usually
+be embedded in the types of data creation files we saw in Chapter
+<a href="DataGather.html#DataGather">6</a>. These files can then be tied together with a
+makefile into a process that should be able to relatively easily take
+very raw data and clean it up for use in your analyses. Embedding these
+functions in data creation source code files, rather than just typing the
+functions into your R console or manually changing data in Excel, will
+make your research much more reproducible. It will also make it easier
+to backtrack and find mistakes that you may have made while transforming
+the data. Including new or updated data when it becomes available will
+also be much easier if you use a series of segmented data creation
+source code files that are tied together with a makefile.</p>
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-R-countrycode" class="csl-entry">
+Arel-Bundock, Vincent. 2024. <em>Countrycode: Convert Country Names and Country Codes</em>. <a href="https://vincentarelbundock.github.io/countrycode/">https://vincentarelbundock.github.io/countrycode/</a>.
+</div>
+<div id="ref-box1964analysis" class="csl-entry">
+Box, George EP, and David R Cox. 1964. <span>“An Analysis of Transformations.”</span> <em>Journal of the Royal Statistical Society. Series B (Methodological)</em> 26: 211–52.
+</div>
+<div id="ref-burbidge1988" class="csl-entry">
+Burbidge, John B., and Leslie Robb. 1988. <span>“Alternative Transformations to Handle Extreme Values of the Dependent Variable.”</span> <em>Journal of the American Statistical Association</em> 83 (401): 123–27.
+</div>
+<div id="ref-R-data.table" class="csl-entry">
+Dowle, Matt, and Arun Srinivasan. 2023. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.
+</div>
+<div id="ref-hyndman2010" class="csl-entry">
+Hyndman, Rob J. 2010. <span>“Transforming Data with Zeros.”</span>
+</div>
+<div id="ref-R-tibble" class="csl-entry">
+Müller, Kirill, and Hadley Wickham. 2023. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.
+</div>
+<div id="ref-wickham2014article" class="csl-entry">
+———. 2014b. <span>“<span>Tidy Data</span>.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23.
+</div>
+<div id="ref-R-dbplyr" class="csl-entry">
+Wickham, Hadley, Maximilian Girlich, and Edgar Ruiz. 2023. <em>Dbplyr: A Dplyr Back End for Databases</em>. <a href="https://CRAN.R-project.org/package=dbplyr">https://CRAN.R-project.org/package=dbplyr</a>.
+</div>
+<div id="ref-R-tidyr" class="csl-entry">
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="140">
+<li id="fn140"><p>See this example by Rob Kabacoff: <a href="http://www.statmethods.net/management/reshape.html" class="uri">http://www.statmethods.net/management/reshape.html</a>. Note also that because the matrix transpose function is denoted with <code>t</code>, you should not give any object the name <em>t</em>.<a href="DataClean.html#fnref140" class="footnote-back">↩︎</a></p></li>
+<li id="fn141"><p>The <em>countrycode</em> package <span class="citation">(<a href="#ref-R-countrycode">Arel-Bundock 2024</a>)</span> is very helpful for
+creating standardized country identification variables.<a href="DataClean.html#fnref141" class="footnote-back">↩︎</a></p></li>
+<li id="fn142"><p>R denotes positive infinity with <code>Inf</code>.<a href="DataClean.html#fnref142" class="footnote-back">↩︎</a></p></li>
+<li id="fn143"><p>In this code, I attached the data frame <em>fert_long_sub</em> so that
+it is easier to read.<a href="DataClean.html#fnref143" class="footnote-back">↩︎</a></p></li>
+<li id="fn144"><p>In mathematical notation, the “low” level includes all values in
+the interval <span class="math inline">\((-0.01,\:17.99]\)</span>.<a href="DataClean.html#fnref144" class="footnote-back">↩︎</a></p></li>
+<li id="fn145"><p>Some programming languages and statistical programs refer to this
+type of action as “appending” one data set to another.<a href="DataClean.html#fnref145" class="footnote-back">↩︎</a></p></li>
+<li id="fn146"><p>Please see this chapter’s Appendix for details on how I created an
+ISO country two-letter code variable in the <em>fin_regulator</em> data
+frame.<a href="DataClean.html#fnref146" class="footnote-back">↩︎</a></p></li>
+<li id="fn147"><p>w3schools has an online SQL tutorial at:
+<a href="http://www.w3schools.com/sql/default.asp" class="uri">http://www.w3schools.com/sql/default.asp</a>.<a href="DataClean.html#fnref147" class="footnote-back">↩︎</a></p></li>
+<li id="fn148"><p>The former two were created in the first merge between
+<em>fin_regulator</em> and <em>disprop_data</em>. When the second merge was
+completed, there were no variables named <strong>country</strong> in the
+MergeData2 data frame, so <strong>country</strong> did not need to be renamed in
+the new merged data set.<a href="DataClean.html#fnref148" class="footnote-back">↩︎</a></p></li>
+<li id="fn149"><p>This version of the country variable is the most complete.<a href="DataClean.html#fnref149" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="DataGather.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/09-clean.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Storing, Collaborating, Accessing Files, and Versioning | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 5 Storing, Collaborating, Accessing Files, and Versioning | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Storing, Collaborating, Accessing Files, and Versioning | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 5 Storing, Collaborating, Accessing Files, and Versioning | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Storing, Collaborating, Accessing Files, and Versioning | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 5 Storing, Collaborating, Accessing Files, and Versioning | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="DirectoriesChapter.html"/>
+<link rel="next" href="DataGather.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Storing" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Storing, Collaborating, Accessing Files, and Versioning<a href="Storing.html#Storing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In addition to being well organized, your research files need to be
+accessible for other researchers to be able to reproduce your findings.
+A useful way to make your files accessible is to store them on a cloud
+storage service<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a> <span class="citation">(<a href="#ref-howe2012">Howe 2012</a>)</span>. This chapter describes in detail
+two different cloud storage services, Dropbox and GitHub, that you can
+use to make your research files easily accessible to others. Not only do
+these services enable others to reproduce your research, but they also have
+a number of benefits for your research workflow. These are certainly not the only services for remote research file storage, but discussing them does cover many common concerns of other services.</p>
+<p>Researchers often face
+a number of data management issues that, beyond making their research
+difficult to reproduce, can make doing the initial research difficult.</p>
+<p>First, there is the problem of <strong>storing</strong> data so that it is protected
+against computer failure—virus infections, spilling coffee on your
+laptop, and so on. Storing data locally on your computer or on a flash
+drive is generally more prone to loss than on remote servers in the
+cloud.</p>
+<p>Second, we may work on a project with different computers and mobile
+devices. For example, we may use a computer at work to run
+computationally intensive analysis, while editing our presentation
+document on a tablet, while riding the train to the office. So,
+we need to be able to <strong>access</strong> our files from multiple devices in
+different locations. We often need a way for our <strong>collaborators</strong> to
+access and edit research files as well.</p>
+<p>Finally, we almost never create a data set or write a paper perfectly
+all at once. We may make changes and then realize that we liked an
+earlier version, or parts of an earlier version better. This is a
+particularly important issue in data management where we may transform
+our data in unintended ways and want to go back to earlier versions.
+Also, when working on a collaborative project, one of the authors may
+accidentally delete something in a file that another author needed. To
+deal with these issues, we need to store our data in a system that has
+<strong>version control</strong>. Version control systems keep track of changes we
+make to our files and allows us to access previous versions if we want
+to.</p>
+<p>You can solve all of these problems in a couple of different ways using
+free or low cost cloud-based storage formats. In this chapter, we will
+learn how to use Dropbox and Git/GitHub for research files:</p>
+<ul>
+<li><p>storage,</p></li>
+<li><p>accessing,</p></li>
+<li><p>collaboration,</p></li>
+<li><p>version control.</p></li>
+</ul>
+<div id="TSVEscape" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Saving Data in Reproducible Formats<a href="Storing.html#TSVEscape" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before getting into the details of cloud-based data storage for all of
+our research files, let’s consider what type of formats you should
+actually save your data in. A key issue for reproducibility is that
+others are able to not only get hold of the exact data you used in your
+analysis, but also be able to understand and use the data now and in the
+future. Some file formats make this easier than others.</p>
+<p>In general, for small to moderately sized data sets<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a> plain-text
+formats like comma-separated values (<code>.csv</code>) or tab-separated values<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
+(<code>.tsv</code>) are good ways to store your data. These formats store a
+data set as a text file. A row in the data set is a line in the text
+file. Data is separated into columns with commas or tabs, respectively.
+These formats are not dependent on a specific program. Any program that
+can open text files can open them, including a wide variety of
+statistical programs other than R as well as spreadsheet programs like
+Microsoft Excel. Using text file formats helps future-proof your
+research. Version control systems that track changes to text, like
+Git, are also very effective version control systems for these types of
+files.</p>
+<p>The <code>write.table()</code> function is one way to save data in plain-text formats from R. For example, to save a data frame called <em>data</em> as a comma-separated-value (CSV) file called <em>main-data.csv</em> in our example <em>data</em> directory (see Figure <a href="DirectoriesChapter.html#fig:ExampleTree">4.1</a>):</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="Storing.html#cb128-1" tabindex="-1"></a><span class="fu">write.table</span>(Data, <span class="st">&quot;/example-project/data/main-data.csv&quot;</span>,</span>
+<span id="cb128-2"><a href="Storing.html#cb128-2" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb128-3"><a href="Storing.html#cb128-3" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><code>row.names = FALSE</code> prevents R from including the row names in the
+output file.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a> The <code>sep = ","</code> argument specifies that we want to use
+commas to separate values into columns. For CSV files, you can use a
+modified version of this command called <code>write.csv()</code>. This function makes it so that you don’t have to write <code>sep = ","</code>.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a></p>
+<p>If you want to save your data with values separated by tabs, rather than
+commas, set the argument <code>sep = "\t"</code> and set the file extension
+to <code>.tsv</code>.</p>
+<p>R is able to save data in a wide variety of other file formats, mostly
+through the <em>foreign</em> or <em>rio</em> <span class="citation">(<a href="#ref-R-rio">Becker et al. 2024</a>)</span> packages (see Chapter <a href="DataGather.html#DataGather">6</a>). These formats may be less future-proof than simple text-formatted data files.</p>
+<p>One advantage of many other statistical program file formats is that
+they include not only the underlying data, but also other information
+like variable descriptions. If you are using plain-text files to store
+your data, you will need to include a separate file, preferably in the
+same directory as the data file describing the variables and their
+sources. In Chapter <a href="TablesChapter.html#TablesChapter">9</a> we
+will look at how to automate the creation of variable description files.</p>
+</div>
+<div id="storing-your-files-in-the-cloud-dropbox" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Storing Your Files in the Cloud: Dropbox<a href="Storing.html#storing-your-files-in-the-cloud-dropbox" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this book we’ll cover two (largely) free cloud storage services that
+allow you to store, access, collaborate on, and version control your
+research files. These services are Dropbox and GitHub.<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a> Though they
+both meet our basic storage needs, they do so in different ways and
+require different levels of effort to set up and maintain.</p>
+<p>These two services are certainly not the only way to make your research
+files available. Research-oriented services include Zenodo,<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a>
+the Dataverse Project,<a href="#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a> figshare,<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a> and RunMyCode.<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a> These services include good built-in citation systems, unlike Dropbox and
+GitHub. They also aim to provide persistent URLs for your files. This helps avoid the ‘link rot’ that threatens reproducibility, i.e. a hosting service changes its URL structure breaking existing links. These services may be a very good place to store research files once the research is completed or close to completion. Many journals now require replication files be uploaded to these sites. However, these sites’ ability to store, access, collaborate on, and version control files <em>during</em> the main part of the research process is mixed. Services like Dropbox and GitHub are very capable of being
+part of the research workflow from the beginning.</p>
+<p>Zenodo and GitHub have excellent integration, allowing you to actively develop a research project on GitHub then persist it on Zenodo. For details, see <a href="https://guides.github.com/activities/citable-code/" class="uri">https://guides.github.com/activities/citable-code/</a>.</p>
+<p>The easiest types of cloud storage for your research are services like
+Dropbox<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a> and Google Drive.<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a> These services not only store your
+data in the cloud, but also provide ways to share files. They even
+include basic version control capabilities. I’m going to focus on
+Dropbox because it currently offers a complete set of features that
+allow you to store, version, collaborate, and access your data. I will
+focus on how to use Dropbox on a computer. Some Dropbox functionality
+may be different on mobile devices.</p>
+<div id="storage" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Storage<a href="Storing.html#storage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you sign up for Dropbox and install the program,<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a> it creates a
+directory on your computer’s hard drive. When you place new files and
+folders in this directory and make changes to them, Dropbox
+automatically syncs the directory with a similar folder on a cloud-based
+server. Typically when you sign up for the service, you’ll receive a
+limited amount of storage space for free, usually a few gigabytes. This
+is probably enough storage space for a number of text file-based
+research projects with smaller data sets.</p>
+</div>
+<div id="EnablePublicFolder" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Accessing data<a href="Storing.html#EnablePublicFolder" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All files stored on Dropbox have a URL address through which they can be
+accessed from a computer connected to the internet. To access a Dropbox file or directory’s URL so that it can be downloaded, right-click on the file
+icon in your Dropbox folder on your computer. Then click
+<code>Copy Dropbox Link</code>. This copies the URL into your clipboard.</p>
+<p>You need to make one small change to the link so that it can be programmatically downloaded. By default, the link will point to the Dropbox website page for the file/directory. To be able to programmatically download it, you need to change the last <code>0</code> in the URL to a <code>1</code>. For example, change:</p>
+<pre><code>https://www.dropbox.com/s/1xapw69efofpg3b/public.fin.msm.model.
+csv?dl=0</code></pre>
+<p>to</p>
+<pre><code>https://www.dropbox.com/s/1xapw69efofpg3b/public.fin.msm.model.
+csv?dl=1</code></pre>
+<p>We changed the download (<code>dl</code>) option from false (<code>dl=0</code>) to true (<code>dl=1</code>). Now you can use the link to download data in your R source code, for example.</p>
+<p>Once you have the URL, you can load the file directly into R using the
+<code>import()</code> function from the <em>rio</em> package. <code>import()</code> works for
+many different data formats and is generally more robust than <code>read.table()</code>. Use the <code>source_url()</code> function in the <em>devtools</em> package <span class="citation">(<a href="#ref-R-devtools">Wickham et al. 2022</a>)</span> to download and run R source code files (see Chapter <a href="StatsModel.html#StatsModel">8</a>).</p>
+<p>Let’s download data directly into R from Dropbox. The data set’s URL is:
+<a href="https://www.dropbox.com/s/1xapw69efofpg3b/public.fin.msm.model.csv?dl=1" class="uri">https://www.dropbox.com/s/1xapw69efofpg3b/public.fin.msm.model.csv?dl=1</a>.<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a></p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="Storing.html#cb131-1" tabindex="-1"></a><span class="co"># Download data on financial regulators stored on Dropbox</span></span>
+<span id="cb131-2"><a href="Storing.html#cb131-2" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="Storing.html#cb131-3" tabindex="-1"></a><span class="co"># Load rio</span></span>
+<span id="cb131-4"><a href="Storing.html#cb131-4" tabindex="-1"></a><span class="fu">library</span>(rio)</span></code></pre></div>
+<pre><code>## Some optional R packages were not installed and therefore some file formats are not supported. Check file support with show_unsupported_formats()</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="Storing.html#cb133-1" tabindex="-1"></a><span class="co"># Place the URL into the object fin_url</span></span>
+<span id="cb133-2"><a href="Storing.html#cb133-2" tabindex="-1"></a>fin_url <span class="ot">&lt;-</span> <span class="st">&quot;https://bit.ly/2xlQ2j5&quot;</span></span>
+<span id="cb133-3"><a href="Storing.html#cb133-3" tabindex="-1"></a></span>
+<span id="cb133-4"><a href="Storing.html#cb133-4" tabindex="-1"></a><span class="co"># Download data</span></span>
+<span id="cb133-5"><a href="Storing.html#cb133-5" tabindex="-1"></a>fin_regulator <span class="ot">&lt;-</span> <span class="fu">import</span>(fin_url, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>)</span>
+<span id="cb133-6"><a href="Storing.html#cb133-6" tabindex="-1"></a></span>
+<span id="cb133-7"><a href="Storing.html#cb133-7" tabindex="-1"></a><span class="co"># Show variables in fin_regulator</span></span>
+<span id="cb133-8"><a href="Storing.html#cb133-8" tabindex="-1"></a><span class="fu">names</span>(fin_regulator)</span></code></pre></div>
+<pre><code>## [1] &quot;idn&quot;        &quot;country&quot;    &quot;year&quot;       &quot;reg_4state&quot;</code></pre>
+<p>The argument <code>format = "csv"</code> tells <code>import()</code> what format the file is in. This isn’t necessary if the file path has an informative file extension, e.g. it ends with <code>.csv</code>.</p>
+</div>
+<div id="collaboration" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Collaboration<a href="Storing.html#collaboration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Though others can easily access your data and files with Dropbox URL
+links, you cannot save files through the link. You must save files in
+the Dropbox folder on your computer or upload them through the website.
+If you would like collaborators to be able to modify the research files,
+you will need to ‘share’ the Dropbox folder with them. Once you create a Dropbox folder, you
+can share it with your collaborators by
+right-clicking on the folder’s name. Then select
+<code>Share</code>. Enter your collaborator’s email address
+when prompted and select <code>Can Edit</code> from the permissions dropdown menu.
+They will be sent an email that will allow them to accept
+the share request and, if they don’t already have an account, they can sign up
+for Dropbox.</p>
+</div>
+<div id="version-control" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Version control<a href="Storing.html#version-control" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dropbox has a simple version control system. Every time you save a
+document a new version is created on Dropbox. To view a previous
+version, navigate to the file on the Dropbox website. Then click
+on the file. In the upper-right corner, there is a menu where you can select <code>Version history</code>. This
+will take you to a page listing previous versions of the file, who
+created the version, and when it was created. A new version of a file is
+created every time you save a file and it is synced to the Dropbox cloud
+service.</p>
+<p>Note that with a free Dropbox account, previous versions of a file are
+only stored for <strong>30 days</strong>. You need a paid account to save previous versions for
+more than 30 days.<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a></p>
+</div>
+</div>
+<div id="GitHubMain" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Storing Your Files in the Cloud: GitHub<a href="Storing.html#GitHubMain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dropbox minimally meets our four basic criteria for reproducible data
+storage. It is easy to set up and use. GitHub meets the criteria and
+more, especially when it comes to version control. It is, however, less
+straightforward at first. In this section, we will learn enough of the
+basics to get you started using GitHub to store, access, collaborate on,
+and version control your research.</p>
+<p>GitHub is an interface and cloud hosting service built on top of the Git
+version control system.<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> Git does the version control. GitHub stores
+the data remotely, as well as provides a number of other features, some
+of which we look at below. GitHub was not explicitly designed to host
+research projects or even data. It was designed to host “socially coded”
+computer programs—in what Git calls “repositories”, repos for short—by
+making it easy for a number of collaborators to work together to build
+computer programs. This seems very far from reproducible research.</p>
+<p>Remember that as reproducible researchers, we are building projects out
+of interconnected text files. In important ways, this is exactly the
+same as building a computer program. Computer programs are also
+basically large collections of interconnected text files. Like computer
+programmers, we need ways to store, version control, access, and
+collaborate on our text files. Because GitHub is very actively used by
+people with similar needs (who are also really good programmers), the
+interface offers many highly developed and robust features for
+reproducible researchers.</p>
+<p>GitHub’s extensive features and heart in the computer programming
+community means that it takes a longer time than Dropbox for novice
+users to set up and become familiar with. So we need good reasons to
+want to invest the time needed to learn GitHub. Here is a list of
+GitHub’s advantages over Dropbox for reproducible research that will
+hopefully convince you to get started using it:<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a></p>
+<div id="storage-and-access" class="section level4 unnumbered hasAnchor">
+<h4>Storage and access<a href="Storing.html#storage-and-access" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>Dropbox creates folders stored in the cloud which you can
+share with other people. GitHub makes your projects accessible on a
+fully featured project website (see Figure <a href="Storing.html#fig:BookRepository">5.2</a>). An example feature is that it
+automatically renders Markdown files called <em>README.md</em><a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a> in a
+GitHub directory on the repository’s website. This makes it easy for
+independent researchers to find the file and read it.</p></li>
+<li><p>GitHub can create and host a website for your research project that
+you could use to present the results, not just the replication
+files.</p></li>
+<li><p>Its close integration with Zenodo allows you to easily make your full replication material persistently accessible and citable.</p></li>
+</ul>
+</div>
+<div id="collaboration-1" class="section level4 unnumbered hasAnchor">
+<h4>Collaboration<a href="Storing.html#collaboration-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>Dropbox allows multiple people to share files and change them.
+GitHub does this and more.</p></li>
+<li><p>GitHub keeps meticulous records of who contributed what to a
+project.</p></li>
+<li><p>Each GitHub repository has an “Issues” area where you can note
+issues and discuss them with your collaborators. Basically, this is
+an interactive to-do list for your research project. It also stores
+the issues so you have a full record.</p></li>
+<li><p>Each repository can also host a wiki that, for example, could
+explain in detail how certain aspects of a research project were
+done.</p></li>
+<li><p>Anyone can suggest changes to files in a public repository. These
+changes can be accepted or declined by the project’s authors. The
+changes are recorded by the Git version control system. This could
+be especially useful if an independent researcher notices an error.</p></li>
+</ul>
+</div>
+<div id="version-control-1" class="section level4 unnumbered hasAnchor">
+<h4>Version control<a href="Storing.html#version-control-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>Dropbox’s version control system only lets you see file names, the
+times they were created, who created them, and revert back to
+specific versions. Git tracks every change you make. The GitHub
+website and GUI programs for Mac and Windows provide nice interfaces
+for examining specific changes in text files.</p></li>
+<li><p>Dropbox creates a new version every time you save a file. This can
+make it difficult to actually find the version you want as the
+versions quickly multiply. Git’s version control system only creates
+a new version when you tell it to.</p></li>
+<li><p>All files in Dropbox are version controlled. Git allows you to
+ignore specific files. This is helpful if you have large binary
+files (i.e. not text files) that you do not want to version control
+because doing so will use up considerable storage space.</p></li>
+<li><p>Unless you have a paid account, previous file versions in Dropbox
+disappear after 30 days. GitHub stores previous versions
+indefinitely for all account types.</p></li>
+<li><p>Dropbox does not merge conflicting versions of a file together. This
+can be annoying when you are collaborating on a project and more
+than one author is making changes to documents at the same time. Git
+identifies conflicts and lets you reconcile them.</p></li>
+<li><p>Git is directly integrated into RStudio Projects.<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a></p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:BasicGitRepo"></span>
+<img src="images/chapter_5/BasicGitRepository.png" alt="A Basic Git Repository with Hidden .git Folder Revealed" width="50%" />
+<p class="caption">
+FIGURE 5.1: A Basic Git Repository with Hidden .git Folder Revealed
+</p>
+</div>
+</div>
+<div id="setting-up-github-basic" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Setting up GitHub: Basic<a href="Storing.html#setting-up-github-basic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are at least three ways to use Git/GitHub on your computer. You
+can use the command-line version of Git. It’s available for Mac and
+Linux (in the Terminal) as well as Windows through Git Bash.<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a> You
+can also use the Graphical User Interface GitHub program. Currently,
+it’s only available for Windows and Mac. RStudio also has GUI-style Git
+functionality for RStudio Projects. In this section, I focus on how to
+use the command-line version, because it will help you understand what
+the GUI versions are doing and will allow you to better explore more advanced
+Git features not covered in this book. In the next section, I will
+mention how to use Git with RStudio Projects.</p>
+<p>The first thing to do to set up Git and GitHub is go to the GitHub
+website (<a href="https://github.com/" class="uri">https://github.com/</a>) and sign up for an account. Second, you
+should go to the following website for instructions on setting up
+GitHub: <a href="https://help.github.com/articles/set-up-git/" class="uri">https://help.github.com/articles/set-up-git/</a>. The instructions
+on that website are very comprehensive, so I’ll direct you there for the
+full setup information. Note that installing the GUI version of GitHub
+also installs Git and, on Windows, Git Bash.</p>
+</div>
+<div id="version-control-with-git" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Version control with Git<a href="Storing.html#version-control-with-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Git is primarily a version control system, so we will start our
+discussion of how to use it by looking at how to version your
+repositories.</p>
+<div id="setting-up-git-repositories-locally" class="section level4 unnumbered hasAnchor">
+<h4>Setting up Git repositories locally<a href="Storing.html#setting-up-git-repositories-locally" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>You can set up a Git repo on your computer with the command-line.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a> I
+keep my repositories in a folder called <em>git_repositories</em>,<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a> though
+you can use Git with almost any directory you like. The
+<em>git_repositories</em> directory has the root folder as its parent. Imagine
+that we want to set up a repository in this directory for a project
+called <em>example_project</em>. Initially it will have one README file called
+<em>README.md</em>. To do this, we would first type into the Terminal for Mac
+and Linux computers: </p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb135-1"><a href="Storing.html#cb135-1" tabindex="-1"></a><span class="co"># Make new directory &#39;example-project&#39;</span></span>
+<span id="cb135-2"><a href="Storing.html#cb135-2" tabindex="-1"></a><span class="fu">mkdir</span> /git_repositories/example-project</span>
+<span id="cb135-3"><a href="Storing.html#cb135-3" tabindex="-1"></a></span>
+<span id="cb135-4"><a href="Storing.html#cb135-4" tabindex="-1"></a><span class="co"># Change to directory &#39;example-project&#39;</span></span>
+<span id="cb135-5"><a href="Storing.html#cb135-5" tabindex="-1"></a><span class="bu">cd</span> /git_repositories/example-project</span>
+<span id="cb135-6"><a href="Storing.html#cb135-6" tabindex="-1"></a></span>
+<span id="cb135-7"><a href="Storing.html#cb135-7" tabindex="-1"></a><span class="co"># Create new file README.md</span></span>
+<span id="cb135-8"><a href="Storing.html#cb135-8" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# An Example Repository&quot;</span> <span class="op">&gt;</span> README.md</span></code></pre></div>
+<p>So far, we have only made the new directory and set it as our working
+directory (see Chapter <a href="DirectoriesChapter.html#DirectoriesChapter">4</a>). All of the examples in this section
+assume your current working directory is set to the repo. Then, with the
+<code>echo</code> shell command we created a new file named <em>README.md</em> that
+includes the text <code># An Example Repository</code>. Note that the code is
+basically the same in Windows PowerShell or Git Bash. Also, you don’t
+have to do these steps in the command-line. You could just create the
+new folders and files the same way that you normally do with your mouse
+in your GUI operating system.</p>
+<p>Now that we have a directory with a file, we can tell Git that we want
+to treat the directory <em>example-project</em> as a repository and that we want
+to track changes made to the file <em>README.md</em>. Use Git’s <code>init</code>
+(initialize) command to set the directory as a repository. See Table <a href="#GitCommandsTable"><strong>??</strong></a> for the list of Git commands covered in
+this chapter.<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a> Use Git’s <code>add</code> command to add a file to the Git
+repository. For example,</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb136-1"><a href="Storing.html#cb136-1" tabindex="-1"></a><span class="co"># Initialize the Git repository</span></span>
+<span id="cb136-2"><a href="Storing.html#cb136-2" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb136-3"><a href="Storing.html#cb136-3" tabindex="-1"></a></span>
+<span id="cb136-4"><a href="Storing.html#cb136-4" tabindex="-1"></a><span class="co"># Add README to the repository</span></span>
+<span id="cb136-5"><a href="Storing.html#cb136-5" tabindex="-1"></a><span class="fu">git</span> add README.md</span></code></pre></div>
+<p>You probably noticed that you always need to put <code>git</code> before the
+command. This tells the shell what program the command is from. When you
+initialize a folder as a Git repository, a hidden folder called <em>.git</em>
+is added to the directory (see Figure <a href="Storing.html#fig:BasicGitRepo">5.1</a>).
+This is where all of your changes are kept. If you want to add all of
+the files in the working directory to the Git repository type:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb137-1"><a href="Storing.html#cb137-1" tabindex="-1"></a><span class="co"># Add all files to the repository</span></span>
+<span id="cb137-2"><a href="Storing.html#cb137-2" tabindex="-1"></a><span class="fu">git</span> add .</span></code></pre></div>
+<p>When we want Git to track changes made to files added to the repository
+we can use the <code>commit</code> command. In Git language we are “committing” the
+changes to the repository.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb138-1"><a href="Storing.html#cb138-1" tabindex="-1"></a><span class="co"># Commit changes</span></span>
+<span id="cb138-2"><a href="Storing.html#cb138-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">&quot;First Commit, created README file&quot;</span></span></code></pre></div>
+<p>Note: the files won’t appear on GitHub yet. Later in the chapter, we will
+learn how to push commits to your remote GitHub repository. The <code>-a</code>
+(all) option commits changes made to all of the files that have been
+added to the repository. You can include a message with the commit using
+the <code>-m</code> option like: <code>"First Commit, created README file"</code>. Messages
+help you remember general details about individual commits. This is
+helpful when you want to revert to old versions. <strong>Remember:</strong> Git only
+tracks changes when you commit them.</p>
+<p>Finally, you can use the <code>status</code> command for details about your
+repository, including uncommitted changes. Generally it’s a good idea to
+use the <code>-s</code> (short) option, so that the output is more readable.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb139-1"><a href="Storing.html#cb139-1" tabindex="-1"></a><span class="co"># Display status</span></span>
+<span id="cb139-2"><a href="Storing.html#cb139-2" tabindex="-1"></a><span class="fu">git</span> status <span class="at">-s</span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:BookRepository"></span>
+<img src="images/chapter_5/GitHubReadme.png" alt="Part of this Book's GitHub Repository Webpage" width="90%" />
+<p class="caption">
+FIGURE 5.2: Part of this Book’s GitHub Repository Webpage
+</p>
+</div>
+</div>
+<div id="checkout" class="section level4 unnumbered hasAnchor">
+<h4>Checkout<a href="Storing.html#checkout" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>It is useful to step back for a second and try to understand what Git is
+doing when you commit your changes. In the hidden <em>.git</em>, folder Git is
+saving all of the information in compressed form from each of your
+commits into a sub-folder called <em>objects</em>. Commit objects<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a> are
+everything from a particular commit. I mean everything. If you delete
+all of the files in your repository (except for the <em>.git</em> folder), you
+can completely recover all of the files from your most recent commit
+with the <code>checkout</code> command: </p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb140-1"><a href="Storing.html#cb140-1" tabindex="-1"></a><span class="co"># Checkout latest</span></span>
+<span id="cb140-2"><a href="Storing.html#cb140-2" tabindex="-1"></a><span class="ex">commit</span> git checkout <span class="at">--</span> .</span></code></pre></div>
+<p>Note that there is a space between the two dashed lines and the period.
+You can also change to any other commit or any committed version of a
+particular file with <code>checkout</code>. Simply replace the <code>--</code> with the commit
+reference. Note that the period at the end is still very important to
+include after the commit reference. The commit reference is easy to find
+and copy from a repository’s GitHub webpage (see below for more
+information on how to create a GitHub webpage).<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a> For an example of a
+GitHub repo webpage, see Figure <a href="Storing.html#fig:BookRepository">5.2</a>.
+Click on the link that lists the number of repo commits on the left-hand
+side of the repo’s webpage. This will show you all of the commits. A
+portion of this book’s commit history is shown in Figure <a href="Storing.html#fig:BookHistory">5.3</a>. By
+clicking on the code icon
+(<strong>&lt;&gt;</strong>), you can see
+what the files at any commit looked like. Next to this button is another
+with a series of numbers and letters. This is the commit’s SHA-1
+hash.<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a> For our purposes, it is the commit’s reference number. Click
+on the button to the left of the SHA to copy it. You can then paste it
+as an argument to your command. This will revert you to that particular
+commit. Also include the file name if you want to revert to a particular
+version of a particular file.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:BookHistory"></span>
+<img src="images/chapter_5/CommitHistory.png" alt="Part of this Book's GitHub Repository Commit History" width="90%" />
+<p class="caption">
+FIGURE 5.3: Part of this Book’s GitHub Repository Commit History
+</p>
+</div>
+</div>
+<div id="tags" class="section level4 unnumbered hasAnchor">
+<h4>Tags<a href="Storing.html#tags" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>SHA-1 hashes are a bit cumbersome to use as references. What was the
+hash number for that one commit? To solve this problem you can add
+bookmarks, known as “tags”, to particularly important commits. Imagine
+we just committed our first full draft of a project. We want to tag it
+as version 0.1, i.e. “v0.1”. To do this, use Git’s <code>tag</code> command:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb141-1"><a href="Storing.html#cb141-1" tabindex="-1"></a><span class="co"># Tag most recent commit v0.1</span></span>
+<span id="cb141-2"><a href="Storing.html#cb141-2" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v0.1 <span class="at">-m</span> <span class="st">&quot;First draft&quot;</span></span></code></pre></div>
+<p>The <code>-a</code> option adds the tag <code>v0.1</code> and <code>-m</code> lets us add a message. Now
+we can check out this particular commit by using its tag, i.e.: </p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb142-1"><a href="Storing.html#cb142-1" tabindex="-1"></a><span class="co"># Checkout v0.1</span></span>
+<span id="cb142-2"><a href="Storing.html#cb142-2" tabindex="-1"></a><span class="fu">git</span> checkout v0.1</span></code></pre></div>
+<p>This will create a new “branch” with a generic name <em>(detached from
+v0.1)</em> where you can make changes and commit them. If you plan to
+check out a previous tagged version and make changes to it, it is a good
+idea to specifically name the branch using the <code>-b</code> argument.<a href="#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a> For
+example, to give it the name <em>v0.1_branch</em> type:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb143-1"><a href="Storing.html#cb143-1" tabindex="-1"></a><span class="co"># Checkout v0.1 as v0.1_branch</span></span>
+<span id="cb143-2"><a href="Storing.html#cb143-2" tabindex="-1"></a><span class="fu">git</span> checkout v0.1 <span class="at">-b</span> v0.1_branch</span></code></pre></div>
+<p>What is a branch?</p>
+</div>
+<div id="branches" class="section level4 unnumbered hasAnchor">
+<h4>Branches<a href="Storing.html#branches" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>Sometimes you may want to work on an alternative version of your project
+and then merge changes made to this version back into the main one. For
+example, the main version could be the most stable current copy of your
+research, while the alternative version could be a place where you test
+out new ideas. Git allows you to create a new <em>branch</em> (alternative
+version of the repo) which can be merged back into the <em>master</em> (main)
+branch. To see what branch you are using, type:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb144-1"><a href="Storing.html#cb144-1" tabindex="-1"></a><span class="co"># Show git branch</span></span>
+<span id="cb144-2"><a href="Storing.html#cb144-2" tabindex="-1"></a><span class="fu">git</span> branch</span></code></pre></div>
+<pre><code>## * master</code></pre>
+<p>To create a new branch, use the <code>branch</code> command. For
+example, to create a new branch called <em>test</em>:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb146-1"><a href="Storing.html#cb146-1" tabindex="-1"></a><span class="co"># Create test branch</span></span>
+<span id="cb146-2"><a href="Storing.html#cb146-2" tabindex="-1"></a><span class="fu">git</span> branch test</span></code></pre></div>
+<p>You can now use <code>checkout</code> to switch to this branch.<a href="#fn108" class="footnote-ref" id="fnref108"><sup>108</sup></a> Here is a
+shortcut for creating and checking out the branch:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb147-1"><a href="Storing.html#cb147-1" tabindex="-1"></a><span class="co"># Create and checkout test branch</span></span>
+<span id="cb147-2"><a href="Storing.html#cb147-2" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> test</span></code></pre></div>
+<p>The <code>-b</code> (branch) option for <code>checkout</code> creates the new <em>test</em> branch
+before switching to it.</p>
+<p>To merge changes you commit in the <em>test</em> branch to the <em>master</em>, <code>add</code>
+and <code>commit</code> your changes, <code>checkout</code> the <em>master</em> branch, then use the
+<code>merge</code> command.<a href="#fn109" class="footnote-ref" id="fnref109"><sup>109</sup></a></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb148-1"><a href="Storing.html#cb148-1" tabindex="-1"></a><span class="co"># Add files</span></span>
+<span id="cb148-2"><a href="Storing.html#cb148-2" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb148-3"><a href="Storing.html#cb148-3" tabindex="-1"></a></span>
+<span id="cb148-4"><a href="Storing.html#cb148-4" tabindex="-1"></a><span class="co"># Commit changes to test branch</span></span>
+<span id="cb148-5"><a href="Storing.html#cb148-5" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">&quot;commit changes to test&quot;</span></span>
+<span id="cb148-6"><a href="Storing.html#cb148-6" tabindex="-1"></a></span>
+<span id="cb148-7"><a href="Storing.html#cb148-7" tabindex="-1"></a><span class="co"># Checkout master branch</span></span>
+<span id="cb148-8"><a href="Storing.html#cb148-8" tabindex="-1"></a><span class="fu">git</span> checkout master</span>
+<span id="cb148-9"><a href="Storing.html#cb148-9" tabindex="-1"></a></span>
+<span id="cb148-10"><a href="Storing.html#cb148-10" tabindex="-1"></a><span class="co"># Merge master and test branches</span></span>
+<span id="cb148-11"><a href="Storing.html#cb148-11" tabindex="-1"></a><span class="fu">git</span> merge test</span></code></pre></div>
+<p>Note, when you merge a branch, you may encounter conflicts in the files
+that make it impossible to smoothly merge the files together. Git will
+tell you what and where these are; you then need to decide what to keep
+and what to delete.</p>
+</div>
+<div id="having-git-ignore-files" class="section level4 unnumbered hasAnchor">
+<h4>Having Git ignore files<a href="Storing.html#having-git-ignore-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>There may be files in your repository that you do not want to keep under
+version control. Maybe this is because they are very large files or
+cached files from <em>knitr</em> or other files that are byproducts of
+compiling a LaTeX document (see Chapter <a href="StatsModel.html#StatsModel">8</a>). You also want to ignore files that contain private information. Make sure to <strong>never include private information</strong> (e.g. passwords or confidential data) in your Git history. Once they are committed, it will be very difficult to definitively remove them. Once they are on GitHub, they will be publicly accessible.</p>
+<p>To have Git ignore particular files, create a file called <em>.gitignore</em>.<a href="#fn110" class="footnote-ref" id="fnref110"><sup>110</sup></a> You can either put this file in the repository’s parent directory to create a <em>.gitignore</em> file for the whole repository or in a sub-directory to ignore files in that
+sub-directory. In the <em>.gitignore</em> file, add ignore rules by
+including the names of the files that you want to have Git ignore. For
+example, GitHub has a <em>.gitignore</em> file that is useful for ignoring files<a href="#fn111" class="footnote-ref" id="fnref111"><sup>111</sup></a> that we often don’t want to commit to our git history when using R and R Markdown:</p>
+<pre><code># History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token
+.httr-oauth
+
+# knitr and R markdown default cache directories
+/*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md</code></pre>
+<p>The asterisk (<code>*</code>) is a “wildcard” and stands for any character. In
+other words, it tells Git to look for files with any name that end with
+a specified file extension. This is faster than writing out the full
+name of every file you want to ignore individually. It also makes it
+easy to copy the rules into new repos. For example, you’ll notice the <code>*-Ex.R</code> and
+<code>/*_cache/</code> rules. These tell Git to ignore all of the files with a name ending in <em>-Ex.R</em> and all files in subdirectories with a name ending in <em>_cache</em>.</p>
+<p>Git will not ignore files that have already been committed to a
+repository. To ignore these files, you will first need to remove them
+from Git with Git’s <code>rm</code> (remove) command. If you wanted to remove a
+file called <em>example-project.tex</em> from version tracking type: </p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb150-1"><a href="Storing.html#cb150-1" tabindex="-1"></a><span class="co"># Remove example-project.tex from Git version tracking</span></span>
+<span id="cb150-2"><a href="Storing.html#cb150-2" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> example-project.tex</span></code></pre></div>
+<p>Using the <code>–cached</code> argument tells Git not to track the file, but not
+delete it.</p>
+<p>For more information on <em>.gitignore</em> files, see GitHub’s reference page
+on the topic at: <a href="https://help.github.com/articles/ignoring-files/" class="uri">https://help.github.com/articles/ignoring-files/</a>.</p>
+</div>
+</div>
+<div id="NewGitHubRepo" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Remote storage on GitHub<a href="Storing.html#NewGitHubRepo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far we’ve been using repos stored locally. Let’s now look at how to
+also store a repository remotely on GitHub. You can either create a new
+repository on GitHub and download (<code>clone</code>) it to your computer or
+upload (<code>push</code>) an existing repository to a new GitHub remote repo. In
+both cases, you need to create a new repository on GitHub.</p>
+<p>To create a new repository on GitHub, go to your main GitHub account
+webpage and click the <code>New repository</code> button. On the next page that
+appears, give the repository a name, brief description, and choose
+whether to make it public or private. If you want to store an existing
+repository on GitHub, give it the same name as the one that already
+exists on your computer. If you already have files in your local
+repository do not check the boxes for creating <em>README.md</em>, <em>LICENSE</em>,
+and <em>.gitignore</em> files. When you then click <code>Create Repository</code>, you will
+be directed to the repository’s GitHub
+webpage.<a href="#fn112" class="footnote-ref" id="fnref112"><sup>112</sup></a></p>
+<div id="GitClone" class="section level4 unnumbered hasAnchor">
+<h4>Clone a new remote repository<a href="Storing.html#GitClone" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>If you are working with a new repository and do not have an existing
+version on your computer, you need to “clone” the GitHub repo to your
+computer. The repo’s GitHub page contains a button called
+<code>Clone in Desktop</code>. Clicking this will open GUI GitHub (if it is
+installed) and prompt you to specify what directory on your computer you
+would like to clone the repository into. You can also use the <code>clone</code>
+command in the shell. Imagine that the URL for a repo called <em>Example
+Project</em> is <code>https://GitHub.com/USER/example-project.git</code>. To clone
+it into the <em>/git_repositories</em> directory
+type:<a href="#fn113" class="footnote-ref" id="fnref113"><sup>113</sup></a></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb151-1"><a href="Storing.html#cb151-1" tabindex="-1"></a><span class="co"># Change working directory</span></span>
+<span id="cb151-2"><a href="Storing.html#cb151-2" tabindex="-1"></a><span class="bu">cd</span> /git_repositories/</span>
+<span id="cb151-3"><a href="Storing.html#cb151-3" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="Storing.html#cb151-4" tabindex="-1"></a><span class="co"># Clone example-project</span></span>
+<span id="cb151-5"><a href="Storing.html#cb151-5" tabindex="-1"></a><span class="fu">git</span> clone https://GitHub.com/USER/example-project.git</span></code></pre></div>
+</div>
+<div id="RemoteAdd" class="section level4 unnumbered hasAnchor">
+<h4>Push an existing repository to a new GitHub repo<a href="Storing.html#RemoteAdd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>If you already have a repository with files in it on your computer and
+you want to store them remotely in a new GitHub repo, you need to add
+the remote repository and <code>push</code> your files to it. Type Git’s
+<code>remote add</code> command. For example, if your repository’s GitHub URL is
+<code>https://github.com/USER/example-project.git</code>, then type:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb152-1"><a href="Storing.html#cb152-1" tabindex="-1"></a><span class="co"># Change working directory to existing local repo</span></span>
+<span id="cb152-2"><a href="Storing.html#cb152-2" tabindex="-1"></a><span class="bu">cd</span> /git_repositories/example-project</span>
+<span id="cb152-3"><a href="Storing.html#cb152-3" tabindex="-1"></a></span>
+<span id="cb152-4"><a href="Storing.html#cb152-4" tabindex="-1"></a><span class="co"># Add a remote (GitHub) repository to an existing repo</span></span>
+<span id="cb152-5"><a href="Storing.html#cb152-5" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/USER/example-project.git</span></code></pre></div>
+<p>This will tell your local repository where the remote one is. Finally,
+push the repository to GitHub: </p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb153-1"><a href="Storing.html#cb153-1" tabindex="-1"></a><span class="co"># Push local repository to GitHub for the first time</span></span>
+<span id="cb153-2"><a href="Storing.html#cb153-2" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
+<p>The <code>-u</code> (upstream tracking) option adds a tracking reference for the
+upstream (GitHub) repository branches.</p>
+</div>
+<div id="pushing-commits-to-a-github-repo" class="section level4 unnumbered hasAnchor">
+<h4>Pushing commits to a GitHub repo<a href="Storing.html#pushing-commits-to-a-github-repo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Once you have your local repository connected to GitHub, you can add new
+commits with the <code>push</code> command. For example, if your current working
+directory is the Git repo you want to push and you have already
+added/committed the changes you want to include in the remote repo,
+type:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb154-1"><a href="Storing.html#cb154-1" tabindex="-1"></a><span class="co"># Add changes to the GitHub remote master branch</span></span>
+<span id="cb154-2"><a href="Storing.html#cb154-2" tabindex="-1"></a><span class="fu">git</span> push origin master</span></code></pre></div>
+<p>The <code>origin</code> is the remotely stored repository on GitHub and
+<code>master</code> is the master branch. You can change this to another branch if
+you’d like. If you have not set up password caching<a href="#fn114" class="footnote-ref" id="fnref114"><sup>114</sup></a> you will now be
+prompted to give your GitHub username and password.</p>
+<p>You can also push your tags to GitHub. To push all of the tags to GitHub,
+type:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb155-1"><a href="Storing.html#cb155-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--tags</span></span></code></pre></div>
+<p>Now on the repo’s GitHub page, there will be a <code>Tags</code> section that will
+allow you to view and download the files in each tagged version of the
+repository.</p>
+</div>
+</div>
+<div id="accessing-on-github" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Accessing on GitHub<a href="Storing.html#accessing-on-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="RawGitHub" class="section level4 unnumbered hasAnchor">
+<h4>Downloading into R<a href="Storing.html#RawGitHub" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In general, the process of downloading data directly into R is similar
+to what we saw earlier for loading data from Dropbox Public folders. We
+can use the <code>import()</code> function. First, we need to find our
+plain-text data file’s <em>raw</em> URL. To do this, go to your repository’s
+GitHub site, navigate to the file you want to load, and click the <code>Raw</code>
+button on the right just above the file preview. I have data in
+comma-separated values format stored in a GitHub repository.<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a> The
+URL for the raw (plain-text) version of the data is
+<a href="https://raw.githubusercontent.com/christophergandrud/Disproportionality_Data/master/Disproportionality.csv" class="uri">https://raw.githubusercontent.com/christophergandrud/Disproportionality_Data/master/Disproportionality.csv</a>.<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="Storing.html#cb156-1" tabindex="-1"></a><span class="co"># Place shortened URLinto url object</span></span>
+<span id="cb156-2"><a href="Storing.html#cb156-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://bit.ly/14aSjxB&quot;</span></span>
+<span id="cb156-3"><a href="Storing.html#cb156-3" tabindex="-1"></a></span>
+<span id="cb156-4"><a href="Storing.html#cb156-4" tabindex="-1"></a><span class="co"># Download data</span></span>
+<span id="cb156-5"><a href="Storing.html#cb156-5" tabindex="-1"></a>disprop_data <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(url, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>)</span>
+<span id="cb156-6"><a href="Storing.html#cb156-6" tabindex="-1"></a></span>
+<span id="cb156-7"><a href="Storing.html#cb156-7" tabindex="-1"></a><span class="co"># Show variable names</span></span>
+<span id="cb156-8"><a href="Storing.html#cb156-8" tabindex="-1"></a><span class="fu">names</span>(disprop_data)</span></code></pre></div>
+<pre><code>## [1] &quot;country&quot;            &quot;iso2c&quot;             
+## [3] &quot;year&quot;               &quot;disproportionality&quot;</code></pre>
+<p><code>import()</code> downloaded the most recent version of the file from the
+master branch.</p>
+<p>We can actually use <code>import()</code> to download a particular version of a
+file—from a particular Git commit—directly into R. This makes
+reproducing a specific result much easier. To do this, you just need to
+use a file’s raw URL from a particular commit. To find a file’s
+particular commit raw URL first click on the file on GitHub’s website.
+Then click the <code>History</code> button. This will take you
+to a page listing all of the file’s versions. Click on the git commit hash button next to
+the version of the file that you want to use. Then click <code>View file</code> and finally the <code>Raw</code> button to be taken to the text-only version of the file. Copy this
+page’s URL address and use it with <code>import()</code>.</p>
+<p>For example, I have an old version of the disproportionality data. To
+download it, I find this particular version of the file’s URL and use it
+in <code>import()</code>:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="Storing.html#cb158-1" tabindex="-1"></a><span class="co"># Create object containing the file&#39;s URL</span></span>
+<span id="cb158-2"><a href="Storing.html#cb158-2" tabindex="-1"></a>old_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/&quot;</span>,</span>
+<span id="cb158-3"><a href="Storing.html#cb158-3" tabindex="-1"></a>                  <span class="st">&quot;christophergandrud/&quot;</span>,</span>
+<span id="cb158-4"><a href="Storing.html#cb158-4" tabindex="-1"></a>                  <span class="st">&quot;Disproportionality_Data/&quot;</span>,</span>
+<span id="cb158-5"><a href="Storing.html#cb158-5" tabindex="-1"></a>                  <span class="st">&quot;1a59d360b36eade3b183d6336a&quot;</span>,</span>
+<span id="cb158-6"><a href="Storing.html#cb158-6" tabindex="-1"></a>                  <span class="st">&quot;2262df4f9555d1/&quot;</span>,</span>
+<span id="cb158-7"><a href="Storing.html#cb158-7" tabindex="-1"></a>                  <span class="st">&quot;Disproportionality.csv&quot;</span>)</span>
+<span id="cb158-8"><a href="Storing.html#cb158-8" tabindex="-1"></a></span>
+<span id="cb158-9"><a href="Storing.html#cb158-9" tabindex="-1"></a><span class="co"># Download old disproportionality data</span></span>
+<span id="cb158-10"><a href="Storing.html#cb158-10" tabindex="-1"></a>disprop_old <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(old_url, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>)</span></code></pre></div>
+<p>In this example I did not shorten the URL, but instead used the <code>paste0()</code>
+function to paste it together.<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a> You do not have to do this. I did it
+here so that the URL would fit on the printed page.</p>
+</div>
+<div id="viewing-files" class="section level4 unnumbered hasAnchor">
+<h4>Viewing files<a href="Storing.html#viewing-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The GitHub web user interface also allows you, your collaborators (see
+below) or, if the repo is public, anyone to look at text files from a
+web browser. Collaborators can actually also create, modify, and commit
+changes in the web user interface. This can be useful for making small
+changes, especially from a mobile device without a Git installation.
+Anyone with a GitHub account can suggest changes to files in a public
+repository on the repo’s website. Simply click the <code>Edit</code> button (it looks like a pencil) above the file and make edits. If the person making the edits is not a designated
+collaborator, their edits will be sent to the repository’s owner for
+approval.<a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a> This can be a useful way for independent researchers to
+fix errors.</p>
+</div>
+<div id="collaboration-with-github" class="section level4 unnumbered hasAnchor">
+<h4>Collaboration with GitHub<a href="Storing.html#collaboration-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Repositories can have official collaborators that can make changes to
+files in the repo. Public repositories can have unlimited collaborators.
+Anyone with a GitHub account can be a collaborator. To add a
+collaborator to a repository you created, click on the <code>Settings</code> button
+on the repository’s website (see Figure <a href="Storing.html#fig:BookRepository">5.2</a>). Then click the <code>Collaborators</code> button on the left-hand side of the page. You will be given a box to enter your collaborator’s GitHub username. If your collaborator doesn’t have a
+GitHub account, they will have to create a new one. Once you add someone
+as a collaborator, they can clone the repository onto their computer as
+you did earlier and push changes.</p>
+</div>
+<div id="syncing-a-repository" class="section level4 unnumbered hasAnchor">
+<h4>Syncing a repository<a href="Storing.html#syncing-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>
+</p>
+<p>If you and your collaborators are both making changes to the files in a
+repo you might create conflicting changes, i.e. different changes to the
+same part of a file. To avoid too many conflicts, it is a good idea to
+sync your local repository with the remote repository <strong>before</strong> you
+push your commits to GitHub. Use the <code>pull</code> command to sync your local
+and remote repository. First add and commit your changes, then type:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb159-1"><a href="Storing.html#cb159-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
+<p>If the files you are pulling conflict with your local files, you will
+probably want to resolve these in the individual files and commit the
+changes. When there are merge conflicts, Git adds both versions of a
+piece of text to the file. You then open the file and decide which
+version to keep and which one to delete. When the conflicts are resolved
+and changes committed, push your merged changes up to the remote
+repository as we did before.</p>
+</div>
+</div>
+<div id="summing-up-the-github-workflow" class="section level3 hasAnchor" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Summing up the GitHub workflow<a href="Storing.html#summing-up-the-github-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve covered a lot of ground in this section. Let’s sum up the basic
+GitHub workflow you will probably follow once your repo is set up.</p>
+<ol style="list-style-type: decimal">
+<li><p>Add any changes you’ve made with <code>git add</code>.</p></li>
+<li><p><code>commit</code> the changes.</p></li>
+<li><p><code>pull</code> your collaborators’ changes from the GitHub repo, resolve any
+merge conflicts, and <code>commit</code> the changes.</p></li>
+<li><p><code>push</code> your changes to GitHub.</p></li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NewRStudioProject"></span>
+<img src="images/chapter_5/GitNewProject.png" alt="Creating RStudio Projects" width="50%" />
+<p class="caption">
+FIGURE 5.4: Creating RStudio Projects
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NewProjectNewDirectory"></span>
+<img src="images/chapter_5/NewProject_NewDirectory.png" alt="Creating RStudio Projects in New Directories" width="50%" />
+<p class="caption">
+FIGURE 5.5: Creating RStudio Projects in New Directories
+</p>
+</div>
+</div>
+</div>
+<div id="rstudio-and-github" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> RStudio and GitHub<a href="Storing.html#rstudio-and-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you open a Project with a Git repository in RStudio, you will see a
+new <em>Git</em> tab next to <em>Environment</em>, <em>History</em>, and <em>Connections</em> (see Figure <a href="Storing.html#fig:GitTab">5.6</a>). From here, you can do many of the things we covered in the previous section. Let’s look at how to set up and use Git in RStudio Projects.</p>
+<div id="setting-up-gitgithub-with-projects" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Setting up Git/GitHub with Projects<a href="Storing.html#setting-up-gitgithub-with-projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can Git initialize new RStudio Projects, Git initialize existing
+projects, and create RStudio Projects from cloned repos. When you do any
+of these things, RStudio automatically adds a <em>.gitignore</em> file telling
+Git to ignore <em>.Rproj.user</em>, <em>.Rhistory</em>, and <em>.RData</em> files.</p>
+<div id="NewProjectGit" class="section level4 unnumbered hasAnchor">
+<h4>Git with a new project<a href="Storing.html#NewProjectGit" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To create a new project with Git version control, go to <code>File</code> in the
+RStudio menu bar. Then click <code>New Project…</code>. In the box that appears
+(see Figure <a href="Storing.html#fig:NewRStudioProject">5.4</a>) select <code>New Directory</code> <code>Empty Project</code>.
+Enter the Project’s name and desired directory. Make sure to check the
+dialog box for <code>Create a git repository</code> (see Figure <a href="Storing.html#fig:NewProjectNewDirectory">5.5</a>).</p>
+</div>
+<div id="git-initialize-existing-projects" class="section level4 unnumbered hasAnchor">
+<h4>Git initialize existing projects<a href="Storing.html#git-initialize-existing-projects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you have an existing RStudio Project and want to add Git version
+control to it, first go to <code>Tools</code> in the RStudio menu bar. Then select
+<code>Project Options …</code>. Select the <code>Git/SVN</code> icon. Finally, select <code>Git</code>
+from the drop-down menu for <code>Version Control System:</code>.</p>
+</div>
+<div id="clone-repository-into-a-new-project" class="section level4 unnumbered hasAnchor">
+<h4>Clone repository into a new project<a href="Storing.html#clone-repository-into-a-new-project" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Again go to <code>File</code> in the RStudio menu bar to create a new project from
+a cloned GitHub repository. Then click <code>New Project…</code>. Select the
+<code>Version Control</code> option and then <code>Git</code>. Finally, paste the repository’s
+URL in the field called <code>Repository URL:</code>, enter the directory you would
+like to locate the cloned repo in, and click <code>Create Project</code>.</p>
+</div>
+<div id="add-existing-project-repository-to-github" class="section level4 unnumbered hasAnchor">
+<h4>Add existing Project repository to GitHub<a href="Storing.html#add-existing-project-repository-to-github" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You can push an existing Project repository stored on your computer to a
+new remote repository on GitHub. To do this, first create a new repo on
+GitHub with the same name as your RStudio Project (see Section <a href="Storing.html#NewGitHubRepo">5.3.3</a>). Then copy the remote repository’s URL like we saw before when we cloned a repository from GitHub (see Section <a href="Storing.html#GitClone"><strong>??</strong></a>). Open a new shell from within RStudio. To do this, click the <code>Shell</code> button in the <em>Git</em> tab’s <code>More</code> drop-down menu (it looks like a gear). Now follow the same steps that we used in Section <a href="Storing.html#RemoteAdd"><strong>??</strong></a> to
+connect a locally stored repository to GitHub for the first time.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:GitTab"></span>
+<img src="images/chapter_5/GitTab.png" alt="The Git Repository Tab in RStudio" width="50%" />
+<p class="caption">
+FIGURE 5.6: The Git Repository Tab in RStudio
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:GitRstudioAdd"></span>
+<img src="images/chapter_5/GitAdd.png" alt="Adding Changes to the Repository" width="50%" />
+<p class="caption">
+FIGURE 5.7: Adding Changes to the Repository
+</p>
+</div>
+</div>
+</div>
+<div id="using-git-in-rstudio-projects" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Using Git in RStudio Projects<a href="Storing.html#using-git-in-rstudio-projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The RStudio <em>Git</em> tab allows you to do many of the same things with Git
+that we covered in the previous section. In Figure <a href="Storing.html#fig:GitTab">5.6</a> you will
+see the <em>Git</em> tab for a new RStudio Project called <em>example-project</em>. It
+has two files that have not been added or committed to Git. To add and
+commit the files to the repository, click on the dialog boxes next to
+the file names. In Figure <a href="Storing.html#fig:GitRstudioAdd">5.7</a> you can
+see that I’ve created a new R file called <em>example-script.R</em> and clicked
+the dialog box next to it, along with the other files. The yellow
+question marks in the top panel have now become green A’s for “add”.
+Clicking <code>Commit</code> opens a new window called <strong>Review Changes</strong> where you
+can commit the changes. Simply write a commit message in the box called
+<em>Commit Message</em> in the <strong>Review Changes</strong> window and click <code>Commit</code>. If
+you add file names to the <em>.gitignore</em> files, they will not show up in
+RStudio’s <em>Git</em> tab.</p>
+<p>If you are using a GitHub repo that is associated with a remote
+repository on GitHub, you can push and pull it with the <code>Pull Branches</code>
+and <code>Push Branch</code> buttons in Git menu bar (the down and up arrows respectively). You can use the same buttons in the <strong>Review Changes</strong>
+window. The <em>Git</em> tab also allows you to change branches, revert to
+previous commits, add files to <code>.gitignore</code>, and view your commit
+history. You can always use the <code>More -&gt; Shell…</code> option to open a new
+shell with the Project set as the working directory to complete any
+other Git task you might want to do.</p>
+</div>
+<div id="chapter-summary-2" class="section level3 unnumbered hasAnchor">
+<h3>Chapter summary<a href="Storing.html#chapter-summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this chapter we have primarily learned how to store text-based
+reproducible research files in ways that allow us and others to access
+them easily from many locations, enable collaboration, and keep a record
+of previous versions. In the next chapter, we will learn how to use
+text-based files to reproducibly gather data that we can use in our
+statistical analyses.</p>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-R-rio" class="csl-entry">
+Becker, Jason, Chung-hong Chan, David Schoch, and Thomas J. Leeper. 2024. <em>Rio: A Swiss-Army Knife for Data i/o</em>. <a href="https://CRAN.R-project.org/package=rio">https://CRAN.R-project.org/package=rio</a>.
+</div>
+<div id="ref-gandrud2012" class="csl-entry">
+———. 2013b. <span>“<span class="nocase">The diffusion of financial supervisory governance ideas</span>.”</span> <em>Review of International Political Economy</em> 20 (4): 881–916.
+</div>
+<div id="ref-howe2012" class="csl-entry">
+Howe, Bill. 2012. <span>“<span class="nocase">Virtual appliances, cloud computing, and reproducible research</span>.”</span> <em>Computing in Science <span>&amp;</span> Engineering</em> 14 (4): 36–41.
+</div>
+<div id="ref-R-devtools" class="csl-entry">
+Wickham, Hadley, Jim Hester, Winston Chang, and Jennifer Bryan. 2022. <em>Devtools: Tools to Make Developing r Packages Easier</em>. <a href="https://CRAN.R-project.org/package=devtools">https://CRAN.R-project.org/package=devtools</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="81">
+<li id="fn81"><p>These services store your data on remote servers.<a href="Storing.html#fnref81" class="footnote-back">↩︎</a></p></li>
+<li id="fn82"><p>I don’t cover methods for storing and handling very large data
+sets, with high hundreds of thousands and more observations. For
+information on large data and R, not just storage, one place to look
+is this blog post from RDataMining:
+<a href="http://rdatamining.wordpress.com/2012/05/06/online-resources-for-handling-big-data-and-parallel-computing-in-r/" class="uri">http://rdatamining.wordpress.com/2012/05/06/online-resources-for-handling-big-data-and-parallel-computing-in-r/</a>
+(posted 6 May 2012). One popular service for large file storage is
+Amazon S3 (<a href="http://aws.amazon.com/s3/" class="uri">http://aws.amazon.com/s3/</a>).<a href="Storing.html#fnref82" class="footnote-back">↩︎</a></p></li>
+<li id="fn83"><p>Sometimes this format is called tab-delimited values.<a href="Storing.html#fnref83" class="footnote-back">↩︎</a></p></li>
+<li id="fn84"><p>Frequently the row names are just the row numbers which may have
+no substantive meaning.<a href="Storing.html#fnref84" class="footnote-back">↩︎</a></p></li>
+<li id="fn85"><p><code>write.csv()</code> is a ‘wrapper’ for <code>write.table()</code>.<a href="Storing.html#fnref85" class="footnote-back">↩︎</a></p></li>
+<li id="fn86"><p>Dropbox provides a minimum amount of storage for free, above which
+they charge a fee. GitHub lets you create publicly accessible
+repositories—kind of like project folders—for free, but they
+charge for private repositories.<a href="Storing.html#fnref86" class="footnote-back">↩︎</a></p></li>
+<li id="fn87"><p><a href="https://zenodo.org/" class="uri">https://zenodo.org/</a><a href="Storing.html#fnref87" class="footnote-back">↩︎</a></p></li>
+<li id="fn88"><p><a href="https://dataverse.org/" class="uri">https://dataverse.org/</a><a href="Storing.html#fnref88" class="footnote-back">↩︎</a></p></li>
+<li id="fn89"><p><a href="http://figshare.com/" class="uri">http://figshare.com/</a><a href="Storing.html#fnref89" class="footnote-back">↩︎</a></p></li>
+<li id="fn90"><p><a href="http://www.runmycode.org/" class="uri">http://www.runmycode.org/</a><a href="Storing.html#fnref90" class="footnote-back">↩︎</a></p></li>
+<li id="fn91"><p><a href="http://www.dropbox.com/" class="uri">http://www.dropbox.com/</a><a href="Storing.html#fnref91" class="footnote-back">↩︎</a></p></li>
+<li id="fn92"><p><a href="https://drive.google.com/" class="uri">https://drive.google.com/</a><a href="Storing.html#fnref92" class="footnote-back">↩︎</a></p></li>
+<li id="fn93"><p>See <a href="https://www.dropbox.com/downloading" class="uri">https://www.dropbox.com/downloading</a> for downloading and
+installation instructions.<a href="Storing.html#fnref93" class="footnote-back">↩︎</a></p></li>
+<li id="fn94"><p>This data is from <span class="citation">(<a href="#ref-gandrud2012">Gandrud 2013b</a>)</span>. I’ve shortened the URL using
+Bitly (<a href="https://bitly.com/" class="uri">https://bitly.com/</a>) so that it will fit on the page.<a href="Storing.html#fnref94" class="footnote-back">↩︎</a></p></li>
+<li id="fn95"><p>For more details, see <a href="https://www.dropbox.com/en/help/11" class="uri">https://www.dropbox.com/en/help/11</a>.<a href="Storing.html#fnref95" class="footnote-back">↩︎</a></p></li>
+<li id="fn96"><p>I used Git version 2.20.1 for this book.<a href="Storing.html#fnref96" class="footnote-back">↩︎</a></p></li>
+<li id="fn97"><p>Because many of these features apply to any service that relies
+on Git, much of this list of advantages also applies to alternative
+Git cloud storage services such as Bitbucket
+(<a href="https://bitbucket.org/" class="uri">https://bitbucket.org/</a>).<a href="Storing.html#fnref97" class="footnote-back">↩︎</a></p></li>
+<li id="fn98"><p>You can use a variety of other markup languages as well. See
+<a href="https://GitHub.com/GitHub/markup" class="uri">https://GitHub.com/GitHub/markup</a>.<a href="Storing.html#fnref98" class="footnote-back">↩︎</a></p></li>
+<li id="fn99"><p>RStudio also supports the Subversion version control system, but
+I don’t cover that here.<a href="Storing.html#fnref99" class="footnote-back">↩︎</a></p></li>
+<li id="fn100"><p>The interface for Git Bash looks a lot like the Terminal or
+Windows PowerShell.<a href="Storing.html#fnref100" class="footnote-back">↩︎</a></p></li>
+<li id="fn101"><p>Much of the discussion of the command-line in this section is
+inspired by Nick Farina’s blog post on Git (see
+<a href="http://nfarina.com/post/9868516270/git-is-simpler" class="uri">http://nfarina.com/post/9868516270/git-is-simpler</a>, posted 7
+September 2012).<a href="Storing.html#fnref101" class="footnote-back">↩︎</a></p></li>
+<li id="fn102"><p>To follow along with this code, you will first need to create a
+folder called <em>git_repositories</em> in your root directory. Note also
+that throughout this section I use Unix file path conventions.<a href="Storing.html#fnref102" class="footnote-back">↩︎</a></p></li>
+<li id="fn103"><p>For a comprehensive guide to Git commands, see
+<a href="http://git-scm.com/" class="uri">http://git-scm.com/</a>.<a href="Storing.html#fnref103" class="footnote-back">↩︎</a></p></li>
+<li id="fn104"><p>Other Git objects include trees (sort of like directories), tags
+(bookmarks for important points in a repo’s history), and blobs
+(individual files).<a href="Storing.html#fnref104" class="footnote-back">↩︎</a></p></li>
+<li id="fn105"><p>You can also search your commit history and roll back to a
+previous commit using only the command-line. To see the commit
+history, use the <code>log</code> command (more details at
+<a href="http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History" class="uri">http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History</a>).
+When a repo has many commits, this can be a very tedious command to
+use, so I highly recommend the GUI version of GitHub or the repo’s
+GitHub website.<a href="Storing.html#fnref105" class="footnote-back">↩︎</a></p></li>
+<li id="fn106"><p>Secure Hash Algorithm. This is a unique identifier for each commit.<a href="Storing.html#fnref106" class="footnote-back">↩︎</a></p></li>
+<li id="fn107"><p>If you don’t, then the new branch will have a “detached head”
+which will create problems using the branch in the future.<a href="Storing.html#fnref107" class="footnote-back">↩︎</a></p></li>
+<li id="fn108"><p>To delete the <em>test</em> branch, use the <code>-d</code> argument, i.e.
+<code>git branch -d Test</code>.<a href="Storing.html#fnref108" class="footnote-back">↩︎</a></p></li>
+<li id="fn109"><p>Any uncommitted changes are merged with a branch when it is
+checked out.<a href="Storing.html#fnref109" class="footnote-back">↩︎</a></p></li>
+<li id="fn110"><p>Note that like <em>.git</em>, <em>.gitignore</em> files are hidden.<a href="Storing.html#fnref110" class="footnote-back">↩︎</a></p></li>
+<li id="fn111"><p>From: <a href="https://github.com/github/gitignore/blob/master/R.gitignore" class="uri">https://github.com/github/gitignore/blob/master/R.gitignore</a> as of 26 December 2018.<a href="Storing.html#fnref111" class="footnote-back">↩︎</a></p></li>
+<li id="fn112"><p>Before the repo has any files in it, the webpage will include
+instructions for how to set it up on your computer.<a href="Storing.html#fnref112" class="footnote-back">↩︎</a></p></li>
+<li id="fn113"><p>If you are on the repo’s webpage the URL to copy is under
+<code>HTTPS clone URL</code>.<a href="Storing.html#fnref113" class="footnote-back">↩︎</a></p></li>
+<li id="fn114"><p>See <a href="https://help.github.com/articles/set-up-git/" class="uri">https://help.github.com/articles/set-up-git/</a> for more
+details.<a href="Storing.html#fnref114" class="footnote-back">↩︎</a></p></li>
+<li id="fn115"><p>For full information about the disproportionality data set,
+please see
+<a href="http://christophergandrud.github.io/Disproportionality_Data/" class="uri">http://christophergandrud.github.io/Disproportionality_Data/</a>.<a href="Storing.html#fnref115" class="footnote-back">↩︎</a></p></li>
+<li id="fn116"><p>It has been shortened with Bitly in the example.<a href="Storing.html#fnref116" class="footnote-back">↩︎</a></p></li>
+<li id="fn117"><p><code>paste0</code> is the same as <code>paste</code>, but has the argument <code>sep = ""</code>
+so that white space is not placed between the pasted elements.<a href="Storing.html#fnref117" class="footnote-back">↩︎</a></p></li>
+<li id="fn118"><p>This is called a <code>pull</code> request in Git terminology. See the next
+section for more details.<a href="Storing.html#fnref118" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="DirectoriesChapter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="DataGather.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/07-storage.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

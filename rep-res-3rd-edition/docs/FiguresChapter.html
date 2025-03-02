@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Showing Results with Figures | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 10 Showing Results with Figures | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Showing Results with Figures | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 10 Showing Results with Figures | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Showing Results with Figures | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 10 Showing Results with Figures | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="TablesChapter.html"/>
+<link rel="next" href="LatexChapter.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="FiguresChapter" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Showing Results with Figures<a href="FiguresChapter.html#FiguresChapter" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>One of the main reasons that many people use R is to take advantage of
+its comprehensive and powerful set of data visualization tools. Visually
+displaying information with graphics is often a much more effective way
+of presenting both descriptive statistics and analysis results than the
+tables we covered in the last chapter.<a href="#fn186" class="footnote-ref" id="fnref186"><sup>186</sup></a></p>
+<p>Nonetheless, dynamically incorporating figures with knitr/R Markdown
+has many of the same benefits as dynamically including tables,
+especially the ability to have data set or analysis changes
+automatically cascade into your presentation documents. The basic
+process for including figures in knitted presentation documents is also
+very similar to including tables, though there are some important extra
+considerations we need to make to properly size the figures and be able
+to include interactive visualizations in our presentation documents.</p>
+<p>In this chapter we will first learn how to include non-knitted
+graphics in LaTeX and Markdown documents before turning
+to dynamically knit R graphics into presentation documents. In the
+remainder of the chapter, we will look at how to actually create graphics
+with R including some of the fundamentals of R’s default graphics
+package, as well as the <em>ggplot2</em> <span class="citation">(<a href="#ref-R-ggplot2">Wickham et al. 2024</a>)</span> and <em>googleVis</em>
+<span class="citation">(<a href="#ref-R-googleVis">Gesmann and de Castillo 2024</a>)</span> packages. In each case we will focus on how to include
+the figures created by these packages in knitted presentation documents.</p>
+<div id="including-non-knitted-graphics" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Including Non-knitted Graphics<a href="FiguresChapter.html#including-non-knitted-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Understanding how <em>knitr</em>/<em>rmarkdown</em> dynamically include figures is
+easier if you understand how figures are normally included in LaTeX and
+Markdown. Unlike a word processing program like Microsoft Word, in
+LaTeX, Markdown, HTML, and other markup languages you don’t copy and
+paste figures into your document. Instead, you link to an image file
+outside of your markup document. Typically these image files are in
+formats such as <em>PDF</em>, <em>PNG</em>, and <em>JPEG</em>.<a href="#fn187" class="footnote-ref" id="fnref187"><sup>187</sup></a></p>
+<p>While you lose the flexibility of drag and drop, there are advantages to this method of including graphics. The first is that whenever the image files are changed, the
+changes are updated in the final presentation document when it is
+compiled, no recopying and pasting. The second advantage is that the
+images are sized and placed with the markup code rather than pointing
+and clicking. This is tedious at first, but saves considerable time and
+frustration when a document becomes larger. It also makes it easy to
+consistently format multiple images in a document.</p>
+<p>If the image files are in the same directory as the markup document, we
+don’t need to specify the image’s full file path, only its name. If they are
+in another directory, we need to include additional file path
+information. Remember to use relative paths when possible. In this
+section we will learn how to include graphics files in documents created
+with LaTeX and Markdown.</p>
+<div id="including-graphics-in-latex" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Including graphics in LaTeX<a href="FiguresChapter.html#including-graphics-in-latex" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The main way to include graphics (graphs, photos, and so on) in LaTeX
+documents is to use the <code>includegraphics</code> function to link to image
+files. To have the full range of features for <code>includegraphics</code>, make
+sure to load the <em>graphicx</em> package in your document’s preamble. Imagine
+that we wanted to include an image of butterflies stored in a file
+called <em>HeliconiusMimicry.png</em> in a LaTeX-produced document.<a href="#fn188" class="footnote-ref" id="fnref188"><sup>188</sup></a> We
+type:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb280-1"><a href="FiguresChapter.html#cb280-1" tabindex="-1"></a><span class="bu">\includegraphics</span>[scale=0.8]{<span class="ex">HeliconiusMimicry.png</span>}</span></code></pre></div>
+<p>In the square brackets, you’ll notice <code>scale=0.8</code>. This formats the image
+to be included at 80 percent of its actual size. You can use other
+options such as <code>height</code> to specify the height, <code>width</code> to specify the
+width, and <code>angle</code> to specify the angle at which to rotate the image.
+You can add more than one option if they are separated by commas. Rather
+than hard coding the width in exact centimeters, you can determine its
+width as a proportion of the text width using <code>\textwidth</code>.<a href="#fn189" class="footnote-ref" id="fnref189"><sup>189</sup></a> For
+example, to set our image at 80 percent of the text width we can type:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb281-1"><a href="FiguresChapter.html#cb281-1" tabindex="-1"></a><span class="bu">\includegraphics</span>[scale=0.8<span class="fu">\textwidth</span>]{<span class="ex">HeliconiusMimicry.png</span>}</span></code></pre></div>
+<div id="figure-float-environment" class="section level4 unnumbered hasAnchor">
+<h4><code>figure</code> float environment<a href="FiguresChapter.html#figure-float-environment" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Most often you will want to include LaTeX figures in a <code>figure</code> float
+environment. The <em>figure</em> environment works almost exactly the same way as the <code>table</code> environment we saw in the last chapter. It allows you to
+separate the figure from the text, add a caption, and label the figure.
+We begin the environment with <code>\begin{figure}[POSITION_SPEC]</code>.
+<code>POSITION_SPEC</code> can have the same values as we saw earlier with tables
+in Chapter <a href="TablesChapter.html#TablesChapter">9</a>. We can then include a <code>caption</code> and <code>label</code> function. The
+environment is closed with <code>\end{figure}</code>. For example, to create Figure <a href="#fig:ExampleLaTeXFigure"><strong>??</strong></a> exactly as is, I used the following code:<a href="#fn190" class="footnote-ref" id="fnref190"><sup>190</sup></a></p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb282-1"><a href="FiguresChapter.html#cb282-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[ht]</span>
+<span id="cb282-2"><a href="FiguresChapter.html#cb282-2" tabindex="-1"></a>        <span class="kw">\begin</span>{<span class="ex">center</span>}</span>
+<span id="cb282-3"><a href="FiguresChapter.html#cb282-3" tabindex="-1"></a>            <span class="bu">\includegraphics</span>{<span class="ex">HeliconiusMimicry.png</span>}</span>
+<span id="cb282-4"><a href="FiguresChapter.html#cb282-4" tabindex="-1"></a>        <span class="kw">\end</span>{<span class="ex">center</span>}</span>
+<span id="cb282-5"><a href="FiguresChapter.html#cb282-5" tabindex="-1"></a>    <span class="fu">\caption</span>{An Example Figure in LaTeX}</span>
+<span id="cb282-6"><a href="FiguresChapter.html#cb282-6" tabindex="-1"></a>    {<span class="fu">\scriptsize</span>{Image source: <span class="kw">\cite</span>{<span class="ex">meyer2006</span>}}}</span>
+<span id="cb282-7"><a href="FiguresChapter.html#cb282-7" tabindex="-1"></a>    <span class="kw">\label</span>{<span class="ex">ExampleLaTeXFigure</span>}</span>
+<span id="cb282-8"><a href="FiguresChapter.html#cb282-8" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div>
+<p>Notice that after the call to end the <code>center</code> environment we include
+<code>{\scriptsize{Source: \cite{meyer2006}}}</code>. This includes a note
+in the figure environment giving the image’s source. The note moves with
+the figure and is separate from the text. The <code>scriptsize</code> function
+transforms the text to smaller than normal size font. See Chapter <a href="LatexChapter.html#LatexChapter">11</a>
+for more details on LaTeX font sizes. The function <code>\cite{meyer2006}</code>
+inserts a citation from the bibliography for <span class="citation">Meyer (<a href="#ref-meyer2006">2006</a>)</span>. We will
+also discuss bibliographies in more detail in Chapter <a href="LatexChapter.html#LatexChapter">11</a>.</p>
+<p></p>
+</div>
+</div>
+<div id="including-graphics-in-markdownhtml" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Including graphics in Markdown/HTML<a href="FiguresChapter.html#including-graphics-in-markdownhtml" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Markdown has a similar function as LaTeX’s <code>includegraphics</code>. It goes
+like this: <code>![ALT_TEXT](FILE_PATH)</code>. This syntax may seem strange now,
+but it will hopefully make more sense when we cover Markdown hyperlinks
+in Chapter <a href="MarkdownChapter.html#MarkdownChapter">12</a>. This is what it is intended to imitate.
+<code>ALT_TEXT</code> refers to HTML’s <code>alt</code> (alternative text) attribute. This
+should be a very short description of the image that will appear if it
+fails to load in a web browser. <code>FILE_PATH</code> specifies the image’s file
+path.<a href="#fn191" class="footnote-ref" id="fnref191"><sup>191</sup></a> Here is an example using the image we worked with
+before.</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb283-1"><a href="FiguresChapter.html#cb283-1" tabindex="-1"></a><span class="al">![ButterflyImage](HeliconiusMimicry.png)</span></span></code></pre></div>
+<p>Note that the file path can be a URL. You may, for example, store an
+image on GitHub and use its raw URL to link
+to it in the Markdown document.<a href="#fn192" class="footnote-ref" id="fnref192"><sup>192</sup></a></p>
+<p>Markdown does not easily include ways to resize or reposition an image.
+If you want to resize or reposition
+your image, it is often most straightforward to use HTML markup. Probably the simplest way
+to include images with HTML is by using the <code>img</code> (image) element tag.
+To create the equivalent of what we just did in Markdown with HTML, type:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb284-1"><a href="FiguresChapter.html#cb284-1" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;HeliconiusMimicry.png&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;ButterflyImage&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">img</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>The <code>src</code> (script) attribute specifies the file path. To change the width and height of the image, use the <code>width</code> and <code>height</code>
+attributes. For example:</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb285-1"><a href="FiguresChapter.html#cb285-1" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;HeliconiusMimicry.png&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;ButterflyImage&quot;</span></span>
+<span id="cb285-2"><a href="FiguresChapter.html#cb285-2" tabindex="-1"></a><span class="ot">     width</span><span class="op">=</span><span class="st">&quot;100px&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;100px&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb285-3"><a href="FiguresChapter.html#cb285-3" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">img</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>creates an image that is 100 pixels (<code>px</code>) wide by 100 pixels high.<a href="#fn193" class="footnote-ref" id="fnref193"><sup>193</sup></a> It is also possible to specify the alignment of figures in Markdown with a custom CSS style file. I don’t cover how to do that here.</p>
+</div>
+<div id="non-knitted-graphics-with-knitrrmarkdown" class="section level3 hasAnchor" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we’ve seen how LaTeX, Markdown, and HTML include non-dynamically generated graphics, it raises a question: how do we include these graphics in a document that we intend to use <em>R Markdown</em> to compile to more than one of these formats? <em>knitr</em> includes the
+<code>include_graphics()</code> function just for this purpose.</p>
+<p>For example, in a code chunk place:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="FiguresChapter.html#cb286-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r fig.cap=&quot;An Example Figure&quot;}</span></span>
+<span id="cb286-2"><a href="FiguresChapter.html#cb286-2" tabindex="-1"></a><span class="at">knitr::include_graphics(&#39;HeliconiusMimicry.png&#39;)</span></span>
+<span id="cb286-3"><a href="FiguresChapter.html#cb286-3" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>Now the figure will be included regardless of which markup language we compile to.
+Notice the code chunk option <code>fig.cap</code>. In the next section, we discuss this type of <em>knitr</em> options in detail.</p>
+</div>
+</div>
+<div id="basic-knitrrmarkdown-figure-options" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options<a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In addition to including precompiled images with the <code>include_graphics()</code> function, <em>knitr</em>, and by extension
+<em>rmarkdown</em>, allows us to combine a figure’s creation by R with its
+inclusion in a presentation document. They are tied together and update
+together. We use <em>knitr</em> chunk options to specify how the figure will
+look in the presentation document and where it will be saved. We can also use them to specify captions. Let’s
+learn some of the more important chunk options for figures.</p>
+<div id="chunk-options" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Chunk options<a href="FiguresChapter.html#chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="fig.path" class="section level4 unnumbered hasAnchor">
+<h4><code>fig.path</code><a href="FiguresChapter.html#fig.path" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>When you use <em>knitr</em> to create and include figures in your presentation
+documents, it (1) runs the code you give it to create the figure, (2)
+automatically saves it into a particular directory,<a href="#fn194" class="footnote-ref" id="fnref194"><sup>194</sup></a> and (3) includes
+the necessary LaTeX or Markdown code to include the figure in the final
+presentation document. By default, <em>knitr</em> saves images into a folder (it
+creates) called <em>figure</em> located in the working directory.<a href="#fn195" class="footnote-ref" id="fnref195"><sup>195</sup></a> You can
+tell <em>knitr</em> where to save the images with the <code>fig.path</code> option. Simply
+use the file path naming conventions suitable for your system and
+include the new path in quotation marks.</p>
+<p>Note if you use <em>rmarkdowm</em> to compile to HTML, by default the graphic will not be saved
+in a separate file, but instead converted to a format that is embedded directly in the HTML markup document.</p>
+<p></p>
+</div>
+<div id="out.height" class="section level4 unnumbered hasAnchor">
+<h4><code>out.height</code><a href="FiguresChapter.html#out.height" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>To set the height that a figure will be in the final presentation
+document, use the <code>out.height</code> option. In R LaTeX documents, you can set
+the width using centimeters, inches, or as a proportion of a page
+element. In R Markdown documents, you use pixels to set the height. For
+example, to set a figure’s height in an R Markdown document to 200
+pixels, use <code>out.height='200px'</code>.</p>
+</div>
+<div id="out.width" class="section level4 unnumbered hasAnchor">
+<h4><code>out.width</code><a href="FiguresChapter.html#out.width" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Similarly, we can set the width of a <em>knitr</em> created figure using the
+<code>out.width</code> option. The same rules apply as with <code>out.width</code>. For
+example, to have a figure shown up at 80 percent of the text width in an
+R LaTeX document, use: <code>out.width='0.8\\textwidth'</code>. Notice that
+there are two backslashes before <code>textwidth</code>. As we saw earlier, the
+LaTeX function only has one. However, all <em>knitr</em> code chunk options must
+be written as they would be in R. We need to escape the backslash with
+the backslash escape character, i.e. use two backslashes.</p>
+</div>
+<div id="fig.align" class="section level4 unnumbered hasAnchor">
+<h4><code>fig.align</code><a href="FiguresChapter.html#fig.align" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>You can set a knitted figure’s alignment using <code>fig.align</code>. The option
+can be set to <code>left</code>, <code>center</code>, or <code>right</code>. To center a figure, add
+<code>fig.align='center'</code>.</p>
+</div>
+<div id="fig.cap" class="section level4 unnumbered hasAnchor">
+<h4><code>fig.cap</code><a href="FiguresChapter.html#fig.cap" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>If your document compiles to LaTeX, you can use the <code>fig.cap</code> option to set the figure’s
+caption as we did in the example above.</p>
+</div>
+<div id="other-figure-chunk-options" class="section level4 unnumbered hasAnchor">
+<h4>Other figure chunk options<a href="FiguresChapter.html#other-figure-chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The previous options are probably the most commonly used ways of
+adjusting figures with <em>knitr</em>. However, <em>knitr</em> has many other chunk
+options to help you adjust your figures so that they are incorporated
+into your presentation documents the way that you want. For example, the option <code>fig.lb</code> allows you to set the label.<a href="#fn196" class="footnote-ref" id="fnref196"><sup>196</sup></a> As we will see below, you can use the <code>dev</code> option to choose the figure’s output file format, e.g. PDF, PNG,
+JPEG. Please see the official <em>knitr</em> code chunk options webpage for
+more information on figure chunk options: <a href="https://yihui.name/knitr/options/#chunk_options" class="uri">https://yihui.name/knitr/options/#chunk_options</a>.</p>
+</div>
+</div>
+<div id="global-options" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Global options<a href="FiguresChapter.html#global-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you want all of your figures to share the same options—e.g. same
+height and alignment—you can set global figure options at the beginning
+of your document with <code>opts_chunk$set</code>. Imagine that we are making an R
+LaTeX Sweave-style document and want all of our figures to be center
+aligned and 80 percent of the text width. We type:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="FiguresChapter.html#cb287-1" tabindex="-1"></a>opts_chunk<span class="sc">$</span><span class="fu">set.</span>(<span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb287-2"><a href="FiguresChapter.html#cb287-2" tabindex="-1"></a>                <span class="at">out.width =</span> <span class="st">&quot;0.8</span><span class="sc">\\</span><span class="st">textwidth&quot;</span>)</span></code></pre></div>
+<p>You can also set some global figure options, such as <code>fig_height</code> and
+<code>fig_width</code> in your <em>rmarkdown</em> YAML header.</p>
+</div>
+</div>
+<div id="knitting-rs-default-graphics" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Knitting R’s Default Graphics<a href="FiguresChapter.html#knitting-rs-default-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R’s <em>graphics</em> package, loaded by default, includes functions to create
+numerous plot types. These include <code>hist()</code> for histograms, <code>pairs()</code> for
+scatterplot matrices, <code>boxplot()</code> for creating boxplots, and the versatile
+<code>plot()</code> for creating x-y plots, including scatterplots and bar charts depending on the data’s type.</p>
+<p>There are many useful resources for learning how to fully utilize R’s
+default graphics capabilities. These include Paul Murrell’s
+<span class="citation">(<a href="#ref-murrell2011">2011</a>)</span> comprehensive <em>R Graphics</em> book. The Cookbook for
+R<a href="#fn197" class="footnote-ref" id="fnref197"><sup>197</sup></a> and Quick-R<a href="#fn198" class="footnote-ref" id="fnref198"><sup>198</sup></a> websites are also helpful. Winston Chang <span class="citation">(<a href="#ref-chang2012">2012</a>)</span>,
+the maintainer of the Cookbook for R, also has a full book devoted to
+creating R graphics. Kieran Healy <span class="citation">(<a href="#ref-healy2018data">2018</a>)</span> is a strong intoduction to data visualisation in general with R examples.</p>
+<p>In this section we are going to see how to include R’s default graphics
+in our LaTeX and Markdown presentation documents. We will also see an
+example of how to source the creation of a graph from a segmented
+analysis file. Most of R’s default graphics capabilities create static
+graphics. They are not animations or interactive. The discussion in this
+section is exclusively about using static graphics with
+<em>knitr</em>/<em>rmarkdown</em>. Later in the chapter, we will discuss how to knit
+interactive graphics.</p>
+<p>Let’s look at an example we first saw at the end of Chapter <a href="StatsModel.html#StatsModel">8</a>. Remember that we accessed an R source
+code file stored on GitHub to create a simple scatterplot of cars’ speed
+and stopping distances using R’s <em>cars</em> data set, which is loaded by
+default. We haven’t yet seen the code in the R source file that created
+the plot.</p>
+<p>In the <em>cars</em> data frame, the variable <strong>speed</strong> contains the stopping speed, and
+<strong>dist</strong> contains the stopping distances. Here is the code to create the
+plot:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="FiguresChapter.html#cb288-1" tabindex="-1"></a><span class="co"># Create simple scatterplot of cars&#39; speed and stopping distance</span></span>
+<span id="cb288-2"><a href="FiguresChapter.html#cb288-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> cars<span class="sc">$</span>speed, <span class="at">y =</span> cars<span class="sc">$</span>dist,</span>
+<span id="cb288-3"><a href="FiguresChapter.html#cb288-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Speed (mph)&quot;</span>,</span>
+<span id="cb288-4"><a href="FiguresChapter.html#cb288-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Stopping Distance (ft)&quot;</span>,</span>
+<span id="cb288-5"><a href="FiguresChapter.html#cb288-5" tabindex="-1"></a>     <span class="at">cex.lab =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p>We select the variables from <em>cars</em> to plot on the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes of
+our graph with the component selector (<code>$</code>). Then we use the <code>xlab</code> and <code>ylab</code> arguments to specify the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes labels. We could have
+added a title for the plot using the <code>main</code> argument. We didn’t do this
+because we will give the plot a title in the LaTeX <code>figure</code> environment.
+The <code>cex.lab</code> argument increased the labels’ font size. The argument
+specifically determines how to scale the labels relative to the default
+size: 1.5 means 50 percent larger than the default.</p>
+<p>Now let’s see how to create this plot with <em>knitr</em> and include it in a
+LaTeX <code>figure</code> environment.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb289-1"><a href="FiguresChapter.html#cb289-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[ht]</span>
+<span id="cb289-2"><a href="FiguresChapter.html#cb289-2" tabindex="-1"></a>```{r echo=FALSE, fig.align=&#39;center&#39;, out.width=&#39;8cm&#39;}</span>
+<span id="cb289-3"><a href="FiguresChapter.html#cb289-3" tabindex="-1"></a>    plot(x = cars<span class="ss">$speed, y = cars$</span>dist,</span>
+<span id="cb289-4"><a href="FiguresChapter.html#cb289-4" tabindex="-1"></a>         xlab = &quot;Speed (mph)&quot;,</span>
+<span id="cb289-5"><a href="FiguresChapter.html#cb289-5" tabindex="-1"></a>         ylab = &quot;Stopping Distance (ft)&quot;,</span>
+<span id="cb289-6"><a href="FiguresChapter.html#cb289-6" tabindex="-1"></a>         cex.lab = 1.5)</span>
+<span id="cb289-7"><a href="FiguresChapter.html#cb289-7" tabindex="-1"></a>```</span>
+<span id="cb289-8"><a href="FiguresChapter.html#cb289-8" tabindex="-1"></a>    <span class="fu">\caption</span>{Example Simple Scatterplot Using <span class="fu">\texttt</span>{plot}}</span>
+<span id="cb289-9"><a href="FiguresChapter.html#cb289-9" tabindex="-1"></a>    <span class="kw">\label</span>{<span class="ex">BasicFigureExample</span>}</span>
+<span id="cb289-10"><a href="FiguresChapter.html#cb289-10" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div>
+<p>This code produces Figure <a href="#fig:BasicFigureExample"><strong>??</strong></a>.<a href="#fn199" class="footnote-ref" id="fnref199"><sup>199</sup></a> If you are familiar with R
+graphics, you will notice that we did not need to tell <em>knitr</em> to save
+the file in a particular format. Instead, behind the scenes it
+automatically saves the plot as a PDF file in a folder called <em>figure</em>
+that is a child of the current working directory. You can choose the
+figure file’s format with the <code>dev</code> (graphical device) chunk
+option. For example, to save the
+figure in a PNG formatted file, add the chunk option <code>dev='PNG'</code>.
+You can choose any graphical device format supported by R. For a full
+list of R’s graphical devices, type <code>?Devices</code> into your console. One
+reason you might want to change the format is to reduce your
+presentation document’s file size. Using a bitmap format like PNG will
+create smaller files than PDFs, though lower-quality images.</p>
+<p>We could, of course, link to the original R source code file
+stored on GitHub with the <code>source_url()</code> function. Let’s look at an example
+of this with a different source code file. Remember in Chapter <a href="DataGather.html#DataGather">6</a> we used a makefile to gather data from three
+different sources on the internet. The CSV is called <em>main-data.csv</em> and
+is stored on GitHub at: <a href="http://bit.ly/V0ldsf" class="uri">http://bit.ly/V0ldsf</a>.<a href="#fn200" class="footnote-ref" id="fnref200"><sup>200</sup></a> We can download this data into R and make the following scatterplot matrix (Figure <a href="#fig:BasicFigureExample"><strong>??</strong></a>) with this code:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="FiguresChapter.html#cb290-1" tabindex="-1"></a><span class="co"># Download data</span></span>
+<span id="cb290-2"><a href="FiguresChapter.html#cb290-2" tabindex="-1"></a>main_data <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;http://bit.ly/V0ldsf&quot;</span>,</span>
+<span id="cb290-3"><a href="FiguresChapter.html#cb290-3" tabindex="-1"></a>                        <span class="at">format =</span> <span class="st">&quot;csv&quot;</span> )</span>
+<span id="cb290-4"><a href="FiguresChapter.html#cb290-4" tabindex="-1"></a></span>
+<span id="cb290-5"><a href="FiguresChapter.html#cb290-5" tabindex="-1"></a><span class="co"># Subset main_data so that it only includes the year 2003</span></span>
+<span id="cb290-6"><a href="FiguresChapter.html#cb290-6" tabindex="-1"></a>data_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(main_data, year <span class="sc">==</span> <span class="dv">2003</span>)</span>
+<span id="cb290-7"><a href="FiguresChapter.html#cb290-7" tabindex="-1"></a></span>
+<span id="cb290-8"><a href="FiguresChapter.html#cb290-8" tabindex="-1"></a><span class="co"># Remove iso2c, country, year variables</span></span>
+<span id="cb290-9"><a href="FiguresChapter.html#cb290-9" tabindex="-1"></a><span class="co"># Keep reg_4state, disproportionality, FertilizerConsumption</span></span>
+<span id="cb290-10"><a href="FiguresChapter.html#cb290-10" tabindex="-1"></a>data_sub <span class="ot">&lt;-</span> data_sub[, <span class="fu">c</span>(<span class="st">&quot;reg_4state&quot;</span>, <span class="st">&quot;disproportionality&quot;</span>,</span>
+<span id="cb290-11"><a href="FiguresChapter.html#cb290-11" tabindex="-1"></a>                       <span class="st">&quot;FertilizerConsumption&quot;</span>)]</span>
+<span id="cb290-12"><a href="FiguresChapter.html#cb290-12" tabindex="-1"></a></span>
+<span id="cb290-13"><a href="FiguresChapter.html#cb290-13" tabindex="-1"></a><span class="co"># Create a scatterplot matrix</span></span>
+<span id="cb290-14"><a href="FiguresChapter.html#cb290-14" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> data_sub)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Ch10ScatterPlotMatrix"></span>
+<img src="bookdown_files/figure-html/Ch10ScatterPlotMatrix-1.png" alt="Example of a Scatterplot Matrix" width="672" />
+<p class="caption">
+FIGURE 10.1: Example of a Scatterplot Matrix
+</p>
+</div>
+<p>This is a lot of code, but you should be familiar with most of it. You
+will notice that after downloading the data we cleaned it up in
+preparation for plotting with the <code>pairs()</code> function by removing data from
+all years other than 2003 and all of the country-year identifying
+variables. Finally, we created the scatterplot matrix with <code>pairs()</code>.</p>
+<p>To dynamically include the plot in our final document, we don’t need to
+include all of this code in a code chunk in our markup document. A file
+containing the code is available on GitHub.<a href="#fn201" class="footnote-ref" id="fnref201"><sup>201</sup></a> So we only need to use <code>source_url()</code> to link to it. I’ve shortened the raw source code file’s
+URL to: <a href="http://bit.ly/TE0gTc" class="uri">http://bit.ly/TE0gTc</a>. Let’s look at the syntax for knitting
+this into an R Markdown file:</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="FiguresChapter.html#cb291-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r echo=FALSE, fig.cap=&#39;Example of a Scatterplot Matrix&#39;}</span></span>
+<span id="cb291-2"><a href="FiguresChapter.html#cb291-2" tabindex="-1"></a><span class="at"># Create scatterplot matrix from main-data.csv</span></span>
+<span id="cb291-3"><a href="FiguresChapter.html#cb291-3" tabindex="-1"></a><span class="at">devtools::source_url(&quot;http://bit.ly/TE0gTc&quot;)</span></span>
+<span id="cb291-4"><a href="FiguresChapter.html#cb291-4" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>Because we have linked all the way
+back to the original data set <em>main-data</em>, any time it is updated by
+the makefile, the update will automatically cascade all the way through
+to our final presentation document the next time we knit it.</p>
+</div>
+<div id="including-ggplot2-graphics" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Including <em>ggplot2</em> Graphics<a href="FiguresChapter.html#including-ggplot2-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>The <em>ggplot2</em> package<a href="#fn202" class="footnote-ref" id="fnref202"><sup>202</sup></a> <span class="citation">(<a href="#ref-R-ggplot2">Wickham et al. 2024</a>)</span> is probably one of the most
+popular packages for making graphics with R. It greatly expands the
+aesthetic and substantive tools R has for displaying quantitative
+information. Figures created with <em>ggplot2</em> are (generally) static,<a href="#fn203" class="footnote-ref" id="fnref203"><sup>203</sup></a>
+so they are included in knitted documents the same way as most of R’s
+default graphics.</p>
+<p>There are a number of very good resources for learning how to use
+<em>ggplot2</em>. These include Hadley Wickham’s <em>ggplot2</em> book
+<span class="citation">(<a href="#ref-whickham2009book">2009</a>)</span> and article <span class="citation">(<a href="#ref-whickham2010journal">2010</a>)</span>. The official
+<em>ggplot2</em> website<a href="#fn204" class="footnote-ref" id="fnref204"><sup>204</sup></a> has up-to-date information. I’ve also found the
+Cookbook for R website helpful.<a href="#fn205" class="footnote-ref" id="fnref205"><sup>205</sup></a></p>
+<p>Given that there is already extensive good documentation on <em>ggplot2</em>, we
+are not going to learn the full details of how to use the package here.
+Instead, let’s look at some examples of how to manipulate a data frame
+and a regression results object so that they can be graphed with
+<em>ggplot2</em>. First we will create a multi-line time series plot. Then we
+will create a caterpillar plot of regression results. Along with giving
+you a general sense of how <em>ggplot2</em> works, the examples illuminate how
+<em>ggplot2</em> can be made part of a fully reproducible research
+workflow.<a href="#fn206" class="footnote-ref" id="fnref206"><sup>206</sup></a></p>
+<p>Sometimes we may want to show how multiple variables change together
+overtime. For example, imagine we have data on inflation in the United
+States along with inflation forecasts made by the US Federal Reserve two
+quarters beforehand. The data is stored on GitHub at:
+<a href="https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/InflationData.csv" class="uri">https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/InflationData.csv</a>.<a href="#fn207" class="footnote-ref" id="fnref207"><sup>207</sup></a>
+I’ve loaded the data into R and put it into an object called
+<em>inflation_data</em>. It looks like this:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="FiguresChapter.html#cb292-1" tabindex="-1"></a><span class="fu">names</span>(inflation_data)</span></code></pre></div>
+<pre><code>## [1] &quot;Quarter&quot;            &quot;ActualInflation&quot;   
+## [3] &quot;EstimatedInflation&quot;</code></pre>
+<p>We want to create a plot with <strong>Quarter</strong> as the <span class="math inline">\(x\)</span>-axis, inflation as
+the <span class="math inline">\(y\)</span>-axis, and two lines. One line will represent <strong>ActualInflation</strong>
+and the other <strong>EstimatedInflation</strong>. To do this, we need to reshape our
+data so that the inflation variables are in long format like this:</p>
+<p>We can use the <code>pivot_longer</code> function from <em>tidyr</em> that we first saw in
+Chapter <a href="DataClean.html#DataClean">7</a> to reshape the data. The variable identifying the observations in this case is <code>Quarter</code>. The
+<strong>ActualInflation</strong> and <strong>EstimatedInflation</strong> variables (in columns two
+and three) are the variables that we want to pivot. So let’s pivot the
+data:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="FiguresChapter.html#cb294-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb294-2"><a href="FiguresChapter.html#cb294-2" tabindex="-1"></a></span>
+<span id="cb294-3"><a href="FiguresChapter.html#cb294-3" tabindex="-1"></a><span class="co"># Pivot inflation_data</span></span>
+<span id="cb294-4"><a href="FiguresChapter.html#cb294-4" tabindex="-1"></a>inflation_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(inflation_data, <span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb294-5"><a href="FiguresChapter.html#cb294-5" tabindex="-1"></a>                               <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>)</span>
+<span id="cb294-6"><a href="FiguresChapter.html#cb294-6" tabindex="-1"></a></span>
+<span id="cb294-7"><a href="FiguresChapter.html#cb294-7" tabindex="-1"></a>inflation_long</span></code></pre></div>
+<pre><code>## # A tibble: 304 × 3
+##    Quarter variable           value
+##      &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+##  1   1969. ActualInflation    NA   
+##  2   1969. EstimatedInflation  4.55
+##  3   1969. ActualInflation     3.5 
+##  4   1969. EstimatedInflation  4.80
+##  5   1969. ActualInflation     3.5 
+##  6   1969. EstimatedInflation  5.28
+##  7   1969. ActualInflation     3.3 
+##  8   1969. EstimatedInflation  5.15
+##  9   1970. ActualInflation     3.7 
+## 10   1970. EstimatedInflation  5.54
+## # ℹ 294 more rows</code></pre>
+<p>Now we have a data set we can use to create our line graph with
+<em>ggplot2</em>.</p>
+<p>Let’s cover a few basic <em>ggplot2</em> ideas that will help us understand the
+following code better. First, plots are composed of layers including the
+coordinate system, points, labels, and so on. Each layer has aesthetics,
+including the variables plotted on the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes, label sizes,
+colors, and shapes. Aesthetic elements are defined by the <code>aes()</code>
+argument. Finally, the main layer types are called geometrics, including
+lines, points, bars, and text. Functions that set geometrics usually
+begin with <code>geom</code>. For example, the geometric to create lines is
+<code>geom_line()</code>.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="FiguresChapter.html#cb296-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb296-2"><a href="FiguresChapter.html#cb296-2" tabindex="-1"></a></span>
+<span id="cb296-3"><a href="FiguresChapter.html#cb296-3" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb296-4"><a href="FiguresChapter.html#cb296-4" tabindex="-1"></a>line_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> inflation_long,</span>
+<span id="cb296-5"><a href="FiguresChapter.html#cb296-5" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> Quarter, <span class="at">y =</span> value,</span>
+<span id="cb296-6"><a href="FiguresChapter.html#cb296-6" tabindex="-1"></a>                      <span class="at">color =</span> variable, <span class="at">linetype =</span> variable)) <span class="sc">+</span></span>
+<span id="cb296-7"><a href="FiguresChapter.html#cb296-7" tabindex="-1"></a>                    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb296-8"><a href="FiguresChapter.html#cb296-8" tabindex="-1"></a>                    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb296-9"><a href="FiguresChapter.html#cb296-9" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Actual&quot;</span>, <span class="st">&quot;Estimated&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb296-10"><a href="FiguresChapter.html#cb296-10" tabindex="-1"></a>                    <span class="fu">scale_linetype</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb296-11"><a href="FiguresChapter.html#cb296-11" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Actual&quot;</span>, <span class="st">&quot;Estimated&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb296-12"><a href="FiguresChapter.html#cb296-12" tabindex="-1"></a>                    <span class="fu">xlab</span>(<span class="st">&quot;Quarter&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Inflation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb296-13"><a href="FiguresChapter.html#cb296-13" tabindex="-1"></a>                    <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code></pre></div>
+<p></p>
+<p>You can see we set the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes using the <strong>Quarter</strong> and
+<strong>value</strong> variables. We told <em>ggplot</em> that elements in the geometric
+layer should have lines with different colors and line types (dashed,
+dotted, and so on) based on the value of <strong>variable</strong> that they
+represent. <code>geom_line</code> specifies that we want to add a line geometric
+layer.<a href="#fn208" class="footnote-ref" id="fnref208"><sup>208</sup></a> <code>scale_color_discrete()</code> and <code>scale_linetype()</code> are used here to
+hide the plot’s legend title with <code>name = ""</code> and customize the legend’s
+labels with <code>labels = . . .</code>. You can also use them to determine the
+specific colors and line types you would like to use. <code>xlab()</code> and <code>ylab()</code>
+set the axes’ labels. You can add a title with <code>ggtitle</code>. Finally, I
+added <code>theme_bw()</code> so that the plot would use a simple black-and-white
+theme. We added the argument <code>base_size = 15</code> to increase the plot’s
+font size.</p>
+<p>All of the code required to create this graph is on GitHub at:
+<a href="https://bit.ly/2FaMkOJ" class="uri">https://bit.ly/2FaMkOJ</a>.<a href="#fn209" class="footnote-ref" id="fnref209"><sup>209</sup></a> To knit the graph into a LaTeX document manually specifying the figure environment, type: </p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb297-1"><a href="FiguresChapter.html#cb297-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[ht]</span>
+<span id="cb297-2"><a href="FiguresChapter.html#cb297-2" tabindex="-1"></a><span class="fu">\caption</span>{Example Multi-line Time Series Plot Created with</span>
+<span id="cb297-3"><a href="FiguresChapter.html#cb297-3" tabindex="-1"></a>  <span class="fu">\emph</span>{ggplot2}} <span class="kw">\label</span>{<span class="ex">ggplot2Line</span>}</span>
+<span id="cb297-4"><a href="FiguresChapter.html#cb297-4" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">center</span>}</span>
+<span id="cb297-5"><a href="FiguresChapter.html#cb297-5" tabindex="-1"></a>```{r echo=FALSE, out.width=&#39;10cm&#39;out.height=&#39;8cm&#39;}</span>
+<span id="cb297-6"><a href="FiguresChapter.html#cb297-6" tabindex="-1"></a>    # Create plot</span>
+<span id="cb297-7"><a href="FiguresChapter.html#cb297-7" tabindex="-1"></a>    devtools::source_url(&quot;https://bit.ly/2FaMkOJ&quot;)</span>
+<span id="cb297-8"><a href="FiguresChapter.html#cb297-8" tabindex="-1"></a>```</span>
+<span id="cb297-9"><a href="FiguresChapter.html#cb297-9" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">center</span>}</span>
+<span id="cb297-10"><a href="FiguresChapter.html#cb297-10" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Ch10MultiLines"></span>
+<img src="bookdown_files/figure-html/Ch10MultiLines-1.png" alt="\emph{ggplot2} Time Series Line Plot" width="10cm" height="8cm" />
+<p class="caption">
+FIGURE 10.2:  Time Series Line Plot
+</p>
+</div>
+<p>The syntax for including this and other <em>ggplot2</em> figures in an R
+Markdown document is the same as we saw for default R graphics.</p>
+<div id="showing-regression-results-with-caterpillar-plots" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Showing regression results with caterpillar plots<a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Many packages that estimate statistical models from data in R have
+built-in plotting capabilities. For example, the <em>survival</em> package
+<span class="citation">(<a href="#ref-R-survival">Therneau 2023</a>)</span> has the <code>plot.survfit()</code> function for plotting survival curves
+created using event history analysis. These plots can be
+knitted into presentation documents like the plots we have seen already.</p>
+<p>However, sometimes either a package doesn’t have built-in functions for
+plotting model results the way you want to and/or you want to use
+<em>ggplot2</em> to improve the aesthetic quality of the plots they do create
+by default. In either case, you can almost always create the plot that
+you want by first breaking into the model results object, extracting
+what you want, then plotting it with <em>ggplot2</em>. The process is very
+similar to what we did in Chapter <a href="TablesChapter.html#TablesChapter">9</a> to create custom tables.</p>
+<p>To illustrate how this can work, let’s create a caterpillar plot, like the following figure, showing the mean coefficient estimates and the
+uncertainty surrounding them from a Bayesian normal linear regression
+model using the <em>swiss</em> data frame. Here is our model:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="FiguresChapter.html#cb298-1" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb298-2"><a href="FiguresChapter.html#cb298-2" tabindex="-1"></a>linear_brms_2 <span class="ot">&lt;-</span> <span class="fu">brm</span>(Examination <span class="sc">~</span> Education <span class="sc">+</span></span>
+<span id="cb298-3"><a href="FiguresChapter.html#cb298-3" tabindex="-1"></a>                     Agriculture <span class="sc">+</span> Catholic <span class="sc">+</span> Infant.Mortality,</span>
+<span id="cb298-4"><a href="FiguresChapter.html#cb298-4" tabindex="-1"></a>                     <span class="at">data =</span> swiss,</span>
+<span id="cb298-5"><a href="FiguresChapter.html#cb298-5" tabindex="-1"></a>                     <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;identity&quot;</span>),</span>
+<span id="cb298-6"><a href="FiguresChapter.html#cb298-6" tabindex="-1"></a>                     <span class="at">refresh =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p>Remember from Chapter <a href="TablesChapter.html#TablesChapter">9</a> that we can create an object summarizing our estimation results like this:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="FiguresChapter.html#cb299-1" tabindex="-1"></a><span class="co"># Create summary object</span></span>
+<span id="cb299-2"><a href="FiguresChapter.html#cb299-2" tabindex="-1"></a>linear_brms_2_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(linear_brms_2)</span>
+<span id="cb299-3"><a href="FiguresChapter.html#cb299-3" tabindex="-1"></a></span>
+<span id="cb299-4"><a href="FiguresChapter.html#cb299-4" tabindex="-1"></a><span class="co"># Create summary data frame</span></span>
+<span id="cb299-5"><a href="FiguresChapter.html#cb299-5" tabindex="-1"></a>linear_brms_2_sum_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(linear_brms_2_sum<span class="sc">$</span>fixed)</span>
+<span id="cb299-6"><a href="FiguresChapter.html#cb299-6" tabindex="-1"></a></span>
+<span id="cb299-7"><a href="FiguresChapter.html#cb299-7" tabindex="-1"></a><span class="co"># Show data frame</span></span>
+<span id="cb299-8"><a href="FiguresChapter.html#cb299-8" tabindex="-1"></a>linear_brms_2_sum_df</span></code></pre></div>
+<pre><code>##                   Estimate Est.Error l.95..CI u.95..CI
+## Intercept        18.538268   5.95777   6.8167 30.01363
+## Education         0.423961   0.09321   0.2433  0.60597
+## Agriculture      -0.066807   0.04313  -0.1508  0.01957
+## Catholic         -0.080046   0.01805  -0.1163 -0.04510
+## Infant.Mortality -0.002269   0.23686  -0.4720  0.45637
+##                   Rhat Bulk_ESS Tail_ESS
+## Intercept        1.002     2588     3094
+## Education        1.001     2657     2633
+## Agriculture      1.001     2309     2395
+## Catholic         1.000     3301     2790
+## Infant.Mortality 1.001     3538     2994</code></pre>
+<p>We want to use <em>ggplot2</em> to create credibility intervals for each
+variable with <strong>l.95..CI</strong> as the minimum value and <strong>u.95..CI</strong> as the
+maximum value. These are the lower and upper bounds of the middle 95
+percent of the estimates’ marginal posterior distributions, i.e. the 95
+percent credibility intervals.<a href="#fn210" class="footnote-ref" id="fnref210"><sup>210</sup></a> We will also create a point at the <strong>mean</strong> of each estimate. To do this, we will use <em>ggplot2</em>’s
+<code>geom_pointrange</code> function.</p>
+<p>First we need to do a little tidying up.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="FiguresChapter.html#cb301-1" tabindex="-1"></a><span class="co"># Convert row.names to column</span></span>
+<span id="cb301-2"><a href="FiguresChapter.html#cb301-2" tabindex="-1"></a>linear_brms_2_sum_df<span class="sc">$</span>Variable <span class="ot">&lt;-</span> <span class="fu">row.names</span>(linear_brms_2_sum_df)</span>
+<span id="cb301-3"><a href="FiguresChapter.html#cb301-3" tabindex="-1"></a></span>
+<span id="cb301-4"><a href="FiguresChapter.html#cb301-4" tabindex="-1"></a><span class="co"># Keep only coefficient estimates</span></span>
+<span id="cb301-5"><a href="FiguresChapter.html#cb301-5" tabindex="-1"></a><span class="do">## This allows for a more interpretable scale</span></span>
+<span id="cb301-6"><a href="FiguresChapter.html#cb301-6" tabindex="-1"></a>linear_brms_2_sum_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(linear_brms_2_sum_df,</span>
+<span id="cb301-7"><a href="FiguresChapter.html#cb301-7" tabindex="-1"></a>                               Variable <span class="sc">!=</span> <span class="st">&quot;Intercept&quot;</span>)</span></code></pre></div>
+<p>The first line of executable code creates a proper variable out of the
+data frame’s row.names attribute. In this case, <code>row.names</code> contains the
+names of the variables included in the regression. The second
+executable line removes the <em>Intercept</em> estimates. This
+allows the variable’s coefficient estimates to be plotted on a scale
+that enables easier interpretation.</p>
+<p>Now we can create our caterpillar plot (Figure <a href="FiguresChapter.html#fig:Ch10CatPlot">10.3</a>).</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="FiguresChapter.html#cb302-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb302-2"><a href="FiguresChapter.html#cb302-2" tabindex="-1"></a></span>
+<span id="cb302-3"><a href="FiguresChapter.html#cb302-3" tabindex="-1"></a><span class="co"># Rename variables to make them easier for ggplot2 to work with</span></span>
+<span id="cb302-4"><a href="FiguresChapter.html#cb302-4" tabindex="-1"></a>linear_brms_2_sum_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(linear_brms_2_sum_df,</span>
+<span id="cb302-5"><a href="FiguresChapter.html#cb302-5" tabindex="-1"></a>                               <span class="at">lower =</span> <span class="st">`</span><span class="at">l.95..CI</span><span class="st">`</span>)</span>
+<span id="cb302-6"><a href="FiguresChapter.html#cb302-6" tabindex="-1"></a>linear_brms_2_sum_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(linear_brms_2_sum_df,</span>
+<span id="cb302-7"><a href="FiguresChapter.html#cb302-7" tabindex="-1"></a>                               <span class="at">upper =</span> <span class="st">`</span><span class="at">u.95..CI</span><span class="st">`</span>)</span>
+<span id="cb302-8"><a href="FiguresChapter.html#cb302-8" tabindex="-1"></a></span>
+<span id="cb302-9"><a href="FiguresChapter.html#cb302-9" tabindex="-1"></a><span class="co"># Make caterpillar plot</span></span>
+<span id="cb302-10"><a href="FiguresChapter.html#cb302-10" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> linear_brms_2_sum_df,</span>
+<span id="cb302-11"><a href="FiguresChapter.html#cb302-11" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Variable, lower),</span>
+<span id="cb302-12"><a href="FiguresChapter.html#cb302-12" tabindex="-1"></a>           <span class="at">y =</span> Estimate,</span>
+<span id="cb302-13"><a href="FiguresChapter.html#cb302-13" tabindex="-1"></a>           <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper)) <span class="sc">+</span></span>
+<span id="cb302-14"><a href="FiguresChapter.html#cb302-14" tabindex="-1"></a>                        <span class="fu">geom_pointrange</span>(<span class="at">size =</span> <span class="fl">1.4</span>) <span class="sc">+</span></span>
+<span id="cb302-15"><a href="FiguresChapter.html#cb302-15" tabindex="-1"></a>                        <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb302-16"><a href="FiguresChapter.html#cb302-16" tabindex="-1"></a>                                   <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb302-17"><a href="FiguresChapter.html#cb302-17" tabindex="-1"></a>                        <span class="fu">xlab</span>(<span class="st">&quot;Variable&quot;</span>) <span class="sc">+</span></span>
+<span id="cb302-18"><a href="FiguresChapter.html#cb302-18" tabindex="-1"></a>                        <span class="fu">ylab</span>(<span class="st">&quot;Coefficient Estimate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb302-19"><a href="FiguresChapter.html#cb302-19" tabindex="-1"></a>                        <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Ch10CatPlot"></span>
+<img src="bookdown_files/figure-html/Ch10CatPlot-1.png" alt="Example Caterpiller Plot" width="672" />
+<p class="caption">
+FIGURE 10.3: Example Caterpiller Plot
+</p>
+</div>
+<p>There are some new pieces of code in here, so let’s take a look. First,
+the data frame is reordered from the highest to lowest value of
+<strong>l.95..CI</strong> using the <code>reorder()</code> function. We renamed this column “lower” so that it would be easier to work with in <code>ggplot()</code>. Reordering by these values makes the plot easier to
+read. The middle point of the point range is set with <code>y</code> and the lower
+and upper bounds with <code>ymin</code> and <code>ymax</code>. The <code>geom_hline()</code> function used
+here creates a dotted horizontal line at 0, i.e. no effect. <code>coord_flip()</code>
+flips the plot’s coordinates so that the variable names are on the <span class="math inline">\(y\)</span>-axis. We can include this plot in a knitted document the same way as
+before.</p>
+<p>Note that we create this example to help you understand the power of <em>ggplot2</em> to create new graphics from complex objects. This particular task—creating caterpillar plots from <em>brms</em> objects—has been packaged into the <code>stanplot()</code> function that comes with <em>brms</em>.</p>
+<p></p>
+</div>
+</div>
+<div id="javascript-graphs-with-googlevis" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> JavaScript Graphs with <em>googleVis</em><a href="FiguresChapter.html#javascript-graphs-with-googlevis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Markus Gesmann and Diego de Castillo’s <span class="citation">(<a href="#ref-R-googleVis">2024</a>)</span> <em>googleVis</em> package
+allows us to use Google’s Visualization API from within
+R to create interactive tables, plots, and maps with Google Chart Tools.
+Because the visualizations are written in JavaScript, they can be
+included in HTML presentation documents created by R Markdown.
+Unfortunately, they cannot be directly<a href="#fn211" class="footnote-ref" id="fnref211"><sup>211</sup></a> included in LaTeX-produced
+PDFs. The <em>animation</em> package <span class="citation">(<a href="#ref-R-animation">Xie 2021</a>)</span> does have some limited
+features for including interactive visualizations in PDFs (as well as
+HTML documents) and is worth investigating if you want to do this. The <em>gganimate</em> package allows you to annimate <em>ggplot2</em> graphics as GIFs. However, these cannot be included in PDFs.</p>
+<div id="basic-googlevis-figures" class="section level3 hasAnchor" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> Basic googleVis figures<a href="FiguresChapter.html#basic-googlevis-figures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s briefly look at how to make one type of figure with <em>googleVis</em>: a
+choropleth map. This is created with the <code>gvisGeoChart()</code> function. We
+will use this example to illustrate how to incorporate <em>googleVis</em>
+figures into R Markdown.<a href="#fn212" class="footnote-ref" id="fnref212"><sup>212</sup></a></p>
+<p>Imagine that we want to map global fertilizer consumption in 2011 using
+the World Bank data we gathered in Chapter <a href="DataGather.html#DataGather">6</a>. Remember that the data was highly right skewed,
+so we will actually map the natural logarithm of the
+<strong>fert_cons</strong> variable.<a href="#fn213" class="footnote-ref" id="fnref213"><sup>213</sup></a> Assuming that we have already
+loaded the <em>main-data</em> data set, here is the code:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="FiguresChapter.html#cb303-1" tabindex="-1"></a><span class="co"># Load googleVis</span></span>
+<span id="cb303-2"><a href="FiguresChapter.html#cb303-2" tabindex="-1"></a><span class="fu">library</span>(googleVis)</span>
+<span id="cb303-3"><a href="FiguresChapter.html#cb303-3" tabindex="-1"></a></span>
+<span id="cb303-4"><a href="FiguresChapter.html#cb303-4" tabindex="-1"></a><span class="co"># Subset main_data so that it only includes 2011</span></span>
+<span id="cb303-5"><a href="FiguresChapter.html#cb303-5" tabindex="-1"></a>data_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(main_data, year <span class="sc">==</span> <span class="dv">2011</span>)</span>
+<span id="cb303-6"><a href="FiguresChapter.html#cb303-6" tabindex="-1"></a></span>
+<span id="cb303-7"><a href="FiguresChapter.html#cb303-7" tabindex="-1"></a><span class="co"># Keep values of fert_cons greater-than 0.1 data_sub &lt;-</span></span>
+<span id="cb303-8"><a href="FiguresChapter.html#cb303-8" tabindex="-1"></a><span class="fu">subset</span>(data_sub, fert_cons <span class="sc">&gt;</span> <span class="fl">0.1</span>)</span>
+<span id="cb303-9"><a href="FiguresChapter.html#cb303-9" tabindex="-1"></a></span>
+<span id="cb303-10"><a href="FiguresChapter.html#cb303-10" tabindex="-1"></a><span class="co"># Find the natural logarithm of fert_cons</span></span>
+<span id="cb303-11"><a href="FiguresChapter.html#cb303-11" tabindex="-1"></a><span class="do">## Round the results to one decimal digit.</span></span>
+<span id="cb303-12"><a href="FiguresChapter.html#cb303-12" tabindex="-1"></a>data_sub<span class="sc">$</span>fert_cons_log <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">log</span>(data_sub<span class="sc">$</span>fert_cons),</span>
+<span id="cb303-13"><a href="FiguresChapter.html#cb303-13" tabindex="-1"></a>                                <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb303-14"><a href="FiguresChapter.html#cb303-14" tabindex="-1"></a></span>
+<span id="cb303-15"><a href="FiguresChapter.html#cb303-15" tabindex="-1"></a><span class="co"># Make a map of Fertilizer Consumption</span></span>
+<span id="cb303-16"><a href="FiguresChapter.html#cb303-16" tabindex="-1"></a>fc_map <span class="ot">&lt;-</span> <span class="fu">gvisGeoChart</span>(<span class="at">data =</span> data_sub,</span>
+<span id="cb303-17"><a href="FiguresChapter.html#cb303-17" tabindex="-1"></a>                       <span class="at">locationvar =</span> <span class="st">&quot;iso2c&quot;</span>,</span>
+<span id="cb303-18"><a href="FiguresChapter.html#cb303-18" tabindex="-1"></a>                       <span class="at">colorvar =</span> <span class="st">&quot;LogConsumption&quot;</span>,</span>
+<span id="cb303-19"><a href="FiguresChapter.html#cb303-19" tabindex="-1"></a>                       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb303-20"><a href="FiguresChapter.html#cb303-20" tabindex="-1"></a>                            <span class="at">colors =</span> <span class="st">&quot;[&#39;#ECE7F2&#39;, &#39;#A6BDDB&#39;,</span></span>
+<span id="cb303-21"><a href="FiguresChapter.html#cb303-21" tabindex="-1"></a><span class="st">                                       &#39;#2B8CBE&#39;]&quot;</span>,</span>
+<span id="cb303-22"><a href="FiguresChapter.html#cb303-22" tabindex="-1"></a>                            <span class="at">width =</span> <span class="st">&quot;780px&quot;</span>, <span class="at">height =</span> <span class="st">&quot;500px&quot;</span>)</span>
+<span id="cb303-23"><a href="FiguresChapter.html#cb303-23" tabindex="-1"></a>)</span></code></pre></div>
+<p>The <code>locationvar</code> argument specifies the variable with information on
+each observation’s location. Google Chart Tools can use ISO two-letter
+country codes to determine each country’s location. <code>colorvar</code> specifies
+the variable with the values to map for each country. We can determine
+other options by creating a list-type object with arguments specifying
+characteristics such as the map’s width, height, and colors. The colors
+here are written using hexadecimal values. This is a commonly used
+format for specifying colors on websites.<a href="#fn214" class="footnote-ref" id="fnref214"><sup>214</sup></a></p>
+<p>To view the figure on your computer, use <em>googleVis</em>’s <code>plot()</code>
+function. For example, to view our map, type:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="FiguresChapter.html#cb304-1" tabindex="-1"></a><span class="fu">plot</span>(fc_map)</span></code></pre></div>
+<p>Note that you need to be connected to the internet to view figures
+created by <em>googleVis</em>; otherwise, your image will not be able to access
+the required JavaScript files from the Google Visualization API.</p>
+</div>
+<div id="including-googlevis-in-knitted-documents" class="section level3 hasAnchor" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> Including <em>googleVis</em> in knitted documents<a href="FiguresChapter.html#including-googlevis-in-knitted-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Typing <code>print(fc_map, tag = "chart")</code> in a knittable document would print
+the entire JavaScript code needed to create the map. Much like we saw
+with tables produced with <em>xtable</em> and <em>texreg</em> in Chapter <a href="TablesChapter.html#TablesChapter">9</a>, we need to change the code chunk <code>results</code>
+option to include the map as a map rather than as JavaScript markup. To
+have the visualization show up in your HTML output, rather than the code
+block, set the code chunk option to <code>results='asis'</code>.<a href="#fn215" class="footnote-ref" id="fnref215"><sup>215</sup></a> For
+example, the full code needed to create and print <em>fc_map</em> is available
+at: <a href="https://bit.ly/2CfXWOs" class="uri">https://bit.ly/2CfXWOs</a>.<a href="#fn216" class="footnote-ref" id="fnref216"><sup>216</sup></a> To knit the map into an R Markdown
+document, type:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="FiguresChapter.html#cb305-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r}, echo=FALSE, message=FALSE, results=&#39;asis&#39;}</span></span>
+<span id="cb305-2"><a href="FiguresChapter.html#cb305-2" tabindex="-1"></a><span class="at"> # Create and print geo map</span></span>
+<span id="cb305-3"><a href="FiguresChapter.html#cb305-3" tabindex="-1"></a><span class="at">devtools::source_url(&quot;https://bit.ly/2CfXWOs&quot;)</span></span>
+<span id="cb305-4"><a href="FiguresChapter.html#cb305-4" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+</div>
+<div id="javascript-graphs-with-htmlwidgets-based-packages" class="section level3 hasAnchor" number="10.5.3">
+<h3><span class="header-section-number">10.5.3</span> JavaScript Graphs with <em>htmlwidgets</em>-based packages<a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The number of tools for creating JavaScript graphs from R that can be
+knitted into HTML files is growing rapidly. The <em>htmlwidgets</em>
+<span class="citation">(<a href="#ref-R-htmlwidgets">Vaidyanathan et al. 2023</a>)</span> framework is especially making the development of these
+tools easier. There are tools built on <em>htmlwidgets</em>
+for creating maps, network graphs, time series graphs, and interactive
+tables, among others. Though the syntax of each of these tools differs,
+they can all easily be included into R Markdown documents. Often you run their core functions in a code chunk, without needing to use
+an additional call to <code>print</code> or <code>plot</code>.</p>
+</div>
+<div id="chapter-summary-7" class="section level3 unnumbered hasAnchor">
+<h3>Chapter summary<a href="FiguresChapter.html#chapter-summary-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this chapter we have learned how to take results from our statistical
+analyses and other information from our data and dynamically present
+them in figures. In the next chapters, we will learn the details of
+how to create the LaTeX and Markdown presentation documents we use to
+present the tables we created in Chapter <a href="TablesChapter.html#TablesChapter">9</a> and the figures we created in this chapter.</p>
+
+</div>
+</div>
+</div>
+
+
+
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-vanbelle2008" class="csl-entry">
+Belle, Gerald van. 2008. <em>Statistical Rules of Thumb</em>. 2nd ed. Hoboken, NJ: John Wiley &amp; Sons.
+</div>
+<div id="ref-chang2012" class="csl-entry">
+Chang, Winston. 2012. <em>R Graphics Cookbook: Practical Recipes for Visualizing Data</em>. Sebastopol, CA: O’Reilly Media, Inc.
+</div>
+<div id="ref-gandrudgrafstrom2012" class="csl-entry">
+Gandrud, Christopher, and Cassandra Grafström. 2015. <span>“Inflated Expectations: How Government Partisanship Shapes Bureaucrats’ Inflation Forecasts.”</span> <em>Political Science Research and Methods</em>.
+</div>
+<div id="ref-R-googleVis" class="csl-entry">
+Gesmann, Markus, and Diego de Castillo. 2024. <em>googleVis: R Interface to Google Charts</em>. <a href="https://mages.github.io/googleVis/">https://mages.github.io/googleVis/</a>.
+</div>
+<div id="ref-healy2018data" class="csl-entry">
+Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Princeton University Press.
+</div>
+<div id="ref-meyer2006" class="csl-entry">
+Meyer, Axel. 2006. <span>“Repeating Patterns of Mimicry.”</span> <em>PLoS Biol</em> 4 (10).
+</div>
+<div id="ref-murrell2011" class="csl-entry">
+Murrell, Paul. 2011. <em>R Graphics</em>. 2nd ed. Boca Raton, FL: Chapman &amp; Hall/CRC Press.
+</div>
+<div id="ref-R-survival" class="csl-entry">
+Therneau, Terry M. 2023. <em>Survival: Survival Analysis</em>. <a href="https://github.com/therneau/survival">https://github.com/therneau/survival</a>.
+</div>
+<div id="ref-tufte2001" class="csl-entry">
+Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 2nd ed. Cheshire, CT: Graphics Press.
+</div>
+<div id="ref-R-htmlwidgets" class="csl-entry">
+Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, Carson Sievert, and Kenton Russell. 2023. <em>Htmlwidgets: HTML Widgets for r</em>. <a href="https://github.com/ramnathv/htmlwidgets">https://github.com/ramnathv/htmlwidgets</a>.
+</div>
+<div id="ref-whickham2009book" class="csl-entry">
+Wickham, Hadley. 2009. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. 2nd ed. New York: Springer.
+</div>
+<div id="ref-whickham2010journal" class="csl-entry">
+———. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28.
+</div>
+<div id="ref-R-ggplot2" class="csl-entry">
+Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, Dewey Dunnington, and Teun van den Brand. 2024. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.
+</div>
+<div id="ref-R-animation" class="csl-entry">
+———. 2021. <em>Animation: A Gallery of Animations in Statistics and Utilities to Create Animations</em>. <a href="https://yihui.org/animation/">https://yihui.org/animation/</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="186">
+<li id="fn186"><p>There are, of course, a number of exceptions to this rule of
+thumb. <span class="citation">Belle (<a href="#ref-vanbelle2008">2008</a>, Ch. 9)</span> argues that a few
+numbers should be listed in a sentence, many numbers shown in
+tables, and relationships between numbers are best shown with
+graphs. Similarly, <span class="citation">Tufte (<a href="#ref-tufte2001">2001</a>)</span> argues that tables tend to
+outperform graphics for displaying 20 or fewer numbers. Graphics
+often outperform tables for showing larger data sets and
+relationships within the data.<a href="FiguresChapter.html#fnref186" class="footnote-back">↩︎</a></p></li>
+<li id="fn187"><p>PDF: Portable Document Format, PNG: Portable Network Graphic,
+JPEG: Joint Photographic Experts Group.<br />
+A quick note about file formats: By default, <em>knitr</em> creates PDF-formatted
+figure files when knitting R LaTeX documents. These
+figures, generally built with vector graphics, allow you to zoom in
+on them by any amount without them becoming pixelated. This means
+that your images will be crisp in PDF presentation documents. For
+Markdown documents, <em>knitr</em> creates PNG images. PNG images are
+usually relatively high quality and can be rendered directly on
+websites, unlike PDFs. JPEG formatted files usually take up less
+disk space than PDF and PNG files. However, their quality is also
+worse and can often look very pixelated. For more information,
+Wikipedia has a comprehensive comparison of graphics file formats
+at:
+<a href="https://en.wikipedia.org/wiki/Comparison_of_graphics_file_formats" class="uri">https://en.wikipedia.org/wiki/Comparison_of_graphics_file_formats</a>.<a href="FiguresChapter.html#fnref187" class="footnote-back">↩︎</a></p></li>
+<li id="fn188"><p>The image used here is from <span class="citation">Meyer (<a href="#ref-meyer2006">2006</a>)</span>.<a href="FiguresChapter.html#fnref188" class="footnote-back">↩︎</a></p></li>
+<li id="fn189"><p>Note there are a number of other ways to set the size of a figure
+relative to a page element. See the LaTeX Wiki Book for more details:
+<a href="https://en.wikibooks.org/wiki/LaTeX/Page_Layout" class="uri">https://en.wikibooks.org/wiki/LaTeX/Page_Layout</a>.<a href="FiguresChapter.html#fnref189" class="footnote-back">↩︎</a></p></li>
+<li id="fn190"><p>For simplicity, this code does not include the full image’s actual
+file path.<a href="FiguresChapter.html#fnref190" class="footnote-back">↩︎</a></p></li>
+<li id="fn191"><p>You can also include a title in quotation marks after the file
+path. This specifies the HTML <code>title</code> attribute. However, this
+attribute does not create a title for the image in the way that
+<code>caption</code> does for LaTeX float figures. Instead, it creates a
+tooltip, a small box that appears when you place your cursor over
+the image. Specifying descriptive alt text is very useful for screen
+readers that help visually impaired people access web content.<a href="FiguresChapter.html#fnref191" class="footnote-back">↩︎</a></p></li>
+<li id="fn192"><p>Use the URL for the raw version of the
+file for images stored on GitHub.<a href="FiguresChapter.html#fnref192" class="footnote-back">↩︎</a></p></li>
+<li id="fn193"><p>A pixel is the smallest discrete part of images displayed on a
+screen. See the “pixel” Wikipedia page for more details:
+<a href="https://en.wikipedia.org/wiki/Pixel" class="uri">https://en.wikipedia.org/wiki/Pixel</a>.<a href="FiguresChapter.html#fnref193" class="footnote-back">↩︎</a></p></li>
+<li id="fn194"><p>If a code chunk creates more than one figure, <em>knitr</em>
+automatically saves each into its own file in the same directory.<a href="FiguresChapter.html#fnref194" class="footnote-back">↩︎</a></p></li>
+<li id="fn195"><p>File names are based on the code chunk label where they were
+created.<a href="FiguresChapter.html#fnref195" class="footnote-back">↩︎</a></p></li>
+<li id="fn196"><p>In this chapter we will set this option in the markup rather
+than the code chunk. I prefer doing this because <em>knitr</em> options
+need to be on the same line and so they can sometimes result in very long
+lists of options that are difficult to read.<a href="FiguresChapter.html#fnref196" class="footnote-back">↩︎</a></p></li>
+<li id="fn197"><p><a href="http://www.cookbook-r.com/Graphs/" class="uri">http://www.cookbook-r.com/Graphs/</a><a href="FiguresChapter.html#fnref197" class="footnote-back">↩︎</a></p></li>
+<li id="fn198"><p><a href="http://www.statmethods.net/advgraphs/" class="uri">http://www.statmethods.net/advgraphs/</a><a href="FiguresChapter.html#fnref198" class="footnote-back">↩︎</a></p></li>
+<li id="fn199"><p>Note that I did not specify the center environment. This is
+because it is specified in a <em>knitr</em> global chunk option.<a href="FiguresChapter.html#fnref199" class="footnote-back">↩︎</a></p></li>
+<li id="fn200"><p>The full version of the URL is:
+<a href="https://raw.githubusercontent.com/christophergandrud/rep-res-book-v3-examples/master/data/main-data.csv" class="uri">https://raw.githubusercontent.com/christophergandrud/rep-res-book-v3-examples/master/data/main-data.csv</a><a href="FiguresChapter.html#fnref200" class="footnote-back">↩︎</a></p></li>
+<li id="fn201"><p>See:
+<a href="https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/ScatterPlotMatrix.R" class="uri">https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/ScatterPlotMatrix.R</a>.<a href="FiguresChapter.html#fnref201" class="footnote-back">↩︎</a></p></li>
+<li id="fn202"><p>“GG” stands for grammar of graphics and “2” indicates that it is
+the second major version of the package.<a href="FiguresChapter.html#fnref202" class="footnote-back">↩︎</a></p></li>
+<li id="fn203"><p>It is possible to combine a series of figures created with
+<em>ggplot2</em> into an animation. For a nice example of an animation
+using <em>ggplot2</em>, see Jerzy Wieczorek’s animation of 2012 US
+presidential campaigning: <a href="http://bit.ly/UUVKka" class="uri">http://bit.ly/UUVKka</a>.<a href="FiguresChapter.html#fnref203" class="footnote-back">↩︎</a></p></li>
+<li id="fn204"><p><a href="http://docs.ggplot2.org/current/" class="uri">http://docs.ggplot2.org/current/</a><a href="FiguresChapter.html#fnref204" class="footnote-back">↩︎</a></p></li>
+<li id="fn205"><p><a href="http://wiki.stdout.org/rcookbook/Graphs/" class="uri">http://wiki.stdout.org/rcookbook/Graphs/</a><a href="FiguresChapter.html#fnref205" class="footnote-back">↩︎</a></p></li>
+<li id="fn206"><p>Note that everything we do here with <em>ggplot2</em> can also be done
+with R’s default graphics, though the appearance will be different.<a href="FiguresChapter.html#fnref206" class="footnote-back">↩︎</a></p></li>
+<li id="fn207"><p>This data is from <span class="citation">Gandrud and Grafström (<a href="#ref-gandrudgrafstrom2012">2015</a>)</span>. The example here
+partially recreates Figure 1 from that paper.<a href="FiguresChapter.html#fnref207" class="footnote-back">↩︎</a></p></li>
+<li id="fn208"><p>Remember from Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a> that functions must be followed by parentheses. These layers are functions so they need to be followed
+by parentheses.<a href="FiguresChapter.html#fnref208" class="footnote-back">↩︎</a></p></li>
+<li id="fn209"><p>The full URL is:
+<a href="https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/InflationLineGraph.R" class="uri">https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/InflationLineGraph.R</a>.<a href="FiguresChapter.html#fnref209" class="footnote-back">↩︎</a></p></li>
+<li id="fn210"><p>The procedures used here are also generally applicable for
+graphing frequentist confidence intervals once you have calculated
+the confidence intervals. One useful function for doing this is
+<code>confint</code>.<a href="FiguresChapter.html#fnref210" class="footnote-back">↩︎</a></p></li>
+<li id="fn211"><p>The example in this chapter is from a screenshot.<a href="FiguresChapter.html#fnref211" class="footnote-back">↩︎</a></p></li>
+<li id="fn212"><p>For demonstrations of the full range of plotting functions
+available, visit the <em>googleVis</em> website:
+<a href="http://code.google.com/p/google-motion-charts-with-r/wiki/GadgetExamples#googleVis_Examples" class="uri">http://code.google.com/p/google-motion-charts-with-r/wiki/GadgetExamples#googleVis_Examples</a>.<a href="FiguresChapter.html#fnref212" class="footnote-back">↩︎</a></p></li>
+<li id="fn213"><p>You’ll notice in the code below that we remove all values of
+<strong>fert_cons</strong> less than 0.1. This is so that we can
+calculate integer values with the natural logarithm.<a href="FiguresChapter.html#fnref213" class="footnote-back">↩︎</a></p></li>
+<li id="fn214"><p>You can also use hexadecimal values in <em>ggplot2</em>. The Color
+Brewer 2 website (<a href="http://colorbrewer2.org/" class="uri">http://colorbrewer2.org/</a>) is very helpful for
+picking hexadecimal color palettes, among others.<a href="FiguresChapter.html#fnref214" class="footnote-back">↩︎</a></p></li>
+<li id="fn215"><p>You can use <code>results=’asis’</code> to include almost any type of
+JavaScript graphics. For an example using the D3 JavaScript library
+and <em>knitr</em> see this page by Yihui Xie:
+<a href="http://yihui.name/knitr/demo/javascript/" class="uri">http://yihui.name/knitr/demo/javascript/</a>.<a href="FiguresChapter.html#fnref215" class="footnote-back">↩︎</a></p></li>
+<li id="fn216"><p>The full URL is:
+<a href="https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/GoogleVisMap.R" class="uri">https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/GoogleVisMap.R</a>.<a href="FiguresChapter.html#fnref216" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="TablesChapter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="LatexChapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/12-figures.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

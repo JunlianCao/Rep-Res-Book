@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Presenting with LaTeX | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 11 Presenting with LaTeX | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Presenting with LaTeX | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 11 Presenting with LaTeX | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Presenting with LaTeX | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 11 Presenting with LaTeX | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="FiguresChapter.html"/>
+<link rel="next" href="MarkdownChapter.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="LatexChapter" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Presenting with LaTeX<a href="LatexChapter.html#LatexChapter" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We have already begun to see how LaTeX works for presenting research
+results. This chapter gives you a more detailed and comprehensive
+introduction to basic LaTeX document structures and commands. It is not
+a complete introduction to all that LaTeX is capable of, but we will
+cover enough that you will be able to create an entire well-formatted
+article and slideshow with LaTeX that you can use to dynamically present
+your results.</p>
+<p>For basic LaTeX documents, such as short articles or simple
+presentations, it may often be quicker and simpler to write the markup
+using an R Markdown document and compile it to PDF with the <em>rmarkdown</em>
+package. Markdown syntax is much simpler than
+normal LaTeX. However, there are at least two reasons why it is useful
+to become familiar with LaTeX syntax. First, understanding LaTeX syntax
+will help you debug issues you might encounter when using <em>rmarkdown</em>
+with LaTeX that would otherwise be mysterious if you were only familiar
+with Markdown. Second, R Markdown has limited capabilities for creating
+more complex documents such as books and documents with highly
+customizable formatting needs.<a href="#fn217" class="footnote-ref" id="fnref217"><sup>217</sup></a> Using <em>knitr</em> LaTeX or including LaTeX syntax
+directly in R Markdown documents can be useful in these situations.</p>
+<p>In this chapter we will learn about basic LaTeX document structures and
+syntax as well as how to dynamically create LaTeX bibliographies with
+BibTeX, R, and <em>knitr</em>. Finally, we will look at how to create PDF
+beamer slideshows.</p>
+<p><strong>Note:</strong> This chapter and the following chapter are unusual for this
+book in that they do not refer to knitr and R Markdown interchangeably.
+Remember you can almost always include LaTeX syntax in an R Markdown document, though typically this will only impact the document when it is compiled to PDF.</p>
+<div id="the-basics" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> The Basics<a href="LatexChapter.html#the-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section we look at how to create a LaTeX article including
+what editor programs to use, the basic structure of a LaTeX document,
+including preamble and body, LaTeX syntax for creating headings,
+paragraphs, lines, text formatting, math, lists, footnotes, and
+cross-references. I will assume that you already have a fully
+functioning TeX distribution installed on your computer. See Section
+<a href="Intro.html#InstallMarkup">1.5.1</a> for information on how to install TeX.</p>
+<div id="getting-started-with-latex-editors" class="section level3 hasAnchor" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> Getting started with LaTeX editors<a href="LatexChapter.html#getting-started-with-latex-editors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>RStudio is a fully functional LaTeX editor in
+addition to being an integrated development environment for R. If you
+want to create a new LaTeX document, you can click <code>File</code> in the menu bar, then <code>New File</code> and <code>R Sweave</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="images/chapter_11/TeXFormat.png" alt="RStudio TeX Format Options" width="2cm" height="5cm" />
+<p class="caption">
+FIGURE 11.1: RStudio TeX Format Options
+</p>
+</div>
+<p>Remember from Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a> that R Sweave files are basically
+LaTeX files that can include <em>knitr</em> code chunks. You can use RStudio to
+knit and compile a document with the click of one button: <code>Compile PDF</code>. You can
+use this button to compile R Sweave files like regular LaTeX files in
+RStudio even if they do not have code chunks. If you use another program
+to compile them, you might need to change the file extension from <em>.Rnw</em> to <em>.tex</em>.
+You can also insert many of the items we will cover in this section into
+your documents with RStudio’s LaTeX <code>TeX Format</code> button. See the figure above.</p>
+<p>There are many other LaTeX editors<a href="#fn218" class="footnote-ref" id="fnref218"><sup>218</sup></a> and many text editors that can be
+modified to compile LaTeX documents. For example, alongside writing this
+book in RStudio, I typed much of the LaTeX markup in the Atom<a href="#fn219" class="footnote-ref" id="fnref219"><sup>219</sup></a> text editor because it was easier to work with a large number of files simultaneously. However, RStudio has by far the best integration with <em>knitr</em>.</p>
+</div>
+<div id="basic-latex-command-syntax" class="section level3 hasAnchor" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> Basic LaTeX command syntax<a href="LatexChapter.html#basic-latex-command-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you probably noticed in Part III’s examples, LaTeX commands start
+with a backslash (<code>\</code>). For example, to create a section heading you use
+the <code>\section</code> command. The arguments for LaTeX commands are written
+inside of curly braces (<code>{}</code>) like this:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb306-1"><a href="LatexChapter.html#cb306-1" tabindex="-1"></a><span class="kw">\section</span>{My Section Name}</span></code></pre></div>
+<p>Probably one of the biggest sources of errors that occur when compiling
+a LaTeX document to PDF are caused by curly brackets that aren’t closed,
+i.e. an open bracket (<code>{</code>) is not matched with a subsequent closed
+bracket (<code>}</code>). Watch out for this and use an editor (like RStudio) that
+highlights brackets’ matching pairs. As we will see, unlike in R with
+parentheses, if your LaTeX command does not have an argument, you do not
+need to include the curly brackets at all.</p>
+<p>There are a number of places to find comprehensive lists of LaTeX
+commands. The Netherlands TeX users group has compiled one:
+<a href="http://www.ntg.nl/doc/biemesderfer/ltxcrib.pdf" class="uri">http://www.ntg.nl/doc/biemesderfer/ltxcrib.pdf</a>.</p>
+</div>
+<div id="LaTeXPreamble" class="section level3 hasAnchor" number="11.1.3">
+<h3><span class="header-section-number">11.1.3</span> The LaTeX preamble and body<a href="LatexChapter.html#LaTeXPreamble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All LaTeX documents require a preamble. The preamble goes at the very
+beginning of the document. The preamble usually starts with the
+<code>documentclass</code> command. This specifies what type of presentation document you are creating, e.g. an article, a book, a slideshow,<a href="#fn220" class="footnote-ref" id="fnref220"><sup>220</sup></a> and
+so on. LaTeX refers to these as classes. Classes specify a document’s
+formatting. You can add options to <code>documentclass</code> to change the format
+of the entire document. For example, if we wanted to create an article
+class document with two columns, we would type:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb307-1"><a href="LatexChapter.html#cb307-1" tabindex="-1"></a><span class="bu">\documentclass</span>[twocolumn]{<span class="ex">article</span>}</span></code></pre></div>
+<p>In the preamble you can also specify other style options and load extra packages. The command to load a package in LaTeX is <code>\usepackage</code>. For example, if you include <code>\usepackage{url}</code> in the preamble of your document, you will be able to specify URL links in the body with the command <code>\url{SOMEURL}</code>.</p>
+<p>The preamble is often followed by the body of your document. It is specified with the <code>body</code> environment. See Chapter <a href="TablesChapter.html#TablesChapter">9</a> for more details about LaTeX environments. You tell LaTeX where the body of your document starts by typing <code>\begin{document}</code>. The very last line of your document is usually <code>\end{document}</code>,
+indicating that your document has ended. When you open a new R Sweave
+file in RStudio, it creates an article class document with a very simple preamble and body like this:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb308-1"><a href="LatexChapter.html#cb308-1" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb308-2"><a href="LatexChapter.html#cb308-2" tabindex="-1"></a></span>
+<span id="cb308-3"><a href="LatexChapter.html#cb308-3" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb308-4"><a href="LatexChapter.html#cb308-4" tabindex="-1"></a><span class="fu">\SweaveOpts</span>{concordance=TRUE}</span>
+<span id="cb308-5"><a href="LatexChapter.html#cb308-5" tabindex="-1"></a></span>
+<span id="cb308-6"><a href="LatexChapter.html#cb308-6" tabindex="-1"></a></span>
+<span id="cb308-7"><a href="LatexChapter.html#cb308-7" tabindex="-1"></a></span>
+<span id="cb308-8"><a href="LatexChapter.html#cb308-8" tabindex="-1"></a></span>
+<span id="cb308-9"><a href="LatexChapter.html#cb308-9" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>This is all you need to get a very basic article class document working.<a href="#fn221" class="footnote-ref" id="fnref221"><sup>221</sup></a>
+If you want the document to be of another class, change <code>article</code>
+to something else, a <code>book</code> for example.</p>
+<p>Let’s begin to modify the markup. First we will include in the preamble
+the (<code>hyperref</code>) for clickable hyperlinks and <code>natbib</code> for bibliography
+formatting. We will discuss <code>natbib</code> in more detail below. Note that in
+general, and unlike in R, almost all of the LaTeX packages you will use
+are installed on your computer when you installed the TeX distribution.</p>
+<p>Next, it’s often a good idea to include <em>knitr</em> code chunks that specify
+features of the document as a whole. These can include global chunk
+options as well as loading data and packages used throughout the
+document.</p>
+<p>Then you likely want to specify title information just after the
+<code>document</code> environment begins. Use the <code>title</code> command to add a title,
+the <code>author</code> command to add author information, and <code>date</code> to specify
+the date.<a href="#fn222" class="footnote-ref" id="fnref222"><sup>222</sup></a> Then include the <code>maketitle</code> command. This will place your
+title and author information in the body of the document. If you are
+writing an article you may also want to follow <code>maketitle</code> with an
+abstract. Unsurprisingly, you can use the <code>abstract</code> environment to
+include this.</p>
+<p>Here is a full LaTeX article class document with all of these changes
+added:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb309-1"><a href="LatexChapter.html#cb309-1" tabindex="-1"></a><span class="co">%%%%%%%%%%%%%% Article Preamble %%%%%%%%%%%%%%</span></span>
+<span id="cb309-2"><a href="LatexChapter.html#cb309-2" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb309-3"><a href="LatexChapter.html#cb309-3" tabindex="-1"></a></span>
+<span id="cb309-4"><a href="LatexChapter.html#cb309-4" tabindex="-1"></a><span class="co">%% Load LaTeX packages</span></span>
+<span id="cb309-5"><a href="LatexChapter.html#cb309-5" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">url</span>}</span>
+<span id="cb309-6"><a href="LatexChapter.html#cb309-6" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">hyperref</span>}</span>
+<span id="cb309-7"><a href="LatexChapter.html#cb309-7" tabindex="-1"></a><span class="bu">\usepackage</span>[authoryear]{<span class="ex">natbib</span>}</span>
+<span id="cb309-8"><a href="LatexChapter.html#cb309-8" tabindex="-1"></a></span>
+<span id="cb309-9"><a href="LatexChapter.html#cb309-9" tabindex="-1"></a><span class="co">%% Set knitr global options and gather data</span></span>
+<span id="cb309-10"><a href="LatexChapter.html#cb309-10" tabindex="-1"></a>&lt;&lt;Global, include=FALSE&gt;&gt;=</span>
+<span id="cb309-11"><a href="LatexChapter.html#cb309-11" tabindex="-1"></a>#### Set chunk options ####</span>
+<span id="cb309-12"><a href="LatexChapter.html#cb309-12" tabindex="-1"></a>knitr::opts_chunk$set(fig.align=&#39;center&#39;)</span>
+<span id="cb309-13"><a href="LatexChapter.html#cb309-13" tabindex="-1"></a></span>
+<span id="cb309-14"><a href="LatexChapter.html#cb309-14" tabindex="-1"></a>#### Load and cite R packages ####</span>
+<span id="cb309-15"><a href="LatexChapter.html#cb309-15" tabindex="-1"></a># Create list of packages</span>
+<span id="cb309-16"><a href="LatexChapter.html#cb309-16" tabindex="-1"></a>packages_used &lt;- c(&quot;knitr&quot;, &quot;ggplot2&quot;, &quot;knitr&quot;)</span>
+<span id="cb309-17"><a href="LatexChapter.html#cb309-17" tabindex="-1"></a></span>
+<span id="cb309-18"><a href="LatexChapter.html#cb309-18" tabindex="-1"></a># Load PackagesUsed and create .bib BibTeX file.</span>
+<span id="cb309-19"><a href="LatexChapter.html#cb309-19" tabindex="-1"></a># Load packages</span>
+<span id="cb309-20"><a href="LatexChapter.html#cb309-20" tabindex="-1"></a>lapply(packages_used, library,</span>
+<span id="cb309-21"><a href="LatexChapter.html#cb309-21" tabindex="-1"></a>        character.only = TRUE)</span>
+<span id="cb309-22"><a href="LatexChapter.html#cb309-22" tabindex="-1"></a></span>
+<span id="cb309-23"><a href="LatexChapter.html#cb309-23" tabindex="-1"></a># Create package BibTeX file</span>
+<span id="cb309-24"><a href="LatexChapter.html#cb309-24" tabindex="-1"></a>knitr::write_bib(packages_used, file = &quot;packages.bib&quot;)</span>
+<span id="cb309-25"><a href="LatexChapter.html#cb309-25" tabindex="-1"></a></span>
+<span id="cb309-26"><a href="LatexChapter.html#cb309-26" tabindex="-1"></a>#### Gather Democracy data from Pemstein et al. (2010)</span>
+<span id="cb309-27"><a href="LatexChapter.html#cb309-27" tabindex="-1"></a>#### # For simplicity, store the URL in an object called &#39;url&#39;.</span>
+<span id="cb309-28"><a href="LatexChapter.html#cb309-28" tabindex="-1"></a>url &lt;- &quot;http://www.unified-democracy-scores.org/files/20140312/</span>
+<span id="cb309-29"><a href="LatexChapter.html#cb309-29" tabindex="-1"></a>z/uds_summary.csv.gz&quot;</span>
+<span id="cb309-30"><a href="LatexChapter.html#cb309-30" tabindex="-1"></a></span>
+<span id="cb309-31"><a href="LatexChapter.html#cb309-31" tabindex="-1"></a># Create a temporary file called &#39;temp&#39; to put the zip file into.</span>
+<span id="cb309-32"><a href="LatexChapter.html#cb309-32" tabindex="-1"></a>temp &lt;- tempfile()</span>
+<span id="cb309-33"><a href="LatexChapter.html#cb309-33" tabindex="-1"></a></span>
+<span id="cb309-34"><a href="LatexChapter.html#cb309-34" tabindex="-1"></a># Create a temporary file called &#39;temp&#39; to put the zip file into.</span>
+<span id="cb309-35"><a href="LatexChapter.html#cb309-35" tabindex="-1"></a>temp &lt;- tempfile()</span>
+<span id="cb309-36"><a href="LatexChapter.html#cb309-36" tabindex="-1"></a></span>
+<span id="cb309-37"><a href="LatexChapter.html#cb309-37" tabindex="-1"></a># Download the compressed file into the temporary file.</span>
+<span id="cb309-38"><a href="LatexChapter.html#cb309-38" tabindex="-1"></a>download.file(url, temp)</span>
+<span id="cb309-39"><a href="LatexChapter.html#cb309-39" tabindex="-1"></a></span>
+<span id="cb309-40"><a href="LatexChapter.html#cb309-40" tabindex="-1"></a># Decompress the file and convert it into a data frame</span>
+<span id="cb309-41"><a href="LatexChapter.html#cb309-41" tabindex="-1"></a># class object called &#39;data&#39;.</span>
+<span id="cb309-42"><a href="LatexChapter.html#cb309-42" tabindex="-1"></a>uds_data &lt;- read.csv(gzfile(temp, &quot;uds_summary.csv&quot;))</span>
+<span id="cb309-43"><a href="LatexChapter.html#cb309-43" tabindex="-1"></a></span>
+<span id="cb309-44"><a href="LatexChapter.html#cb309-44" tabindex="-1"></a># Delete the temporary file.</span>
+<span id="cb309-45"><a href="LatexChapter.html#cb309-45" tabindex="-1"></a>unlink(temp)</span>
+<span id="cb309-46"><a href="LatexChapter.html#cb309-46" tabindex="-1"></a>@</span>
+<span id="cb309-47"><a href="LatexChapter.html#cb309-47" tabindex="-1"></a></span>
+<span id="cb309-48"><a href="LatexChapter.html#cb309-48" tabindex="-1"></a><span class="co">%% Start document body</span></span>
+<span id="cb309-49"><a href="LatexChapter.html#cb309-49" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb309-50"><a href="LatexChapter.html#cb309-50" tabindex="-1"></a><span class="fu">\SweaveOpts</span>{concordance=TRUE}</span>
+<span id="cb309-51"><a href="LatexChapter.html#cb309-51" tabindex="-1"></a></span>
+<span id="cb309-52"><a href="LatexChapter.html#cb309-52" tabindex="-1"></a><span class="co">%%%%%%%%%%%%% Create title %%%%%%%%%%%%%%%%%</span></span>
+<span id="cb309-53"><a href="LatexChapter.html#cb309-53" tabindex="-1"></a><span class="fu">\title</span>{An Example knitr LaTeX Article}</span>
+<span id="cb309-54"><a href="LatexChapter.html#cb309-54" tabindex="-1"></a><span class="fu">\author</span>{Christopher Gandrud <span class="fu">\\</span></span>
+<span id="cb309-55"><a href="LatexChapter.html#cb309-55" tabindex="-1"></a>Zalando SE<span class="fu">\thanks</span>{Email: <span class="fu">\href</span>{mailto:christopher.gandrud@zalando</span>
+<span id="cb309-56"><a href="LatexChapter.html#cb309-56" tabindex="-1"></a>.de}{christopher.gandrud@zalando.de}}}</span>
+<span id="cb309-57"><a href="LatexChapter.html#cb309-57" tabindex="-1"></a><span class="fu">\date</span>{August 2019}</span>
+<span id="cb309-58"><a href="LatexChapter.html#cb309-58" tabindex="-1"></a><span class="fu">\maketitle</span></span>
+<span id="cb309-59"><a href="LatexChapter.html#cb309-59" tabindex="-1"></a></span>
+<span id="cb309-60"><a href="LatexChapter.html#cb309-60" tabindex="-1"></a><span class="co">%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%</span></span>
+<span id="cb309-61"><a href="LatexChapter.html#cb309-61" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">abstract</span>}</span>
+<span id="cb309-62"><a href="LatexChapter.html#cb309-62" tabindex="-1"></a>  Here is an example of a knittable article class LaTeX</span>
+<span id="cb309-63"><a href="LatexChapter.html#cb309-63" tabindex="-1"></a>  document.</span>
+<span id="cb309-64"><a href="LatexChapter.html#cb309-64" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">abstract</span>}</span>
+<span id="cb309-65"><a href="LatexChapter.html#cb309-65" tabindex="-1"></a></span>
+<span id="cb309-66"><a href="LatexChapter.html#cb309-66" tabindex="-1"></a><span class="co">%%%%%%%%%%% Article Main Text %%%%%%%%%%%%%</span></span>
+<span id="cb309-67"><a href="LatexChapter.html#cb309-67" tabindex="-1"></a><span class="kw">\section</span>{The Graph}</span>
+<span id="cb309-68"><a href="LatexChapter.html#cb309-68" tabindex="-1"></a></span>
+<span id="cb309-69"><a href="LatexChapter.html#cb309-69" tabindex="-1"></a>I gathered data from <span class="kw">\cite</span>{<span class="ex">Pemstein2010</span>} on countries&#39; democracy</span>
+<span id="cb309-70"><a href="LatexChapter.html#cb309-70" tabindex="-1"></a>level. They call their democracy measure the Unified Democracy</span>
+<span id="cb309-71"><a href="LatexChapter.html#cb309-71" tabindex="-1"></a>Score (UDS). Figure <span class="kw">\ref</span>{<span class="ex">DemPlot</span>} shows the mean UDS scores</span>
+<span id="cb309-72"><a href="LatexChapter.html#cb309-72" tabindex="-1"></a>over time for all of the countries in their sample.</span>
+<span id="cb309-73"><a href="LatexChapter.html#cb309-73" tabindex="-1"></a></span>
+<span id="cb309-74"><a href="LatexChapter.html#cb309-74" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}</span>
+<span id="cb309-75"><a href="LatexChapter.html#cb309-75" tabindex="-1"></a>  <span class="fu">\caption</span>{Mean UDS Scores}</span>
+<span id="cb309-76"><a href="LatexChapter.html#cb309-76" tabindex="-1"></a>  <span class="kw">\label</span>{<span class="ex">DemPlot</span>}</span>
+<span id="cb309-77"><a href="LatexChapter.html#cb309-77" tabindex="-1"></a>&lt;&lt;echo=FALSE, message=FALSE, warning=FALSE, out.width=&#39;7cm&#39;,</span>
+<span id="cb309-78"><a href="LatexChapter.html#cb309-78" tabindex="-1"></a>out.height=&#39;7cm&#39;&gt;&gt;=</span>
+<span id="cb309-79"><a href="LatexChapter.html#cb309-79" tabindex="-1"></a># Graph UDS scores</span>
+<span id="cb309-80"><a href="LatexChapter.html#cb309-80" tabindex="-1"></a>    ggplot(uds_data, aes(x = year, y = mean)) +</span>
+<span id="cb309-81"><a href="LatexChapter.html#cb309-81" tabindex="-1"></a>        geom_point(alpha = I(0.1)) +</span>
+<span id="cb309-82"><a href="LatexChapter.html#cb309-82" tabindex="-1"></a>        stat_smooth(size = 2) +</span>
+<span id="cb309-83"><a href="LatexChapter.html#cb309-83" tabindex="-1"></a>        ylab(&quot;Democracy Score&quot;) + xlab(&quot;&quot;) +</span>
+<span id="cb309-84"><a href="LatexChapter.html#cb309-84" tabindex="-1"></a>        theme_bw()</span>
+<span id="cb309-85"><a href="LatexChapter.html#cb309-85" tabindex="-1"></a>@</span>
+<span id="cb309-86"><a href="LatexChapter.html#cb309-86" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span>
+<span id="cb309-87"><a href="LatexChapter.html#cb309-87" tabindex="-1"></a></span>
+<span id="cb309-88"><a href="LatexChapter.html#cb309-88" tabindex="-1"></a><span class="co">%%%%%%%%%%% Reproducing the Document %%%%%</span></span>
+<span id="cb309-89"><a href="LatexChapter.html#cb309-89" tabindex="-1"></a><span class="kw">\section*</span>{Appendix: Reproducing the Document}</span>
+<span id="cb309-90"><a href="LatexChapter.html#cb309-90" tabindex="-1"></a></span>
+<span id="cb309-91"><a href="LatexChapter.html#cb309-91" tabindex="-1"></a>This document was created using the R version</span>
+<span id="cb309-92"><a href="LatexChapter.html#cb309-92" tabindex="-1"></a><span class="fu">\Sexpr</span>{paste0(version<span class="ss">$major, &quot;.&quot;,</span></span>
+<span id="cb309-93"><a href="LatexChapter.html#cb309-93" tabindex="-1"></a><span class="ss">version$</span>minor)} and the R package <span class="fu">\emph</span>{knitr}</span>
+<span id="cb309-94"><a href="LatexChapter.html#cb309-94" tabindex="-1"></a><span class="kw">\citep</span>{<span class="ex">R-knitr</span>}.</span>
+<span id="cb309-95"><a href="LatexChapter.html#cb309-95" tabindex="-1"></a></span>
+<span id="cb309-96"><a href="LatexChapter.html#cb309-96" tabindex="-1"></a>It also relied on the R packages <span class="fu">\emph</span>{ggplot2} and</span>
+<span id="cb309-97"><a href="LatexChapter.html#cb309-97" tabindex="-1"></a><span class="kw">\citep</span>{<span class="ex">R-ggplot2</span>}. The document can be completely</span>
+<span id="cb309-98"><a href="LatexChapter.html#cb309-98" tabindex="-1"></a>reproduced from source files available on GitHub</span>
+<span id="cb309-99"><a href="LatexChapter.html#cb309-99" tabindex="-1"></a>at: <span class="fu">\url</span>{https://github.com/christophergandrud/</span>
+<span id="cb309-100"><a href="LatexChapter.html#cb309-100" tabindex="-1"></a>rep-res-book-v3-examples}.</span>
+<span id="cb309-101"><a href="LatexChapter.html#cb309-101" tabindex="-1"></a></span>
+<span id="cb309-102"><a href="LatexChapter.html#cb309-102" tabindex="-1"></a><span class="co">%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%</span></span>
+<span id="cb309-103"><a href="LatexChapter.html#cb309-103" tabindex="-1"></a><span class="bu">\bibliographystyle</span>{<span class="ex">apa</span>}</span>
+<span id="cb309-104"><a href="LatexChapter.html#cb309-104" tabindex="-1"></a><span class="bu">\bibliography</span>{<span class="ex">main.bib, packages.bib</span>}</span>
+<span id="cb309-105"><a href="LatexChapter.html#cb309-105" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>The <em>knitr</em> code chunk syntax should be familiar to you from previous
+chapters, so let’s unpack the LaTeX syntax from just after the first
+code chunk, including the “Create title” and “Abstract” parts. New
+syntax shown in later parts of this example is discussed in the
+remainder of this section and the next section on bibliographies.</p>
+<p>First, remember that the percent sign (%) is LaTeX’s comment character.
+Using it to comment your markup can make it easier to read. Second, as
+we saw in Chapter
+<a href="TablesChapter.html#TablesChapter">9</a>, double backslashes (<code>\\</code>), like those after
+the author’s name, force a new line in LaTeX. We will discuss the <code>emph</code>
+command in a moment. Third, using the <code>thanks</code>
+command allows us to create a footnote for author contact information<a href="#fn223" class="footnote-ref" id="fnref223"><sup>223</sup></a> that is not numbered like the other footnotes (see below). Finally, you’ll notice
+<code>\href{mailto: . . . .org}}</code>. This creates an email address in the final
+document that will open the reader’s default email program when clicked.</p>
+<p>You may have noticed the following line:</p>
+<p><code>\Sexpr{paste0(version$major, ".", version$minor)}</code></p>
+<p>This code finds the current version of R being used and prints the
+version number into the presentation document.</p>
+</div>
+<div id="headings" class="section level3 hasAnchor" number="11.1.4">
+<h3><span class="header-section-number">11.1.4</span> Headings<a href="LatexChapter.html#headings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Earlier in the chapter, we briefly saw how to create section-level
+headings with <code>section</code>. There are a number of other sub section-level
+headings including <code>subsection</code>, <code>subsubsection</code>, <code>paragraph</code>, and
+<code>subparagraph</code>. Headers are numbered automatically by LaTeX.<a href="#fn224" class="footnote-ref" id="fnref224"><sup>224</sup></a> To have
+an unnumbered section, place an asterisk in it like this:
+<code>\section*{UNNUMBERED_SECTION}</code>. In book class documents, you can also
+use <code>chapter</code> to create new chapters and <code>part</code> for collections of
+chapters.</p>
+</div>
+<div id="paragraphs-and-spacing" class="section level3 hasAnchor" number="11.1.5">
+<h3><span class="header-section-number">11.1.5</span> Paragraphs and spacing<a href="LatexChapter.html#paragraphs-and-spacing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In LaTeX, paragraphs are created by adding a blank line between
+lines. It will format all of the tabs for the beginning of paragraphs
+based on the document’s class rules. As we discussed before, writing
+tabs in the markup version of your document does nothing in the compiled
+document. They are generally used just to make the markup easier for
+people to read.</p>
+<p>Note that adding more blank lines between paragraphs will not add extra
+space between the paragraphs in the final document. To specify the space
+following paragraphs (or almost any line) use the <code>vspace</code> (vertical
+space) command. For example, to add three centimeters of vertical space
+on a page type: <code>\vspace{3cm}</code>.</p>
+<p>Similarly, adding extra spaces between words in your LaTeX markup won’t
+create extra spaces between words in the compiled document. To add
+horizontal space use the <code>hspace</code> command in the same way as <code>vspace</code>.</p>
+</div>
+<div id="horizontal-lines" class="section level3 hasAnchor" number="11.1.6">
+<h3><span class="header-section-number">11.1.6</span> Horizontal lines<a href="LatexChapter.html#horizontal-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>hrulefill</code> command to create horizontal lines in the text of
+your document. For example, <code>\hrulefill</code> creates: </p>
+<hr />
+<p>Inside of a <code>tabular</code> environment, use the <code>hline</code> command rather than
+<code>hrulefill</code>.</p>
+</div>
+<div id="text-formatting" class="section level3 hasAnchor" number="11.1.7">
+<h3><span class="header-section-number">11.1.7</span> Text formatting<a href="LatexChapter.html#text-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s briefly look at how to do some of the more common types of text
+formatting in LaTeX and how to create some commonly used diacritics and
+special characters.</p>
+<div id="italics-and-bold" class="section level4 unnumbered hasAnchor">
+<h4>Italics and Bold<a href="LatexChapter.html#italics-and-bold" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To italicize a word in LaTeX, use the <code>emph</code> (emphasis) command. For bold,
+use <code>textbf</code>. You can nest commands inside of one another to combine
+their effect. For example, to <strong><em>italicize and bold</em></strong> a word, use:
+<code>\emph{textbf{italicize and bold}}</code>.</p>
+</div>
+<div id="FontSize" class="section level4 unnumbered hasAnchor">
+<h4>Font size<a href="LatexChapter.html#FontSize" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You can specify the base font size of an entire document with a
+<code>documentclass</code> option. For example, to create an article with 12-point
+font, use: <code>\documentclass[12pt]{article}</code>.</p>
+<p>There are a number of commands to set the size of specific pieces of
+text relative to the base size. See the following table for the full list. Usually a slightly
+different syntax is used for these commands that goes like this:
+<code>{\SIZE_COMMAND . . . }</code>. For example, to use the tiny size in your text
+use: <code>{\tiny{tiny size}}</code>.</p>
+<p>You can change the size of code chunks that <em>knitr</em> places in
+presentation documents using these commands. Just place the code chunk
+inside of <code>{\SIZE_COMMAND . . . }</code>. This is similar to using the <code>size</code>
+code chunk option.</p>
+</div>
+<div id="diacritics" class="section level4 unnumbered hasAnchor">
+<h4>Diacritics<a href="LatexChapter.html#diacritics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You cannot directly enter letters with diacritics—e.g. accent
+mark—into LaTeX. For example, to create a letter c with a cedilla (ç)
+you need to type <code>\c{c}</code>. To create an ‘a’ with an acute accent (á),
+type: <code>\'{a}</code>. There are obviously many types of diacritics and commands
+to include them within LaTeX-produced documents. For a comprehensive
+discussion of the issue and a list of commands see the LaTeX Wikibook
+page on the topic:
+<a href="https://en.wikibooks.org/wiki/LaTeX/Special_Characters" class="uri">https://en.wikibooks.org/wiki/LaTeX/Special_Characters</a>. If you
+regularly use non-English alphabets, you might also be interested in
+reading the LaTeX Wikibook page on internationalization:
+<a href="https://en.wikibooks.org/wiki/LaTeX/Internationalization" class="uri">https://en.wikibooks.org/wiki/LaTeX/Internationalization</a>.</p>
+</div>
+<div id="quotation-marks" class="section level4 unnumbered hasAnchor">
+<h4>Quotation marks<a href="LatexChapter.html#quotation-marks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To specify double left quotation marks (“), use two back ticks
+(<code>``</code>). For double right quotes (”), use two apostrophes (<code>''</code>).
+Single quotes follow the same format (<code>`'</code>).</p>
+</div>
+</div>
+<div id="MathLaTeX" class="section level3 hasAnchor" number="11.1.8">
+<h3><span class="header-section-number">11.1.8</span> Math<a href="LatexChapter.html#MathLaTeX" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>LaTeX is particularly popular among quantitative researchers and
+mathematicians because it is very good at rendering mathematical notation. A
+complete listing of every math command would take up quite a bit of
+space.<a href="#fn225" class="footnote-ref" id="fnref225"><sup>225</sup></a> I am briefly going to discuss how to include math in a LaTeX
+document. This discussion includes a few math syntax examples.</p>
+<p>To include math inline with your text, place the math syntax in between
+backslashes and parentheses, i.e. <code>\( . . . \)</code>. For example,
+<code>\( s^{2} = \frac{\sum(x - \bar{x})^2}{n - 1} \)</code> produces
+<span class="math inline">\(s^{2} = \frac{\sum(x - \bar{x})^2}{n - 1}\)</span> in our final document.<a href="#fn226" class="footnote-ref" id="fnref226"><sup>226</sup></a>
+We can display math separately from the text by placing the math
+commands inside of backslashes and square brackets: <code>\[ . . . \]</code>.<a href="#fn227" class="footnote-ref" id="fnref227"><sup>227</sup></a>
+For example,</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb310-1"><a href="LatexChapter.html#cb310-1" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb310-2"><a href="LatexChapter.html#cb310-2" tabindex="-1"></a><span class="ss">  s^{2} = </span><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\sum</span><span class="ss">(x - </span><span class="sc">\bar</span><span class="ss">{x})^2}{n - 1}</span></span>
+<span id="cb310-3"><a href="LatexChapter.html#cb310-3" tabindex="-1"></a><span class="ss">\]</span></span></code></pre></div>
+<p>gives us:</p>
+<p><span class="math display">\[s^{2} = \frac{\sum(x - \bar{x})^2}{n - 1}\]</span></p>
+</div>
+<div id="lists" class="section level3 hasAnchor" number="11.1.9">
+<h3><span class="header-section-number">11.1.9</span> Lists<a href="LatexChapter.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To create bullet lists in LaTeX, use the <code>itemize</code> environment. Each list
+item is delimited with the <code>item</code> command. For example: </p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb311-1"><a href="LatexChapter.html#cb311-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">itemize</span>}</span>
+<span id="cb311-2"><a href="LatexChapter.html#cb311-2" tabindex="-1"></a>    <span class="fu">\item</span> The first item.</span>
+<span id="cb311-3"><a href="LatexChapter.html#cb311-3" tabindex="-1"></a>    <span class="fu">\item</span> The second item.</span>
+<span id="cb311-4"><a href="LatexChapter.html#cb311-4" tabindex="-1"></a>    <span class="fu">\item</span> The third item.</span>
+<span id="cb311-5"><a href="LatexChapter.html#cb311-5" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">itemize</span>}</span></code></pre></div>
+<p>gives us:</p>
+<ul>
+<li><p>The first item.</p></li>
+<li><p>The second item.</p></li>
+<li><p>The third item.</p></li>
+</ul>
+<p>To create a numbered list, use the <code>enumerate</code> environment instead of
+<code>itemize</code>.</p>
+<p>You can create sublists by nesting lists inside of
+lists like this: </p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb312-1"><a href="LatexChapter.html#cb312-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">itemize</span>}</span>
+<span id="cb312-2"><a href="LatexChapter.html#cb312-2" tabindex="-1"></a>    <span class="fu">\item</span> The first item.</span>
+<span id="cb312-3"><a href="LatexChapter.html#cb312-3" tabindex="-1"></a>    <span class="fu">\item</span> The second item.</span>
+<span id="cb312-4"><a href="LatexChapter.html#cb312-4" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">itemize</span>}</span>
+<span id="cb312-5"><a href="LatexChapter.html#cb312-5" tabindex="-1"></a>        <span class="fu">\item</span> A sublist item</span>
+<span id="cb312-6"><a href="LatexChapter.html#cb312-6" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">itemize</span>}</span>
+<span id="cb312-7"><a href="LatexChapter.html#cb312-7" tabindex="-1"></a>    <span class="fu">\item</span> The third item.</span>
+<span id="cb312-8"><a href="LatexChapter.html#cb312-8" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">itemize</span>}</span></code></pre></div>
+<p>which gives us:</p>
+<ul>
+<li><p>The first item.</p></li>
+<li><p>The second item.</p>
+<ul>
+<li>A sublist item</li>
+</ul></li>
+<li><p>The third item.</p></li>
+</ul>
+</div>
+<div id="footnotes" class="section level3 hasAnchor" number="11.1.10">
+<h3><span class="header-section-number">11.1.10</span> Footnotes<a href="LatexChapter.html#footnotes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>To create plain, non-bibliographic footnotes,
+place <code>\footnote{</code> where you would like the footnote number to appear in
+the text. Then type the footnote’s text. Remember to close
+the footnote with a <code>}</code>. LaTeX does the rest, including formatting and
+numbering.</p>
+</div>
+<div id="cross-references" class="section level3 hasAnchor" number="11.1.11">
+<h3><span class="header-section-number">11.1.11</span> Cross-references<a href="LatexChapter.html#cross-references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>LaTeX will also automatically format cross-references. We were already
+partially introduced to cross-references in Chapters
+<a href="TablesChapter.html#TablesChapter">9</a> and <a href="FiguresChapter.html#FiguresChapter">10</a>. At the place where you would like to
+reference, add a <code>label</code> such as <code>\label{ACrossRefLabel}</code>. It doesn’t
+really matter what label name you choose, though make sure they are not
+duplicated in the document. Then place a <code>ref</code> command (e.g.
+<code>\ref{ACrossRefLabel</code>) at the place in the text where you want the
+cross-reference to be.</p>
+<p>If you place the <code>label</code> on the same line as a heading command, <code>ref</code>
+will place the heading number. If <code>label</code> is in a <code>table</code> or <code>figure</code>
+environment, you will get the table or figure number. You can also use
+<code>pageref</code> instead of <code>ref</code> to include the page number. Finally, loading the <em>hyperref</em> package makes cross-references (or footnote) clickable.
+Clicking on them will take you to the items they refer to.</p>
+</div>
+</div>
+<div id="BibTeXBib" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Bibliographies with BibTeX<a href="LatexChapter.html#BibTeXBib" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>LaTeX can take advantage of very comprehensive bibliography-making
+capabilities. All major TeX distributions come with BibTeX. BibTeX is
+basically a tool for creating databases of citation information. In this
+section, we are going to see how to incorporate a BibTeX bibliography
+into your LaTeX documents. Then we will learn how to use R to automatically
+generate a bibliography of packages used to create a knitted document.
+For more information on BibTeX syntax, see the LaTeX Wikibook page on
+Bibliography management:
+<a href="https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management" class="uri">https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management</a>.</p>
+<div id="the-.bib-file" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> The <em>.bib</em> file<a href="LatexChapter.html#the-.bib-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>BibTeX bibliographies are stored in plain-text files with the extension
+<code>.bib</code>. These files are databases of citations.<a href="#fn228" class="footnote-ref" id="fnref228"><sup>228</sup></a> The syntax for each
+citation goes like this:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb313-1"><a href="LatexChapter.html#cb313-1" tabindex="-1"></a>@DOCUMENT_TYPE{CITE_KEY,</span>
+<span id="cb313-2"><a href="LatexChapter.html#cb313-2" tabindex="-1"></a>    title = {TITLE},</span>
+<span id="cb313-3"><a href="LatexChapter.html#cb313-3" tabindex="-1"></a>    author = {AUTHOR},</span>
+<span id="cb313-4"><a href="LatexChapter.html#cb313-4" tabindex="-1"></a>    . . . = {. . .}</span>
+<span id="cb313-5"><a href="LatexChapter.html#cb313-5" tabindex="-1"></a>}</span></code></pre></div>
+<p><code>DOCUMENT\_TYPE</code> specifies what type of document—article, book,
+webpage, and so on—the citation is for. This determines what items the
+citation can and needs to include. Then we have the <code>CITE_KEY</code>. This is
+the reference’s label that you will use to include the citation in your
+presentation documents. We’ll look more at this later in the section.
+Each citation must have a unique <code>CITE_KEY</code>. A common way to write
+these keys is to use the author’s surname and the publication year, e.g.
+<code>donoho2009</code>. The cite key is followed by the other citation attributes
+such as <code>author</code>, <code>title</code>, and <code>year</code>. These attributes all follow the
+same syntax: <code>ATTRIBUTE = {. . .}</code>.</p>
+<p>It’s worth taking a moment to discuss the syntax for the BibTeX author
+attribute. First, multiple author names are separated by <code>and</code>. Second,
+BibTeX assumes that the last word for each author is their surname. If
+you would like multiple words to be taken as the “surname”, then enclose
+these words in curly brackets. If we wanted to cite the World Bank as an
+author, we write <code>{World Bank}</code>; otherwise, it will be formatted “Bank,
+World” in the presentation document.</p>
+<p>Here is a complete BibTeX entry for <span class="citation">Donoho et al. (<a href="#ref-donoho2009">2009</a>)</span>:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb314-1"><a href="LatexChapter.html#cb314-1" tabindex="-1"></a>@article{donoho2009,</span>
+<span id="cb314-2"><a href="LatexChapter.html#cb314-2" tabindex="-1"></a>  author = {David L Donoho and Arian Maleki and Morteza</span>
+<span id="cb314-3"><a href="LatexChapter.html#cb314-3" tabindex="-1"></a>  Shahram and Inam Ur Rahman and Victoria Stodden},</span>
+<span id="cb314-4"><a href="LatexChapter.html#cb314-4" tabindex="-1"></a>  title = {Reproducible research in computational harmonic</span>
+<span id="cb314-5"><a href="LatexChapter.html#cb314-5" tabindex="-1"></a>    analysis},</span>
+<span id="cb314-6"><a href="LatexChapter.html#cb314-6" tabindex="-1"></a>  journal = {Computing in Science &amp; Engineering},</span>
+<span id="cb314-7"><a href="LatexChapter.html#cb314-7" tabindex="-1"></a>  year = {2009},</span>
+<span id="cb314-8"><a href="LatexChapter.html#cb314-8" tabindex="-1"></a>  volume = {11},</span>
+<span id="cb314-9"><a href="LatexChapter.html#cb314-9" tabindex="-1"></a>  number = {1},</span>
+<span id="cb314-10"><a href="LatexChapter.html#cb314-10" tabindex="-1"></a>  pages = {8--18}</span>
+<span id="cb314-11"><a href="LatexChapter.html#cb314-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>Each item of the entry must end in a comma, except the last one.<a href="#fn229" class="footnote-ref" id="fnref229"><sup>229</sup></a></p>
+</div>
+<div id="including-citations-in-latex-documents" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> Including citations in LaTeX documents<a href="LatexChapter.html#including-citations-in-latex-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you want to include citations from a BibTeX file in your LaTeX
+document, you first use the <code>bibliography</code> command. For example, if the
+BibTeX file is called <em>ain.bib</em> and it is in the same directory as your
+markup document, then type: <code>\bibliography{ain.bib}</code>. You can use a
+bibliography stored in another directory; just include the appropriate
+file path information. Usually <code>bibliography</code> is placed right before
+<code>\end{document}</code> so that it appears at the end of the compiled
+presentation document.</p>
+<p>You can also specify how you would like the references to be formatted
+using the <code>bibliographystyle</code> command. For example, this book uses the
+American Psychological Association (APA) style for references. To set
+this, I included <code>\bibliographystyle{apa}</code> directly before
+<code>bibliography</code>. The default style<a href="#fn230" class="footnote-ref" id="fnref230"><sup>230</sup></a> is to number citations (e.g. <code>[1]</code>) rather than include author-year information<a href="#fn231" class="footnote-ref" id="fnref231"><sup>231</sup></a> used by the APA.
+You will need to include the LaTeX package <em>natbib</em> in your preamble to
+be able to use author-year citation styles. This book includes
+<code>\usepackage[authoryear]{natbib}</code> in its preamble.</p>
+<p>Place the <code>cite</code> command in your document’s text where you want to place
+a reference. You include the <code>CITE_KEY</code> for the reference in this
+command, e.g. <code>\cite{donoho2009}</code>. You can include multiple citations in
+<code>cite</code>, just separate the <code>CITE_KEY</code>s with commas. You can add options
+such as the page numbers or other text to a citation using square
+brackets (<code>[]</code>). For example, if we wanted to cite the tenth page of
+<span class="citation">Donoho et al. (<a href="#ref-donoho2009">2009</a>)</span>, we type: <code>\cite[10]{donoho2009}</code>. The author-year style
+in-text citation that this produces looks like this: <span class="citation">(<a href="#ref-donoho2009">Donoho et al. 2009, 10</a>)</span>.
+You can add text at the beginning of a citation with another set of
+square brackets. Typing <code>\cite[see][10]{donoho2009}</code> gives us: <span class="citation">(see <a href="#ref-donoho2009">Donoho et al. 2009, 10</a>)</span>.</p>
+<p>If you are using an author-year style, you can use a variety of <em>natbib</em>
+commands to change what information is included in the parentheses. Table <a href="#NatbibTable"><strong>??</strong></a> contains a selection of these commands and examples.</p>
+</div>
+<div id="generating-a-bibtex-file-of-r-package-citations" class="section level3 hasAnchor" number="11.2.3">
+<h3><span class="header-section-number">11.2.3</span> Generating a BibTeX file of R package citations<a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Researchers are pretty good about citing others’ articles and data.
+However, citations of R packages used in analyses is very inconsistent.
+This is unfortunate not only because correct attribution is not being
+given to those who worked to create the packages, but also because it
+makes reproducibility harder. Not citing packages obscures important
+steps that were taken in the research process, primarily which package
+versions were used. Fortunately, there are R tools for quickly and
+dynamically generating package BibTeX files, including the versions of
+the packages you are using. They will automatically update the citations
+each time you compile your document to reflect any changes made to the
+packages.</p>
+<p>You can automatically create citations for R packages using the
+<code>citation()</code> function inside of a code chunk. For example, if you want the
+citation information for the <code>knitr</code> package, you type:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="LatexChapter.html#cb315-1" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;knitr&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## To cite package &#39;knitr&#39; in publications use:
+## 
+##   Xie Y (2023). _knitr: A General-Purpose
+##   Package for Dynamic Report Generation in R_. R
+##   package version 1.43,
+##   &lt;https://yihui.org/knitr/&gt;.
+## 
+##   Yihui Xie (2015) Dynamic Documents with R and
+##   knitr. 2nd edition. Chapman and Hall/CRC. ISBN
+##   978-1498716963
+## 
+##   Yihui Xie (2014) knitr: A Comprehensive Tool
+##   for Reproducible Research in R. In Victoria
+##   Stodden, Friedrich Leisch and Roger D. Peng,
+##   editors, Implementing Reproducible
+##   Computational Research. Chapman and Hall/CRC.
+##   ISBN 978-1466561595
+## 
+## To see these entries in BibTeX format, use
+## &#39;print(&lt;citation&gt;, bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;,
+## or set &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
+<p>This gives you both the plain citation as well as the BibTeX version. If
+you only want the BibTeX version of the citation, use the
+<code>toBibtex()</code> function.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="LatexChapter.html#cb317-1" tabindex="-1"></a><span class="fu">toBibtex</span>(<span class="fu">citation</span>(<span class="st">&quot;knitr&quot;</span>))</span></code></pre></div>
+<p>The <em>knitr</em> package creates BibTeX bibliographies for R packages with
+the <code>write_bib()</code> function. Let’s make a BibTeX file called <em>packages.bib</em>
+containing citation information for the <em>knitr</em> package.</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="LatexChapter.html#cb318-1" tabindex="-1"></a><span class="co"># Create package BibTeX file</span></span>
+<span id="cb318-2"><a href="LatexChapter.html#cb318-2" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(<span class="st">&quot;knitr&quot;</span>, <span class="at">file =</span> <span class="st">&quot;packages.bib&quot;</span>)</span></code></pre></div>
+<p><code>write_bib</code> automatically assigns each entry a cite key using the
+format <code>R-PACKAGE_NAME</code>, e.g. <code>R-knitr</code>.</p>
+<p><strong>Warning:</strong> <em>knitr</em>’s <code>write_bib()</code> function currently does not have the
+ability to append package citations to an existing file, but instead
+writes them to a new file. If there is already a file with the same
+name, it will overwrite the file. So, be very careful using this function
+to avoid accidental deletions. It is a good idea to have <code>write_bib()</code>
+always write to a file specifically for automatically generated package
+citations. You can include more than one bibliography in LaTeX’s
+<code>bibliography</code> command. All you need to do is separate them with a
+comma.</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb319-1"><a href="LatexChapter.html#cb319-1" tabindex="-1"></a><span class="bu">\bibliography</span>{<span class="ex">main.bib, packages.bib</span>}</span></code></pre></div>
+<p>We can use these techniques to automatically create a BibTeX file with
+citation information for all of the packages used in a research project.
+Simply make a character vector of the names of packages that you would
+like to include in your bibliography. Then run this through
+<code>write_bib()</code>.</p>
+<p>You can make sure you are citing all of the key packages used in a
+knitted document by (a) creating a vector of all of the packages and
+then (b) using this in the following code to both load the packages and
+write the bibliography:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="LatexChapter.html#cb320-1" tabindex="-1"></a><span class="co"># Package list</span></span>
+<span id="cb320-2"><a href="LatexChapter.html#cb320-2" tabindex="-1"></a>packages_used <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;xtable&quot;</span>)</span>
+<span id="cb320-3"><a href="LatexChapter.html#cb320-3" tabindex="-1"></a></span>
+<span id="cb320-4"><a href="LatexChapter.html#cb320-4" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb320-5"><a href="LatexChapter.html#cb320-5" tabindex="-1"></a><span class="fu">lapply</span>(packages_used, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb320-6"><a href="LatexChapter.html#cb320-6" tabindex="-1"></a></span>
+<span id="cb320-7"><a href="LatexChapter.html#cb320-7" tabindex="-1"></a><span class="co"># Create package BibTeX file</span></span>
+<span id="cb320-8"><a href="LatexChapter.html#cb320-8" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(packages_used, <span class="at">file =</span> <span class="st">&quot;packages.bib&quot;</span>)</span></code></pre></div>
+<p>In the first executable line, we create our list of packages to load
+and cite. The next function is <code>lapply()</code> (list apply). This applies the
+function <code>library()</code> to all of the items in <em>packages_used</em>.
+<code>character.only = TRUE</code> is a <code>library</code> argument that allows us to use
+character string versions of the package names as R sees them in the
+<em>packages_used</em> vector, rather than as objects (how we have used
+<code>library</code> up until now). If you include these functions in a code chunk
+at the beginning of your knitted document, then you can be sure that you
+will have a BibTeX file with all of your packages.</p>
+</div>
+</div>
+<div id="latexBeamer" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Presentations with LaTeX Beamer<a href="LatexChapter.html#latexBeamer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can make slideshow presentations with LaTeX. Creating a presentation
+with a markup language can take a bit more effort than using a WYSIWYG
+program like Microsoft PowerPoint or Apple’s Keynote. However, combining
+LaTeX and <em>knitr</em> can make fully reproducible presentations that
+dynamically create and present results. I have found this particularly
+useful in my teaching. Dynamically produced presentations allow me to
+provide my students with fully replicable examples of how I created a
+figure on a slide. <em>knitr</em> also makes it easy to
+beautifully present code examples.</p>
+<p>One of the most popular LaTeX tools for slideshows is the beamer class.
+When you compile a beamer class document, a PDF will be created where
+every page is a different slide.
+All major PDF viewer programs have some sort of “View Full Screen”
+option to view beamer PDFs as full screen slideshows. Usually you can
+navigate through the slides with the forward and back arrows on the
+keyboard.</p>
+<p>In this section we will take a brief look at the basics of creating
+slideshows with beamer, highlighting special considerations that need to
+be made when working with beamer and <em>knitr</em>. In Chapter <a href="MarkdownChapter.html#MarkdownChapter">12</a> we will see how to use the <em>rmarkdown</em> package to create beamer presentations with the much simpler Markdown
+syntax.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/chapter_11/BeamerExample.png" alt="Knitted Beamer PDF Example" width="208" />
+<p class="caption">
+FIGURE 11.2: Knitted Beamer PDF Example
+</p>
+</div>
+<div id="beamer-basics" class="section level3 hasAnchor" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Beamer basics<a href="LatexChapter.html#beamer-basics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>knitr</em> largely works the same way in LaTeX slideshows as it does in
+article or book class documents. Nonetheless, there are a few differences to look out
+for.</p>
+<div id="the-beamer-preamble" class="section level4 unnumbered hasAnchor">
+<h4>The Beamer preamble<a href="LatexChapter.html#the-beamer-preamble" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You use <code>documentclass</code> to set a LaTeX document as a <code>beamer</code> slideshow.
+You can also include global style information in the preamble by using
+the commands <code>usetheme</code>, <code>usecolortheme</code>, <code>useinnertheme</code>,
+<code>useoutertheme</code>. For a fairly comprehensive compilation of beamer themes, see the Hartwork’s Beamer theme matrix:
+<a href="https://hartwork.org/beamer-theme-matrix/" class="uri">https://hartwork.org/beamer-theme-matrix/</a>.</p>
+</div>
+<div id="slide-frames" class="section level4 unnumbered hasAnchor">
+<h4>Slide frames<a href="LatexChapter.html#slide-frames" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>After the preamble, you start your document as usual by beginning the
+<code>document</code> environment. Then you need to start creating slides.
+Individual beamer slides are created using the <code>frame</code> environments.
+Create a frame title using <code>frametitle</code>.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb321-1"><a href="LatexChapter.html#cb321-1" tabindex="-1"></a><span class="fu">\frame</span>{</span>
+<span id="cb321-2"><a href="LatexChapter.html#cb321-2" tabindex="-1"></a>    <span class="fu">\frametitle</span>{An example frame}</span>
+<span id="cb321-3"><a href="LatexChapter.html#cb321-3" tabindex="-1"></a></span>
+<span id="cb321-4"><a href="LatexChapter.html#cb321-4" tabindex="-1"></a></span>
+<span id="cb321-5"><a href="LatexChapter.html#cb321-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>Note that you can also use the usual <code>\begin{frame} . . \end{frame}</code>
+syntax. Unlike in a WYSIWYG slide show program, you will not be able to
+tell if you have tried to put more information on one slide than it can
+handle until after you compile the document.<a href="#fn232" class="footnote-ref" id="fnref232"><sup>232</sup></a></p>
+</div>
+<div id="title-frames" class="section level4 unnumbered hasAnchor">
+<h4>Title frames<a href="LatexChapter.html#title-frames" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>One important difference from a regular LaTeX article is that instead of
+using <code>maketitle</code> to place your title information, in beamer you place
+the <code>titlepage</code> inside of a frame by itself.</p>
+</div>
+<div id="sections-and-outlines" class="section level4 unnumbered hasAnchor">
+<h4>Sections and outlines<a href="LatexChapter.html#sections-and-outlines" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>We can use section commands in much the same way as we do in other types
+of LaTeX documents. Section commands do not need to be placed inside of
+frames. After the title slide, many slideshows have a presentation
+outline. You can automatically create one from your section headings
+using the <code>tableofcontents</code> command. Like the <code>titlepage</code> command, <code>tableofcontents</code> can go on its own frame: </p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb322-1"><a href="LatexChapter.html#cb322-1" tabindex="-1"></a><span class="co">%%% Title slide</span></span>
+<span id="cb322-2"><a href="LatexChapter.html#cb322-2" tabindex="-1"></a><span class="fu">\frame</span>{</span>
+<span id="cb322-3"><a href="LatexChapter.html#cb322-3" tabindex="-1"></a>    <span class="fu">\titlepage</span></span>
+<span id="cb322-4"><a href="LatexChapter.html#cb322-4" tabindex="-1"></a>}</span>
+<span id="cb322-5"><a href="LatexChapter.html#cb322-5" tabindex="-1"></a></span>
+<span id="cb322-6"><a href="LatexChapter.html#cb322-6" tabindex="-1"></a><span class="co">%% Table of contents slide</span></span>
+<span id="cb322-7"><a href="LatexChapter.html#cb322-7" tabindex="-1"></a><span class="fu">\frame</span>{</span>
+<span id="cb322-8"><a href="LatexChapter.html#cb322-8" tabindex="-1"></a>    <span class="fu">\frametitle</span>{Outline}</span>
+<span id="cb322-9"><a href="LatexChapter.html#cb322-9" tabindex="-1"></a>        <span class="fu">\tableofcontents</span></span>
+<span id="cb322-10"><a href="LatexChapter.html#cb322-10" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="make-list-items-appear" class="section level4 unnumbered hasAnchor">
+<h4>Make list items appear<a href="LatexChapter.html#make-list-items-appear" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Lists work the same way in beamer as they do in other LaTeX document
+classes. They do have an added feature in that you can have each item
+appear as you progress through the slide show. After <code>\item</code>, place the
+number of the order in which the item should appear. Enclose the number
+in <code>&lt; -&gt;</code>. For example,</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb323-1"><a href="LatexChapter.html#cb323-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">itemize</span>}</span>
+<span id="cb323-2"><a href="LatexChapter.html#cb323-2" tabindex="-1"></a>    <span class="fu">\item</span>&lt;1-&gt; The first item.</span>
+<span id="cb323-3"><a href="LatexChapter.html#cb323-3" tabindex="-1"></a>    <span class="fu">\item</span>&lt;2-&gt; The second item.</span>
+<span id="cb323-4"><a href="LatexChapter.html#cb323-4" tabindex="-1"></a>    <span class="fu">\item</span>&lt;2-&gt; The third item.</span>
+<span id="cb323-5"><a href="LatexChapter.html#cb323-5" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">itemize</span>}</span></code></pre></div>
+<p>In this example the first item will appear before the next two. These
+two will appear at the same time.</p>
+</div>
+</div>
+<div id="knitr-with-latex-slideshows" class="section level3 hasAnchor" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> <em>knitr</em> with LaTeX slideshows<a href="LatexChapter.html#knitr-with-latex-slideshows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>knitr</em> code chunks have the same syntax in LaTeX slideshows as in other
+LaTeX documents. You do need to make one change to the <code>frame</code> options,
+however, to include highlighted <em>knitr</em> code chunks on your slides. You
+should add the <code>fragile</code> option to the <code>frame</code> command.<a href="#fn233" class="footnote-ref" id="fnref233"><sup>233</sup></a> Here is an
+example: </p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb324-1"><a href="LatexChapter.html#cb324-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">frame</span>}[fragile]</span>
+<span id="cb324-2"><a href="LatexChapter.html#cb324-2" tabindex="-1"></a>    <span class="fu">\frametitle</span>{An example fragile frame.}</span>
+<span id="cb324-3"><a href="LatexChapter.html#cb324-3" tabindex="-1"></a></span>
+<span id="cb324-4"><a href="LatexChapter.html#cb324-4" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">frame</span>}</span></code></pre></div>
+</div>
+<div id="chapter-summary-8" class="section level3 unnumbered hasAnchor">
+<h3>Chapter summary<a href="LatexChapter.html#chapter-summary-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this chapter we have learned the nitty-gritty of how to create simple
+LaTeX documents, articles and slideshows, that we can embed our
+reproducible research in using <em>knitr</em>. In the next chapter we look at
+how to use R Markdown to expand the type of presentation documents we can create reproducibly.</p>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-donoho2009" class="csl-entry">
+Donoho, David L, Arian Maleki, Morteza Shahram, Inam Ur Rahman, and Victoria Stodden. 2009. <span>“<span class="nocase">Reproducible research in computational harmonic analysis</span>.”</span> <em>Computing in Science <span>&amp;</span> Engineering</em> 11 (1): 8–18.
+</div>
+<div id="ref-R-bookdown" class="csl-entry">
+———. 2025a. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="217">
+<li id="fn217"><p>The <em>bookdown</em> <span class="citation">(<a href="#ref-R-bookdown">Xie 2025a</a>)</span> R package greatly improved the ability to create book-like documents with R Markdown. The third edition of this book is made with <em>bookdown</em>.<a href="LatexChapter.html#fnref217" class="footnote-back">↩︎</a></p></li>
+<li id="fn218"><p>Wikipedia has collated a table that comprehensively compares many of these editors: <a href="https://en.wikipedia.org/wiki/List_of_text_editors" class="uri">https://en.wikipedia.org/wiki/List_of_text_editors</a>.<a href="LatexChapter.html#fnref218" class="footnote-back">↩︎</a></p></li>
+<li id="fn219"><p><a href="https://atom.io/" class="uri">https://atom.io/</a><a href="LatexChapter.html#fnref219" class="footnote-back">↩︎</a></p></li>
+<li id="fn220"><p>“Slideshow” is not a valid class. One slideshow class that we discuss later is called “beamer”.<a href="LatexChapter.html#fnref220" class="footnote-back">↩︎</a></p></li>
+<li id="fn221"><p><code>\SweaveOpts{concordance=TRUE}</code> maps the line numbers in your <code>.Rnw</code> file to the <code>.tex</code> file it generates. This especially helps with debugging. See: <a href="https://support.rstudio.com/hc/en-us/articles/200532247-Weaving-Rnw-Files" class="uri">https://support.rstudio.com/hc/en-us/articles/200532247-Weaving-Rnw-Files</a> (accessed 3 October 2019).<a href="LatexChapter.html#fnref221" class="footnote-back">↩︎</a></p></li>
+<li id="fn222"><p>In some document classes the current data will automatically be
+included if you don’t specify the date.<a href="LatexChapter.html#fnref222" class="footnote-back">↩︎</a></p></li>
+<li id="fn223"><p>Frequently it also includes thank yous to people who have helped with the research.<a href="LatexChapter.html#fnref223" class="footnote-back">↩︎</a></p></li>
+<li id="fn224"><p>The <code>paragraph</code> level does not have numbers.<a href="LatexChapter.html#fnref224" class="footnote-back">↩︎</a></p></li>
+<li id="fn225"><p>See the Netherlands TeX user group list mentioned earlier for an
+extensive compilation of math commands.<a href="LatexChapter.html#fnref225" class="footnote-back">↩︎</a></p></li>
+<li id="fn226"><p>Instead of backslashes and parentheses, you can also use a pair of
+dollar signs (<code>$. . .$</code>).<a href="LatexChapter.html#fnref226" class="footnote-back">↩︎</a></p></li>
+<li id="fn227"><p>Equivalently, use two pairs of dollar signs (<code>$$…$$</code>) or the
+<code>display</code> environment. Though it will still work in most cases, the
+double dollar sign math syntax may cause errors. You can also number
+display equations using the <code>equation</code> environment.<a href="LatexChapter.html#fnref227" class="footnote-back">↩︎</a></p></li>
+<li id="fn228"><p>The order of the citations does not matter.<a href="LatexChapter.html#fnref228" class="footnote-back">↩︎</a></p></li>
+<li id="fn229"><p>This is very similar to how we create vectors in R, though in
+BibTeX you can actually have a comma after the last attribute.<a href="LatexChapter.html#fnref229" class="footnote-back">↩︎</a></p></li>
+<li id="fn230"><p>It is referred to in LaTeX as the plain style.<a href="LatexChapter.html#fnref230" class="footnote-back">↩︎</a></p></li>
+<li id="fn231"><p>This is sometimes referred to as the “Harvard” style.<a href="LatexChapter.html#fnref231" class="footnote-back">↩︎</a></p></li>
+<li id="fn232"><p>One way to deal with frames that span multiple slides is to use the <code>allowframebreaks</code> command, <code>\begin{frame}[allowframebreaks].</code><a href="LatexChapter.html#fnref232" class="footnote-back">↩︎</a></p></li>
+<li id="fn233"><p>For a detailed discussion of why you need to use the <code>fragile</code> option with the <code>verbatim</code> environment that <em>knitr</em> uses to display highlighted text in LaTeX documents, see this blog post by Pieter Belmans: <a href="https://pbelmans.ncag.info/blog/2011/02/20/why-latex-beamer-needs-fragile-when-using-verbatim/" class="uri">https://pbelmans.ncag.info/blog/2011/02/20/why-latex-beamer-needs-fragile-when-using-verbatim/</a> (posted 20 February 2011).<a href="LatexChapter.html#fnref233" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="FiguresChapter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="MarkdownChapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/13-latex.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

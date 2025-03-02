@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Getting Started with File Management | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 4 Getting Started with File Management | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Getting Started with File Management | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 4 Getting Started with File Management | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Getting Started with File Management | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 4 Getting Started with File Management | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="LyxAppendix.html"/>
+<link rel="next" href="Storing.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="DirectoriesChapter" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Getting Started with File Management<a href="DirectoriesChapter.html#DirectoriesChapter" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Careful file management is crucial for reproducible research. Remember
+two of the guidelines from Chapter
+<a href="GettingStartedRR.html#GettingStartedRR">2</a>:</p>
+<ul>
+<li><p>Explicitly tie your files together.</p></li>
+<li><p>Have a plan to organize, store, and make your files available.</p></li>
+</ul>
+<p>Apart from the times when you have an email exchange (or even meet in
+person) with someone interested in reproducing your research, the main
+information independent researchers have about the procedures is what
+they access in files you make available: data files, analysis files, and
+presentation files. If these files are well organized and the way they
+are tied together is clear, replication will be much easier. File
+management is also important for you as a researcher, because if your
+files are well organized, you will be able to more easily make changes,
+benefit from work you have already done, and collaborate with others.</p>
+<p>Using tools such as R, knitr/R Markdown, and markup languages like
+LaTeX requires fairly detailed knowledge of where files are stored in
+your computer. Handling files to enable reproducibility may require you
+to use command-line tools to access and organize your files. R and
+Unix-like shell programs allow you to control files—creating, deleting,
+relocating—in powerful and really reproducible ways. By typing these
+commands you are documenting every step you take. This is a major
+advantage over graphical user interface-type systems where you organize
+files by clicking and dragging them with the cursor. However, typed
+commands require you to know your files’ specific addresses, their file
+paths.</p>
+<p>In this chapter we discuss how a reproducible research project may be
+organized and cover the basics of file path naming conventions in
+Unix-like operating systems, such as macOS and Linux, and
+Windows. We then learn how to organize them with RStudio Projects.
+We’ll cover some basic R and Unix-like shell commands for
+manipulating files as well as how to navigate through files in RStudio
+in the <em>Files</em> pane. The skills you will learn in this chapter will be
+heavily used in the next chapter (Chapter <a href="Storing.html#Storing">5</a>) and
+throughout the book.</p>
+<p>In this chapter we work with locally stored files, i.e. files stored on
+your computer. In the next chapter, we will discuss various ways to store
+and access files remotely stored in the cloud.</p>
+<div id="file-paths-and-naming-conventions" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> File Paths and Naming Conventions<a href="DirectoriesChapter.html#file-paths-and-naming-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All of the operating systems covered in this book organize files in
+hierarchical directories, also known as file trees. To a large extent,
+directories can be thought of as the folders you usually see on your
+Windows or Mac desktop.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a> They are called hierarchical because
+directories are located inside of other directories, as in Figure <a href="DirectoriesChapter.html#fig:ExampleTree">4.1</a>.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
+<div id="root-directories" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Root directories<a href="DirectoriesChapter.html#root-directories" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A root directory is the first level in a disk, such as a hard drive. It
+is the root out of which the file tree ‘grows’. All other directories
+are sub-directories of the root directory.</p>
+<p>On Windows computers you can have multiple root directories, one for
+each storage device or partition of a storage device. The root directory
+is given a drive letter assignment. If you use Windows regularly, you
+will most likely be familiar with <code>C:\</code> used to denote the C partition
+of the hard drive. This is a root directory. On Unix-like systems,
+including Macs and Linux computers, the root directory is denoted
+by a forward slash (<code>/</code>) with nothing before it.</p>
+</div>
+<div id="sub-directories-and-parent-directories" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Sub-directories and parent directories<a href="DirectoriesChapter.html#sub-directories-and-parent-directories" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will probably not store all of your files in the root directory.
+This would get very messy. Instead, you will store your files in
+sub-directories of the root directory. Inside of these sub-directories may
+be further sub-directories and so on. A directory inside of another
+directory is referred to as a child directory of a parent
+directory.</p>
+<p>On Windows computers, separate sub-directories are indicated with a back
+slash (<code>\</code>). For example, if we have a folder called <em>data</em> inside of a
+folder called <em>example-project</em> which is located in the C root directory,
+it has the address <code>C:\example-project\data</code>.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a> When you type Windows
+file paths into R, you need to use two backslashes rather than one: e.g.
+<code>C:\\example-project\\data</code>. This is because the <code>\</code> is an escape
+character in R.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a> Escape characters tell R to interpret the next character or sequence of characters differently. For example, in Section <a href="Storing.html#TSVEscape">5.1</a>
+you’ll see how <code>\t</code> can be interpreted by R as a tab rather than the
+letter “t”. Add another escape character to neutralize the escape
+character so that R interprets it as a backslash. In other words, use an
+escape character to escape the escape character. Another option for
+writing Windows file names in R is to use one forward slash (<code>/</code>).</p>
+<p>On Unix-like systems, including Mac computers, directories are indicated
+with a forward slash (<code>/</code>). The file path of the <em>data</em> file on a
+Unix-like system would be: <code>/example-project/data</code>. Remember that a
+forward slash with nothing before it indicates the root directory. So
+<code>/example-project/data</code> has a different meaning than
+<code>example-project/data</code>. In the former, <em>example-project</em> is a sub-directory
+of the root. In the latter, <em>example-project</em> is a sub-directory of the
+current working directory (see below for details about working
+directories). This is also true in Windows.</p>
+<p>In this chapter, I switch between the two file system naming conventions
+to expose you to both. In subsequent chapters, I use Unix-like
+file paths. When you use relative paths (see below), these will work across
+operating systems in R. We’ll get to relative paths in a moment.</p>
+</div>
+<div id="working-directories" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Working directories<a href="DirectoriesChapter.html#working-directories" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you use R, markup languages, and many of the other tools covered in
+this book, it is important to keep in mind what your current working
+directory is. The working directory is the directory where the program
+automatically looks for files and other directories, unless you tell it
+to look elsewhere. It is also where it will save files. Later in this
+chapter, we will cover functions for finding and changing the working
+directory.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ExampleTree"></span>
+<img src="bookdown_files/figure-html/ExampleTree-1.png" alt="Example Research Project File Tree" width="672" />
+<p class="caption">
+FIGURE 4.1: Example Research Project File Tree
+</p>
+</div>
+</div>
+<div id="absolute-vs.-relative-paths" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Absolute vs. relative paths<a href="DirectoriesChapter.html#absolute-vs.-relative-paths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>For reproducible research, collaborative research, and even if you ever
+change the computer you work on, it is a good idea to use relative
+rather than absolute file paths. Absolute file paths give the entire
+path of a given file or directory on a specific system. For example,
+<code>/example-project/data</code> is an absolute path. It specifies the path of
+the <em>data</em> child directory all the way back to the root directory.
+However, if our current working directory is <em>example-project</em> and we
+want to link to the <em>data</em> child directory or a file in it, we don’t
+need the absolute path. We could use <code>data/</code>, i.e. the path
+relative to the working directory.</p>
+<p>It is good practice to use relative paths and organize
+your files such that using relative paths is easy. This makes your code
+less dependent on the particular file structure of a particular
+computer. For example, imagine you use <code>C:\\example-project\\data</code> in
+your source code to link to the <em>data</em> directory. If someone—a
+collaborator, a researcher reproducing your work, or even you—then
+tries to run the code on a different computer, the code will break if
+they are, for instance, using a Unix-like system or have placed
+<em>example-project</em> in a different partition of their hard drive. This can
+be fixed relatively by changing the file path in the
+source. However, this is tedious (often not well documented) and
+unnecessary if you use relative file paths.</p>
+<p>Below we’ll see how to use RStudio Projects and also the <em>here</em> package <span class="citation">(<a href="#ref-R-here">Müller 2020</a>)</span> to automatically set working directories so that your relative file paths will transport even more easily across computers.</p>
+<p>The <em>ProjectTemplate</em> package <span class="citation">(<a href="#ref-R-ProjectTemplate">White 2024</a>)</span> provides functions to help set up a well structured research project file tree. We don’t use it in the following examples, but you may find it useful in your own work.</p>
+</div>
+<div id="spaces-in-directory-and-file-names" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Spaces in directory and file names<a href="DirectoriesChapter.html#spaces-in-directory-and-file-names" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is good practice to avoid putting spaces in your file and
+directory names. For example, I called the example project parent
+directory in Figure <a href="DirectoriesChapter.html#fig:ExampleTree">4.1</a> “example-project” rather than “Example Project”. Spaces in file and directory names can sometimes create problems for computer programs
+trying to read the file path. The program may believe that the space
+indicates that the path name has ended. To make multi-word names easily
+readable without using spaces, adopt a consistent naming convention.</p>
+<p>One approach is to use a convention that contrasts with the R object naming convention you are using. A contrasting convention helps make it clear if something is an R object or a file name. For example, if we adopt the underscore method for R object names used in Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a> (e.g. <code>health_data</code>) we could use hyphens (<code>-</code>) to separate words in file names. For example: <code>example-source.R</code>. This is sometimes called kebab-case.</p>
+</div>
+</div>
+<div id="organizing-your-research-project" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Organizing Your Research Project<a href="DirectoriesChapter.html#organizing-your-research-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Figure <a href="DirectoriesChapter.html#fig:ExampleTree">4.1</a> gives an example of how the files in a simple
+reproducible research project could be organized. The project’s parent
+directory is called <em>example-project</em>. Inside this directory are the
+primary knittable documents (<em>paper.Rmd</em> <em>slideshow.Rmd</em>, and
+<em>website.Rmd</em>). In addition, there is an <em>analysis</em> sub-directory with
+the R files to run the statistical analyses followed by a further <em>data</em>
+child directory.</p>
+<p>The nested file structure allows you to use relative file paths. The
+knittable documents can call <em>analysis-1.R</em> with the relative path
+<em>analysis/analysis-1.R</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ProjectMenu"></span>
+<img src="images/chapter_4/ProjectMenu.png" alt="An Example RStudio Project Menu" width="236" height="30%" />
+<p class="caption">
+FIGURE 4.2: An Example RStudio Project Menu
+</p>
+</div>
+<p>In addition to the main files and sub-directories in <em>example-project</em>, you
+will notice files called <em>README.md</em> and <em>example-project.Rproj</em>. We’ll discuss the <em>example-project.Rproj</em> file in the next section. The <em>README.md</em> file
+is a human readable overview of all the files in the project. It should briefly
+describe the project including things like its title, author(s), topic,
+any copyright information, and so on. It should also indicate how the
+folders in the project are organized and give instructions for how to
+reproduce the project. The README file should be in the main project
+folder—in our example this is called <em>example-project</em>—so that it is
+easy to find. If you are storing your project as a GitHub repository
+(see Chapter <a href="Storing.html#Storing">5</a>) and the file is called <em>README</em>, its contents will
+automatically be displayed on the repository’s main page. If the
+<em>README</em> file is written using Markdown (e.g. <em>README.md</em>), it will also
+be properly formatted. Figure <a href="Storing.html#fig:BookRepository">5.2</a> shows an example of this.</p>
+<p>It is good practice to dynamically include the system information for
+the R session you used to create the project. To do this, you can write
+your README file with R Markdown. Simply include the <code>sessionInfo()</code>
+function in a <em>knitr</em> code chunk in the R Markdown document. If you knit
+this file immediately after knitting your presentation document, it will
+record the information for that session.</p>
+<p>You can also dynamically include session info in a LaTeX document. To do
+this, use the function in a code chunk. The code chunk should have the
+option <code>results='asis'</code>. The code is: </p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="DirectoriesChapter.html#cb98-1" tabindex="-1"></a><span class="fu">toLatex</span>(<span class="fu">sessionInfo</span>())</span></code></pre></div>
+</div>
+<div id="CreateRStudioProject" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Organizing Research with RStudio Projects<a href="DirectoriesChapter.html#CreateRStudioProject" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you are using RStudio, you may want to organize your files as
+Projects. You can turn a normal directory into an
+RStudio Project by clicking on <code>File</code> in the RStudio menu bar and
+selecting <code>New Project…</code>. A new window will pop up. Select the option
+<code>Existing Directory</code>. Find the directory you want to turn into an
+RStudio Project by clicking on the <code>Browse</code> button. Finally, select
+<code>Create Project</code>. You will also notice in the Create Project pop-up
+window that you can build new project directories and create a project
+from a directory already under version control (we’ll do this at the end
+of Chapter <a href="Storing.html#Storing">5</a>). When you create a new project, you will see that
+RStudio has put a file with the extension <code>.Rproj</code> into the directory, like <em>example-project.Rproj</em> in Figure <a href="DirectoriesChapter.html#fig:ExampleTree">4.1</a>.</p>
+<p>Making your research project directories RStudio Projects is useful for
+a number of reasons:</p>
+<ul>
+<li><p>The project is listed in RStudio’s Project menu where it can be
+opened easily (see Figure <a href="DirectoriesChapter.html#fig:ProjectMenu">4.2</a>).</p></li>
+<li><p>When you open the project in RStudio, it automatically sets the
+working directory to the project’s directory and can load the
+source code files you were last working on.</p></li>
+<li><p>You can set project specific options like whether PDF presentation
+documents should be compiled with <em>Sweave</em> or <em>knitr</em>.</p></li>
+<li><p>When you close the project, your R workspace and history are saved in
+the project directory if you want. However, avoid saving your workspace as this could make reproducibility harder.</p></li>
+<li><p>It helps you version control your files.</p></li>
+<li><p>You can build your Project—run the files in a specific way—with
+makefiles.</p></li>
+<li><p>It gives you an easy-to-use interface for managing the R packages that
+your project depends on.</p></li>
+</ul>
+</div>
+<div id="r-file-manipulation-functions" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> R File Manipulation Functions<a href="DirectoriesChapter.html#r-file-manipulation-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R has a range of functions for handling and navigating through files.
+Including these functions in your source code files allows you to more
+easily replicate your actions.</p>
+<div id="getwd" class="section level4 unnumbered hasAnchor">
+<h4><code>getwd()</code><a href="DirectoriesChapter.html#getwd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To find your current working directory use the <code>getwd()</code> function: </p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="DirectoriesChapter.html#cb99-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;/Users/caojunlian/Rep-Res-Book/rep-res-3rd-edition&quot;</code></pre>
+</div>
+<div id="list.files" class="section level4 unnumbered hasAnchor">
+<h4><code>list.files()</code><a href="DirectoriesChapter.html#list.files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use the <code>list.files()</code> function to see all of the files and sub-directories
+in the current working directory. You can list the files in other
+directories too by adding the directory path as an argument to the
+function.</p>
+<p>Because my current working directory has a lot of files in it, I will shorten the output for illustration by piping it through <code>head()</code>.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="DirectoriesChapter.html#cb101-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb101-2"><a href="DirectoriesChapter.html#cb101-2" tabindex="-1"></a><span class="fu">list.files</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;_book&quot;                       
+## [2] &quot;_bookdown_files&quot;             
+## [3] &quot;_bookdown.yml&quot;               
+## [4] &quot;_output.yml&quot;                 
+## [5] &quot;01-author.Rmd&quot;               
+## [6] &quot;01-stylistic-conventions.Rmd&quot;</code></pre>
+</div>
+<div id="setwd" class="section level4 unnumbered hasAnchor">
+<h4><code>setwd()</code><a href="DirectoriesChapter.html#setwd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>The <code>setwd()</code> function is the base R way to set the current working directory. For example, if we are on a Mac or other Unix-like computer, we can set the working directory to
+the <em>analysis</em> directory in our Example Project (see Figure <a href="DirectoriesChapter.html#fig:ExampleTree">4.1</a>) like this:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="DirectoriesChapter.html#cb103-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/example-project/analysis/&quot;</span>)</span></code></pre></div>
+<p>Now R will automatically look in the <em>analysis</em> folder for files and
+will save new files into this folder, unless we explicitly tell it to do
+otherwise.</p>
+<p>When working with a knittable document, setting the working directory
+once in a code chunk changes the working directory for all subsequent
+code chunks.</p>
+<p>However . . .</p>
+</div>
+<div id="sethere" class="section level4 unnumbered hasAnchor">
+<h4><code>here::set_here()</code><a href="DirectoriesChapter.html#sethere" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>It is <em>not</em> good practice for reproducibility (and just general convenience when using a source code file across multiple computers) to use <code>setwd()</code> in your R source code. You, and anyone reproducing your work, will need to tediously set specific file paths for each computer.</p>
+<p>Instead, use RStudio Projects, which automatically set the working directory to the one with the <em>.Rproj</em> file. If you are not using RStudio Projects, include <code>set_here()</code> from the <em>here</em> package at the top of your source code. This will create a file called <em>.here</em> in the current working directory. It functions similarly to <em>.Rproj</em> to automatically flag for <em>here</em> what should be the current working directory. Remember when you share your source code to also share the <em>.Rproj</em>/<em>.here</em> file.</p>
+</div>
+<div id="root.dir-in-knittable-documents" class="section level4 unnumbered hasAnchor">
+<h4><code>root.dir</code> in knittable documents<a href="DirectoriesChapter.html#root.dir-in-knittable-documents" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>By default, the root (or working) directory for all of the code chunks in
+a knittable document is the directory where this document is located.
+You can reset the directory by feeding a new file path to the <code>root.dir</code>
+option. We can set this globally<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a> for all of the chunks in the
+document by including the following code in the document’s first chunk.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="DirectoriesChapter.html#cb104-1" tabindex="-1"></a>opts_knit<span class="sc">$</span><span class="fu">set</span>(<span class="at">root.dir =</span> <span class="st">&quot;/example-project/analysis&quot;</span>)</span></code></pre></div>
+<p>We set the <em>/example-project/analysis</em> sub-directory as the root
+directory for all of the chunks in our presentation document.</p>
+<p><strong>Note:</strong> In general it is preferable to use the knittable file’s default directory and file paths relative to it rather than manually specifying <code>root.dir()</code>. Setting an alternate root directory will make reproducibility more difficult.</p>
+</div>
+<div id="dir.create" class="section level4 unnumbered hasAnchor">
+<h4><code>dir.create()</code><a href="DirectoriesChapter.html#dir.create" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Sometimes you may want to create a new directory. You can use the <code>dir.create()</code> function to do this.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a> For example, to create an <em>example-project</em> file
+in the root <em>C</em> directory on a Windows computer, type:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="DirectoriesChapter.html#cb105-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">example-project&quot;</span>)</span></code></pre></div>
+</div>
+<div id="file.create" class="section level4 unnumbered hasAnchor">
+<h4><code>file.create()</code><a href="DirectoriesChapter.html#file.create" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Similarly, you can create a new blank file with the <code>file.create()</code>
+function. To add a blank R source code file called <em>source-code.R</em> to the
+<em>example-project</em> directory on the <em>C</em> drive, use:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="DirectoriesChapter.html#cb106-1" tabindex="-1"></a><span class="fu">file.create</span>(<span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">example-project</span><span class="sc">\\</span><span class="st">source-code.R&quot;</span>)</span></code></pre></div>
+</div>
+<div id="catR" class="section level4 unnumbered hasAnchor">
+<h4><code>cat()</code><a href="DirectoriesChapter.html#catR" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>If you want to create a new file and put text into it, use the <code>cat()</code>
+(concatenate and print) function. For example, to create a new file in
+the current working directory called <em>example-cat.md</em> that includes the
+text “Reproducible Research with R and RStudio” type:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="DirectoriesChapter.html#cb107-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Reproducible Research with R and RStudio&quot;</span>,</span>
+<span id="cb107-2"><a href="DirectoriesChapter.html#cb107-2" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;example-cat.md&quot;</span>)</span></code></pre></div>
+<p>In this example we created a markdown formatted file by using the <code>.md</code>
+file extension. We could, of course, change the file extension to <code>.R</code>
+to set it as an R source code file, <code>.Rnw</code> to create a <em>knitr</em> LaTeX
+file, and so on.</p>
+<p>You can use <code>cat()</code> to print the contents of one or more objects to a
+file. <strong>Warning:</strong> the <code>cat()</code> function will overwrite existing files with
+the new contents. To add the text to existing files, use the
+<code>append = TRUE</code> argument.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="DirectoriesChapter.html#cb108-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;More Text&quot;</span>, <span class="at">file =</span> <span class="st">&quot;example-cat.md&quot;</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="unlink" class="section level4 unnumbered hasAnchor">
+<h4><code>unlink()</code><a href="DirectoriesChapter.html#unlink" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>You can use the <code>unlink</code> function to delete files and directories.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="DirectoriesChapter.html#cb109-1" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">example-project</span><span class="sc">\\</span><span class="st">source-code.R&quot;</span>)</span></code></pre></div>
+<p><strong>Warning:</strong> the <code>unlink()</code> function permanently deletes files, so be very
+careful using it.</p>
+</div>
+<div id="file.rename" class="section level4 unnumbered hasAnchor">
+<h4><code>file.rename()</code><a href="DirectoriesChapter.html#file.rename" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>You can use <code>file.rename()</code> to, obviously, rename a file. It can also
+be used to move a file from one directory to another. For example,
+imagine that we want to move the <em>example-cat.md</em> file from the directory
+<em>example-project</em> to one called <em>markdown-files</em> that we already
+created.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="DirectoriesChapter.html#cb110-1" tabindex="-1"></a><span class="fu">file.rename</span>(<span class="at">from =</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">example-project</span><span class="sc">\\</span><span class="st">example-cat.md&quot;</span>,</span>
+<span id="cb110-2"><a href="DirectoriesChapter.html#cb110-2" tabindex="-1"></a>            <span class="at">to =</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">markdown-files</span><span class="sc">\\</span><span class="st">example-cat.md&quot;</span>)</span></code></pre></div>
+</div>
+<div id="file.copy" class="section level4 unnumbered hasAnchor">
+<h4><code>file.copy()</code><a href="DirectoriesChapter.html#file.copy" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p><code>file.rename()</code> fully moves a file from one directory to another. To
+copy the file to another directory, use the <code>file.copy()</code> function. It has
+the same syntax as <code>file.rename()</code>:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="DirectoriesChapter.html#cb111-1" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="at">from =</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">example-project</span><span class="sc">\\</span><span class="st">example-cat.md&quot;</span>,</span>
+<span id="cb111-2"><a href="DirectoriesChapter.html#cb111-2" tabindex="-1"></a>          <span class="at">to =</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">markdown-files</span><span class="sc">\\</span><span class="st">example-cat.md&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="unix-like-shell-commands-for-file-management" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Unix-like Shell Commands for File Management<a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Though this book is mostly focused on using R for reproducible research,
+it can be useful to use a Unix-like shell program to manipulate files in
+large projects. Unix-like shell programs, including Bash on Linux (and Mac before macOS Catalina), Zsh on Mac (from macOS Catalina onwards),
+and Windows PowerShell, give you type-able commands to interact with your
+computer’s operating system.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a> We will especially return to shell
+commands in the next chapter when we discuss Git version control and
+makefiles for collecting data in Chapter <a href="DataGather.html#DataGather">6</a>, as well as the command-line program<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a> Pandoc in Chapter <a href="MarkdownChapter.html#MarkdownChapter">12</a>. We don’t have enough space to fully introduce shell programs or even all of the commands for manipulating
+files. We are just going to cover some of the basic and most useful
+commands for file management. For good introductions for Unix and macOS computers, see William E. Shotts Jr.’s <span class="citation">(<a href="#ref-shottsjr2012">2012</a>)</span> book on the
+Linux command-line. For Windows users, Microsoft maintains a tutorial on
+Windows PowerShell at
+<a href="http://technet.microsoft.com/en-us/library/hh848793" class="uri">http://technet.microsoft.com/en-us/library/hh848793</a>. The commands
+discussed in this chapter should work in both Unix-like shells and
+Windows PowerShell.</p>
+<p>It’s important at this point to highlight a key difference between R and
+Unix-like shell syntax. Shell command arguments don’t have parentheses. For example, if I want to change my working directory to my Mac Desktop in a shell using the <code>cd</code> command, I
+type:<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb112-1"><a href="DirectoriesChapter.html#cb112-1" tabindex="-1"></a><span class="bu">cd</span> /Users/cgandrud/Desktop</span></code></pre></div>
+<p>In this example <code>cgandrud</code> is my user name.</p>
+<div id="cd" class="section level4 unnumbered hasAnchor">
+<h4><code>cd</code><a href="DirectoriesChapter.html#cd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>As we just saw, use the <code>cd</code> (change directory) command to change the working directory in the shell. Here is an example of changing the
+directory in Windows PowerShell to <code>C:/</code>:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb113-1"><a href="DirectoriesChapter.html#cb113-1" tabindex="-1"></a><span class="bu">cd</span> C:/</span></code></pre></div>
+<p>If you are in a child directory and want to change the working directory
+to the previous working directory you were in, type:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb114-1"><a href="DirectoriesChapter.html#cb114-1" tabindex="-1"></a><span class="bu">cd</span> <span class="at">-</span></span></code></pre></div>
+<p>If, for example, our current working directory is <em>/User/Me/Desktop</em> and
+we typed <code>cd</code> followed by a minus sign (<code>cd -</code>), then the working
+directory would change to <em>/User/Me</em>. Note this will not work in
+PowerShell.</p>
+</div>
+<div id="pwd" class="section level4 unnumbered hasAnchor">
+<h4><code>pwd</code><a href="DirectoriesChapter.html#pwd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>To find your current working directory, use the <code>pwd</code> command (present
+working directory). This is essentially the same as R’s <code>getwd()</code> function.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb115-1"><a href="DirectoriesChapter.html#cb115-1" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+</div>
+<div id="ls" class="section level4 unnumbered hasAnchor">
+<h4><code>ls</code><a href="DirectoriesChapter.html#ls" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>The <code>ls</code> (list) command works very similarly to R’s <code>list.files()</code>
+function. It shows you what is in the current working directory.</p>
+<p>Again, I have a lot of files in my working directory, so I will shorten the output for this example by piping it through the command line’s <code>head</code> command. The command line pipe is not <code>%&gt;%</code>, as in R, but instead <code>|</code>.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb116-1"><a href="DirectoriesChapter.html#cb116-1" tabindex="-1"></a><span class="fu">ls</span> <span class="kw">|</span> <span class="fu">head</span></span></code></pre></div>
+<pre><code>## 01-author.Rmd
+## 01-stylistic-conventions.Rmd
+## 02-additional-resources.Rmd
+## 03-introduction.Rmd
+## 04-getting-started.Rmd
+## 05-start-R.Rmd
+## 06-file-management.Rmd
+## 07-storage.Rmd
+## 08-gather.Rmd
+## 09-clean.Rmd</code></pre>
+<p>As we saw earlier, R also has an <code>ls</code> command. R’s <code>ls()</code> function lists
+items in the R workspace. The shell’s <code>ls</code> command lists files and
+directories in the working directory.</p>
+</div>
+<div id="mkdir" class="section level4 unnumbered hasAnchor">
+<h4><code>mkdir</code><a href="DirectoriesChapter.html#mkdir" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>Use <code>mkdir</code> to create a new directory. For example, if I wanted to
+create a sub-directory of my Linux root directory called <em>new-directory</em> I
+would type:</p>
+<pre class="shell"><code>mkdir /new-directory</code></pre>
+</div>
+<div id="echo" class="section level4 unnumbered hasAnchor">
+<h4><code>echo</code><a href="DirectoriesChapter.html#echo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>There are a number of ways to create new files in Unix-like shells. One
+of the simplest is the <code>echo</code> command. This command prints its argument to the Terminal.
+For example:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb119-1"><a href="DirectoriesChapter.html#cb119-1" tabindex="-1"></a><span class="bu">echo</span> Reproducible Research with R and RStudio</span></code></pre></div>
+<pre><code>## Reproducible Research with R and RStudio</code></pre>
+<p>If you add the greater-than symbol (<code>&gt;</code>) after the text you want to
+print and then a file name, <code>echo</code> will create the file (if it doesn’t
+already exist) in the current working directory and then print the text
+into the file.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb121-1"><a href="DirectoriesChapter.html#cb121-1" tabindex="-1"></a><span class="bu">echo</span> Reproducible Research with R and RStudio <span class="op">&gt;</span> example-echo.md</span></code></pre></div>
+<p>Using only one greater-than sign will completely erase the
+<em>example-echo.md</em> file’s contents and replace them with
+<code>Reproducible Research with R and RStudio</code>. To append the text at the end
+of an existing file, use two greater-than signs (<code>&gt;&gt;</code>).</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb122-1"><a href="DirectoriesChapter.html#cb122-1" tabindex="-1"></a><span class="bu">echo</span> More text. <span class="op">&gt;&gt;</span> example-echo.md</span></code></pre></div>
+<p>There is also a <code>cat</code> shell command. It works slightly differently than
+the R version of the command and I don’t cover it here.</p>
+</div>
+<div id="rm" class="section level4 unnumbered hasAnchor">
+<h4><code>rm</code><a href="DirectoriesChapter.html#rm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>The command <code>rm</code> removes (deletes) files or directories.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb123-1"><a href="DirectoriesChapter.html#cb123-1" tabindex="-1"></a><span class="fu">rm</span> example-echo.md</span></code></pre></div>
+<p>Add the <code>d</code> (directory) option to delete a directory. Note that options are like arguments in an R function. For example:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb124-1"><a href="DirectoriesChapter.html#cb124-1" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-d</span> example-dir</span></code></pre></div>
+<p>Again, be careful when using this command, because it
+permanently deletes the files or directories.</p>
+<p>As we saw in Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>, R also has an <code>rm()</code> function. It is
+different because it removes objects from your R workspace rather than
+files from your working directory.</p>
+</div>
+<div id="mv" class="section level4 unnumbered hasAnchor">
+<h4><code>mv</code><a href="DirectoriesChapter.html#mv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>To move a file from one directory to another from a shell, use the
+<code>mv</code> (move) command. For example, to move the file <em>example-echo.md</em> from
+<em>example-project</em> to <em>markdown-files</em>, use the following code and imagine
+both directories are in the root directory:<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb125-1"><a href="DirectoriesChapter.html#cb125-1" tabindex="-1"></a><span class="fu">mv</span> /example-project/example-echo.md/markdown-files</span></code></pre></div>
+<p>Note that the <em>markdown-files</em> directory must already exist. If it does not exist, the file will just be renamed. This is similar to the R function
+<code>file.rename()</code>.</p>
+</div>
+<div id="cp" class="section level4 unnumbered hasAnchor">
+<h4><code>cp</code><a href="DirectoriesChapter.html#cp" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>The <code>mv</code> command completely moves a file from one directory to another.
+To copy a version of the file to a new directory use the <code>cp</code> command.
+The syntax is similar to <code>mv</code>:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb126-1"><a href="DirectoriesChapter.html#cb126-1" tabindex="-1"></a><span class="fu">cp</span> /example-project/ExampleEcho.md /markdown-files</span></code></pre></div>
+</div>
+<div id="systemRcommand" class="section level4 unnumbered hasAnchor">
+<h4><code>system()</code> (R function)<a href="DirectoriesChapter.html#systemRcommand" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p></p>
+<p>You can run shell commands from within R using R’s <code>system()</code> function. For
+example, to run the <code>echo</code> command from within R type:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="DirectoriesChapter.html#cb127-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;echo Text to Add &gt; ExampleEcho.md&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="file-navigation-in-rstudio" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> File Navigation in RStudio<a href="DirectoriesChapter.html#file-navigation-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The RStudio <em>Files</em> pane allows us to navigate our file tree and do some
+basic file manipulations. Figure <a href="DirectoriesChapter.html#fig:FilesPane">4.3</a>
+shows us what this pane looks like. The pane allows us to navigate to
+specific files and folders and delete and rename files. To select a
+folder as the working directory, tick the dialog box next to the file.
+Then click the <code>More</code> button and select <code>Set As Working Directory</code>.
+Under the <code>More</code> button, you will also find
+options to <code>Move</code> and <code>Copy</code> files (see Figure <a href="DirectoriesChapter.html#fig:FilesPaneMore">4.4</a>).</p>
+<p>The <em>Files</em> pane is a Graphical User Interface (GUI), so our actions in the <em>Files</em> pane are not recorded, as such are not as easily reproducible as the commands we learned earlier in this chapter.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:FilesPane"></span>
+<img src="images/chapter_4/RStudioFiles.png" alt="The RStudio Files Pane" width="514" height="30%" />
+<p class="caption">
+FIGURE 4.3: The RStudio Files Pane
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:FilesPaneMore"></span>
+<img src="images/chapter_4/MoreMore.png" alt="More Functionality in the RStudio Files Pane" width="305" height="10%" />
+<p class="caption">
+FIGURE 4.4: More Functionality in the RStudio Files Pane
+</p>
+</div>
+<div id="chapter-summary-1" class="section level3 unnumbered hasAnchor">
+<h3>Chapter summary<a href="DirectoriesChapter.html#chapter-summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this chapter we’ve learned how to organize our research files to
+enable dynamic replication. This included not only how they can be
+ordered in a computer’s file system, but also the file path naming
+conventions—the addresses—that computers use to locate files. Once we
+know how these addresses work, we can use R and shell commands to refer
+to and manipulate our files. This skill is particularly useful because
+it allows us to place code in text-based files to manipulate our project
+files in highly reproducible ways. In the next few chapters, we will
+put these skills into practice. We will learn how to store our
+files and create data files in reproducible ways.</p>
+
+</div>
+</div>
+</div>
+
+
+
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-R-here" class="csl-entry">
+Müller, Kirill. 2020. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.
+</div>
+<div id="ref-shottsjr2012" class="csl-entry">
+Shotts Jr., William E. 2012. <em>The Linux Command-Line: A Complete Introduction</em>. San Francisco: No Starch Press.
+</div>
+<div id="ref-R-ProjectTemplate" class="csl-entry">
+White, John Myles. 2024. <em>ProjectTemplate: Automates the Creation of New Statistical Analysis Projects</em>. <a href="http://projecttemplate.net">http://projecttemplate.net</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="70">
+<li id="fn70"><p>To simplify things, I use the terms ‘directory’ and ‘folder’
+interchangeably in this book.<a href="DirectoriesChapter.html#fnref70" class="footnote-back">↩︎</a></p></li>
+<li id="fn71"><p>The command line utility <em>tree</em> is very useful for
+visualizing your file trees. For more information, see <a href="https://en.wikipedia.org/wiki/Tree_(command)" class="uri">https://en.wikipedia.org/wiki/Tree_(command)</a>.<a href="DirectoriesChapter.html#fnref71" class="footnote-back">↩︎</a></p></li>
+<li id="fn72"><p>For more information on Windows file path names, see this helpful
+website:
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx" class="uri">http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx</a><a href="DirectoriesChapter.html#fnref72" class="footnote-back">↩︎</a></p></li>
+<li id="fn73"><p>As we will see in Part IV, it is also a LaTeX and Markdown escape
+character.<a href="DirectoriesChapter.html#fnref73" class="footnote-back">↩︎</a></p></li>
+<li id="fn74"><p>See the discussion of global chunk options in Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a>,
+Section <a href="GettingStartedRKnitr.html#GlobalChunkOptions">3.3.5</a>.<a href="DirectoriesChapter.html#fnref74" class="footnote-back">↩︎</a></p></li>
+<li id="fn75"><p>Note: you will need the correct system permissions to be able to
+do this.<a href="DirectoriesChapter.html#fnref75" class="footnote-back">↩︎</a></p></li>
+<li id="fn76"><p>The <code>file.rename()</code> function won’t create new directories. To move a
+file to a new directory, you will need to create the directory first
+with <code>dir.create()</code>.<a href="DirectoriesChapter.html#fnref76" class="footnote-back">↩︎</a></p></li>
+<li id="fn77"><p>You can access Bash via the Terminal program on macOS and
+Linux computers. It is the default shell on Mac (before macOS Catalina) and Linux, so it
+loads automatically when you open the Terminal. Windows PowerShell
+comes installed with Windows.<a href="DirectoriesChapter.html#fnref77" class="footnote-back">↩︎</a></p></li>
+<li id="fn78"><p>A command-line program is just a program you run from a shell.<a href="DirectoriesChapter.html#fnref78" class="footnote-back">↩︎</a></p></li>
+<li id="fn79"><p>Many shell code examples in other sources include the shell
+prompt, like the <code>$</code> in Bash, or <code>&gt;</code> in PowerShell. These are like
+R’s <code>&gt;</code> prompt. I don’t include the prompt in code examples in this
+book because you don’t type them.<a href="DirectoriesChapter.html#fnref79" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>If they were not in the root directory, we would not place a
+forward slash at the beginning.<a href="DirectoriesChapter.html#fnref80" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="LyxAppendix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Storing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/06-file-management.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

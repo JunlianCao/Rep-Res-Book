@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Statistical Modeling and knitr/R Markdown | Reproducible Research with R and RStudio (Third Edition)</title>
+  <meta name="description" content="Chapter 8 Statistical Modeling and knitr/R Markdown | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Statistical Modeling and knitr/R Markdown | Reproducible Research with R and RStudio (Third Edition)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 8 Statistical Modeling and knitr/R Markdown | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  <meta name="github-repo" content="christophergandrud/Rep-Res-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Statistical Modeling and knitr/R Markdown | Reproducible Research with R and RStudio (Third Edition)" />
+  
+  <meta name="twitter:description" content="Chapter 8 Statistical Modeling and knitr/R Markdown | Reproducible Research with R and RStudio (Third Edition) brings together the skills and tools needed for doing and presenting computational research. Using straightforward examples, the book takes you through an entire reproducible research workflow. This practical workflow enables you to gather and analyze data as well as dynamically present results in print and on the web." />
+  
+
+<meta name="author" content="Christopher Gandrud" />
+
+
+<meta name="date" content="2025-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="appendix.html"/>
+<link rel="next" href="TablesChapter.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-third-edition"><i class="fa fa-check"></i>Changes to the Third Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#changes-to-the-second-edition"><i class="fa fa-check"></i>Changes to the Second Edition</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="" data-path="stylistic-conventions.html"><a href="stylistic-conventions.html"><i class="fa fa-check"></i>Stylistic Conventions</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i>Additional Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#chapter-examples"><i class="fa fa-check"></i>Chapter Examples</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#short-example-project"><i class="fa fa-check"></i>Short Example Project</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#updates"><i class="fa fa-check"></i>Updates</a></li>
+<li class="chapter" data-level="" data-path="additional-resources.html"><a href="additional-resources.html#corrections"><i class="fa fa-check"></i>Corrections</a></li>
+</ul></li>
+<li class="part"><span><b>I Getting Started</b></span></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Introducing Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>1.1</b> What Is Reproducible Research?</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#why-should-research-be-reproducible"><i class="fa fa-check"></i><b>1.2</b> Why Should Research Be Reproducible?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Intro.html"><a href="Intro.html#for-science"><i class="fa fa-check"></i><b>1.2.1</b> For science</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Intro.html"><a href="Intro.html#for-you"><i class="fa fa-check"></i><b>1.2.2</b> For you</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#who-should-read-this-book"><i class="fa fa-check"></i><b>1.3</b> Who Should Read This Book?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Intro.html"><a href="Intro.html#academic-researchers"><i class="fa fa-check"></i><b>1.3.1</b> Academic researchers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Intro.html"><a href="Intro.html#students"><i class="fa fa-check"></i><b>1.3.2</b> Students</a></li>
+<li class="chapter" data-level="1.3.3" data-path="Intro.html"><a href="Intro.html#instructors"><i class="fa fa-check"></i><b>1.3.3</b> Instructors</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Intro.html"><a href="Intro.html#editors"><i class="fa fa-check"></i><b>1.3.4</b> Editors</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Intro.html"><a href="Intro.html#private-sector-researchers"><i class="fa fa-check"></i><b>1.3.5</b> Private sector researchers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#the-tools-of-reproducible-research"><i class="fa fa-check"></i><b>1.4</b> The Tools of Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="Intro.html"><a href="Intro.html#why-use-r-knitrr-markdown-and-rstudio-for-reproducible-research"><i class="fa fa-check"></i><b>1.4.1</b> Why Use R, knitr/R Markdown, and RStudio for Reproducible Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="Intro.html"><a href="Intro.html#InstallR"><i class="fa fa-check"></i><b>1.5</b> Installing the main software</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="Intro.html"><a href="Intro.html#InstallMarkup"><i class="fa fa-check"></i><b>1.5.1</b> Installing markup languages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="Intro.html"><a href="Intro.html#InstallMake"><i class="fa fa-check"></i><b>1.5.2</b> GNU Make</a></li>
+<li class="chapter" data-level="1.5.3" data-path="Intro.html"><a href="Intro.html#other-tools"><i class="fa fa-check"></i><b>1.5.3</b> Other tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="Intro.html"><a href="Intro.html#OtherBooks"><i class="fa fa-check"></i><b>1.6</b> Book Overview</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="Intro.html"><a href="Intro.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.6.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.6.2" data-path="Intro.html"><a href="Intro.html#reproduce-this-book"><i class="fa fa-check"></i><b>1.6.2</b> Reproduce this book</a></li>
+<li class="chapter" data-level="1.6.3" data-path="Intro.html"><a href="Intro.html#contents-overview"><i class="fa fa-check"></i><b>1.6.3</b> Contents overview</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#appendix-additional-r-setup"><i class="fa fa-check"></i>Appendix: Additional R Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="Intro.html"><a href="Intro.html#special-issues"><i class="fa fa-check"></i>Special issues</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#the-big-picture-a-workflow-for-reproducible-research"><i class="fa fa-check"></i><b>2.1</b> The Big Picture: A Workflow for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#reproducible-theory"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible theory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#practical-tips-for-reproducible-research"><i class="fa fa-check"></i><b>2.2</b> Practical Tips for Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#document-everything"><i class="fa fa-check"></i><b>2.2.1</b> Document everything!</a></li>
+<li class="chapter" data-level="2.2.2" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#everything-is-a-text-file"><i class="fa fa-check"></i><b>2.2.2</b> Everything is a (text) file</a></li>
+<li class="chapter" data-level="2.2.3" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#all-files-should-be-human-readable"><i class="fa fa-check"></i><b>2.2.3</b> All files should be human readable</a></li>
+<li class="chapter" data-level="2.2.4" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#explicitly-tie-your-files-together"><i class="fa fa-check"></i><b>2.2.4</b> Explicitly tie your files together</a></li>
+<li class="chapter" data-level="2.2.5" data-path="GettingStartedRR.html"><a href="GettingStartedRR.html#have-a-plan-to-organize-store-and-make-your-files-available"><i class="fa fa-check"></i><b>2.2.5</b> Have a plan to organize, store, and make your files available</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R, RStudio, and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-r-the-basics"><i class="fa fa-check"></i><b>3.1</b> Using R: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Objects"><i class="fa fa-check"></i><b>3.1.1</b> Objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#FunctionsCommands"><i class="fa fa-check"></i><b>3.1.2</b> Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RSave"><i class="fa fa-check"></i><b>3.1.3</b> The workspace and history</a></li>
+<li class="chapter" data-level="3.1.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#RHistory"><i class="fa fa-check"></i><b>3.1.4</b> R history</a></li>
+<li class="chapter" data-level="3.1.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#ROptions"><i class="fa fa-check"></i><b>3.1.5</b> Global R options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#Packages"><i class="fa fa-check"></i><b>3.1.6</b> Installing new packages and loading functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-rstudio"><i class="fa fa-check"></i><b>3.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#using-knitr-and-r-markdown-the-basics"><i class="fa fa-check"></i><b>3.3</b> Using knitr and R Markdown: The Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#what-knitr-does"><i class="fa fa-check"></i><b>3.3.1</b> What <em>knitr</em> does</a></li>
+<li class="chapter" data-level="3.3.2" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmardownHeader"><i class="fa fa-check"></i><b>3.3.2</b> What <em>rmarkdown</em> does</a></li>
+<li class="chapter" data-level="3.3.3" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#file-extensions"><i class="fa fa-check"></i><b>3.3.3</b> File extensions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#code-chunks"><i class="fa fa-check"></i><b>3.3.4</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.5" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#GlobalChunkOptions"><i class="fa fa-check"></i><b>3.3.5</b> Global chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-package-options"><i class="fa fa-check"></i><b>3.3.6</b> <em>knitr</em> package options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#hooks"><i class="fa fa-check"></i><b>3.3.7</b> Hooks</a></li>
+<li class="chapter" data-level="3.3.8" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-r-markdown-and-rstudio"><i class="fa fa-check"></i><b>3.3.8</b> knitr, R Markdown, and RStudio</a></li>
+<li class="chapter" data-level="3.3.9" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#knitr-and-r"><i class="fa fa-check"></i><b>3.3.9</b> knitr and R</a></li>
+<li class="chapter" data-level="3.3.10" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#rmarkdownRender"><i class="fa fa-check"></i><b>3.3.10</b> R Markdown and R</a></li>
+<li class="chapter" data-level="" data-path="GettingStartedRKnitr.html"><a href="GettingStartedRKnitr.html#chapter-summary"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="jupyter.html"><a href="jupyter.html"><i class="fa fa-check"></i>Appendix: Jupyter Interactive Notebooks</a></li>
+<li class="chapter" data-level="" data-path="LyxAppendix.html"><a href="LyxAppendix.html"><i class="fa fa-check"></i>Appendix: knitr and Lyx</a></li>
+<li class="chapter" data-level="4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html"><i class="fa fa-check"></i><b>4</b> Getting Started with File Management</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-paths-and-naming-conventions"><i class="fa fa-check"></i><b>4.1</b> File Paths and Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#root-directories"><i class="fa fa-check"></i><b>4.1.1</b> Root directories</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#sub-directories-and-parent-directories"><i class="fa fa-check"></i><b>4.1.2</b> Sub-directories and parent directories</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#working-directories"><i class="fa fa-check"></i><b>4.1.3</b> Working directories</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#absolute-vs.-relative-paths"><i class="fa fa-check"></i><b>4.1.4</b> Absolute vs. relative paths</a></li>
+<li class="chapter" data-level="4.1.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#spaces-in-directory-and-file-names"><i class="fa fa-check"></i><b>4.1.5</b> Spaces in directory and file names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#organizing-your-research-project"><i class="fa fa-check"></i><b>4.2</b> Organizing Your Research Project</a></li>
+<li class="chapter" data-level="4.3" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#CreateRStudioProject"><i class="fa fa-check"></i><b>4.3</b> Organizing Research with RStudio Projects</a></li>
+<li class="chapter" data-level="4.4" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#r-file-manipulation-functions"><i class="fa fa-check"></i><b>4.4</b> R File Manipulation Functions</a></li>
+<li class="chapter" data-level="4.5" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#unix-like-shell-commands-for-file-management"><i class="fa fa-check"></i><b>4.5</b> Unix-like Shell Commands for File Management</a></li>
+<li class="chapter" data-level="4.6" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#file-navigation-in-rstudio"><i class="fa fa-check"></i><b>4.6</b> File Navigation in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="DirectoriesChapter.html"><a href="DirectoriesChapter.html#chapter-summary-1"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Gathering and Storage</b></span></li>
+<li class="chapter" data-level="5" data-path="Storing.html"><a href="Storing.html"><i class="fa fa-check"></i><b>5</b> Storing, Collaborating, Accessing Files, and Versioning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Storing.html"><a href="Storing.html#TSVEscape"><i class="fa fa-check"></i><b>5.1</b> Saving Data in Reproducible Formats</a></li>
+<li class="chapter" data-level="5.2" data-path="Storing.html"><a href="Storing.html#storing-your-files-in-the-cloud-dropbox"><i class="fa fa-check"></i><b>5.2</b> Storing Your Files in the Cloud: Dropbox</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Storing.html"><a href="Storing.html#storage"><i class="fa fa-check"></i><b>5.2.1</b> Storage</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Storing.html"><a href="Storing.html#EnablePublicFolder"><i class="fa fa-check"></i><b>5.2.2</b> Accessing data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Storing.html"><a href="Storing.html#collaboration"><i class="fa fa-check"></i><b>5.2.3</b> Collaboration</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Storing.html"><a href="Storing.html#version-control"><i class="fa fa-check"></i><b>5.2.4</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Storing.html"><a href="Storing.html#GitHubMain"><i class="fa fa-check"></i><b>5.3</b> Storing Your Files in the Cloud: GitHub</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Storing.html"><a href="Storing.html#setting-up-github-basic"><i class="fa fa-check"></i><b>5.3.1</b> Setting up GitHub: Basic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Storing.html"><a href="Storing.html#version-control-with-git"><i class="fa fa-check"></i><b>5.3.2</b> Version control with Git</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Storing.html"><a href="Storing.html#NewGitHubRepo"><i class="fa fa-check"></i><b>5.3.3</b> Remote storage on GitHub</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Storing.html"><a href="Storing.html#accessing-on-github"><i class="fa fa-check"></i><b>5.3.4</b> Accessing on GitHub</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Storing.html"><a href="Storing.html#summing-up-the-github-workflow"><i class="fa fa-check"></i><b>5.3.5</b> Summing up the GitHub workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Storing.html"><a href="Storing.html#rstudio-and-github"><i class="fa fa-check"></i><b>5.4</b> RStudio and GitHub</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Storing.html"><a href="Storing.html#setting-up-gitgithub-with-projects"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git/GitHub with Projects</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Storing.html"><a href="Storing.html#using-git-in-rstudio-projects"><i class="fa fa-check"></i><b>5.4.2</b> Using Git in RStudio Projects</a></li>
+<li class="chapter" data-level="" data-path="Storing.html"><a href="Storing.html#chapter-summary-2"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataGather.html"><a href="DataGather.html"><i class="fa fa-check"></i><b>6</b> Gathering Data with R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="DataGather.html"><a href="DataGather.html#organize-your-data-gathering-makefiles"><i class="fa fa-check"></i><b>6.1</b> Organize Your Data Gathering: Makefiles</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="DataGather.html"><a href="DataGather.html#r-make-like-files"><i class="fa fa-check"></i><b>6.1.1</b> R Make-like files</a></li>
+<li class="chapter" data-level="6.1.2" data-path="DataGather.html"><a href="DataGather.html#gnu-make"><i class="fa fa-check"></i><b>6.1.2</b> GNU Make</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="DataGather.html"><a href="DataGather.html#importing-locally-stored-data-sets"><i class="fa fa-check"></i><b>6.2</b> Importing Locally Stored Data Sets</a></li>
+<li class="chapter" data-level="6.3" data-path="DataGather.html"><a href="DataGather.html#importing-data-sets-from-the-internet"><i class="fa fa-check"></i><b>6.3</b> Importing Data Sets from the Internet</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="DataGather.html"><a href="DataGather.html#data-from-non-secure-http-urls"><i class="fa fa-check"></i><b>6.3.1</b> Data from non-secure (<em>http</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="DataGather.html"><a href="DataGather.html#SecureDataDownload"><i class="fa fa-check"></i><b>6.3.2</b> Data from secure (<em>https</em>) URLs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="DataGather.html"><a href="DataGather.html#compressed-data-stored-online"><i class="fa fa-check"></i><b>6.3.3</b> Compressed data stored online</a></li>
+<li class="chapter" data-level="6.3.4" data-path="DataGather.html"><a href="DataGather.html#data-apis-and-feeds"><i class="fa fa-check"></i><b>6.3.4</b> Data APIs and feeds</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="DataGather.html"><a href="DataGather.html#advanced-automatic-data-gathering-web-scraping"><i class="fa fa-check"></i><b>6.4</b> Advanced Automatic Data Gathering: Web Scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataGather.html"><a href="DataGather.html#chapter-summary-3"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="DataClean.html"><a href="DataClean.html"><i class="fa fa-check"></i><b>7</b> Preparing Data for Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="DataClean.html"><a href="DataClean.html#cleaning-data-for-merging"><i class="fa fa-check"></i><b>7.1</b> Cleaning Data for Merging</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="DataClean.html"><a href="DataClean.html#get-a-handle-on-your-data"><i class="fa fa-check"></i><b>7.1.1</b> Get a handle on your data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#tibbles"><i class="fa fa-check"></i>Tibbles</a></li>
+<li class="chapter" data-level="7.1.2" data-path="DataClean.html"><a href="DataClean.html#GatherReshape"><i class="fa fa-check"></i><b>7.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="DataClean.html"><a href="DataClean.html#renaming-variables"><i class="fa fa-check"></i><b>7.1.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="7.1.4" data-path="DataClean.html"><a href="DataClean.html#ordering-data"><i class="fa fa-check"></i><b>7.1.4</b> Ordering data</a></li>
+<li class="chapter" data-level="7.1.5" data-path="DataClean.html"><a href="DataClean.html#subsetting-data"><i class="fa fa-check"></i><b>7.1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="7.1.6" data-path="DataClean.html"><a href="DataClean.html#recoding-stringnumeric-variables"><i class="fa fa-check"></i><b>7.1.6</b> Recoding string/numeric variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="DataClean.html"><a href="DataClean.html#creating-new-variables-from-old"><i class="fa fa-check"></i><b>7.1.7</b> Creating new variables from old</a></li>
+<li class="chapter" data-level="7.1.8" data-path="DataClean.html"><a href="DataClean.html#changing-variable-types"><i class="fa fa-check"></i><b>7.1.8</b> Changing variable types</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-sets"><i class="fa fa-check"></i><b>7.2</b> Merging Data Sets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="DataClean.html"><a href="DataClean.html#binding"><i class="fa fa-check"></i><b>7.2.1</b> Binding</a></li>
+<li class="chapter" data-level="7.2.2" data-path="DataClean.html"><a href="DataClean.html#merging-data-frames"><i class="fa fa-check"></i><b>7.2.2</b> Merging data frames</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#bigger-data"><i class="fa fa-check"></i>Bigger data</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#duplicate-values"><i class="fa fa-check"></i>Duplicate values</a></li>
+<li class="chapter" data-level="7.2.3" data-path="DataClean.html"><a href="DataClean.html#duplicate-columns"><i class="fa fa-check"></i><b>7.2.3</b> Duplicate columns</a></li>
+<li class="chapter" data-level="" data-path="DataClean.html"><a href="DataClean.html#chapter-summary-4"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="part"><span><b>III Analysis and Results</b></span></li>
+<li class="chapter" data-level="8" data-path="StatsModel.html"><a href="StatsModel.html"><i class="fa fa-check"></i><b>8</b> Statistical Modeling and knitr/R Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="StatsModel.html"><a href="StatsModel.html#incorporating-analyses-into-the-markup"><i class="fa fa-check"></i><b>8.1</b> Incorporating Analyses into the Markup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="StatsModel.html"><a href="StatsModel.html#full-code-chunks"><i class="fa fa-check"></i><b>8.1.1</b> Full code chunks</a></li>
+<li class="chapter" data-level="8.1.2" data-path="StatsModel.html"><a href="StatsModel.html#showing-code-and-results-inline"><i class="fa fa-check"></i><b>8.1.2</b> Showing code and results inline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks"><i class="fa fa-check"></i><b>8.1.3</b> Dynamically including non-R code in code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="StatsModel.html"><a href="StatsModel.html#dynamically-including-modular-analysis-files"><i class="fa fa-check"></i><b>8.2</b> Dynamically Including Modular Analysis Files</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="StatsModel.html"><a href="StatsModel.html#source-from-a-local-file"><i class="fa fa-check"></i><b>8.2.1</b> Source from a local file</a></li>
+<li class="chapter" data-level="8.2.2" data-path="StatsModel.html"><a href="StatsModel.html#SourceSecureURL"><i class="fa fa-check"></i><b>8.2.2</b> Source from a URL</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="StatsModel.html"><a href="StatsModel.html#reproducibly-random-set.seed"><i class="fa fa-check"></i><b>8.3</b> Reproducibly Random: <code>set.seed()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="StatsModel.html"><a href="StatsModel.html#computationally-intensive-analyses"><i class="fa fa-check"></i><b>8.4</b> Computationally Intensive Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="StatsModel.html"><a href="StatsModel.html#chapter-summary-5"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="TablesChapter.html"><a href="TablesChapter.html"><i class="fa fa-check"></i><b>9</b> Showing Results with Tables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="TablesChapter.html"><a href="TablesChapter.html#ResultsOptions"><i class="fa fa-check"></i><b>9.1</b> Basic <em>knitr</em> Syntax for Tables</a></li>
+<li class="chapter" data-level="9.2" data-path="TablesChapter.html"><a href="TablesChapter.html#table-basics"><i class="fa fa-check"></i><b>9.2</b> Table Basics</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="TablesChapter.html"><a href="TablesChapter.html#LaTeXTables"><i class="fa fa-check"></i><b>9.2.1</b> Tables in LaTeX</a></li>
+<li class="chapter" data-level="9.2.2" data-path="TablesChapter.html"><a href="TablesChapter.html#tables-in-markdownhtml"><i class="fa fa-check"></i><b>9.2.2</b> Tables in Markdown/HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="TablesChapter.html"><a href="TablesChapter.html#creating-tables-from-supported-class-r-objects"><i class="fa fa-check"></i><b>9.3</b> Creating Tables from Supported Class R Objects</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="TablesChapter.html"><a href="TablesChapter.html#kable-for-markdown-and-latex"><i class="fa fa-check"></i><b>9.3.1</b> <code>kable</code> for Markdown and LaTeX</a></li>
+<li class="chapter" data-level="9.3.2" data-path="TablesChapter.html"><a href="TablesChapter.html#xtable-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.2</b> <em>xtable</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.3" data-path="TablesChapter.html"><a href="TablesChapter.html#texreg-for-latex-and-html"><i class="fa fa-check"></i><b>9.3.3</b> <em>texreg</em> for LaTeX and HTML</a></li>
+<li class="chapter" data-level="9.3.4" data-path="TablesChapter.html"><a href="TablesChapter.html#fitting-large-tables-in-latex"><i class="fa fa-check"></i><b>9.3.4</b> Fitting large tables in LaTeX</a></li>
+<li class="chapter" data-level="9.3.5" data-path="TablesChapter.html"><a href="TablesChapter.html#NonSupportedClasses"><i class="fa fa-check"></i><b>9.3.5</b> <em>xtable</em> with non-supported class objects</a></li>
+<li class="chapter" data-level="9.3.6" data-path="TablesChapter.html"><a href="TablesChapter.html#Vardescript_tables"><i class="fa fa-check"></i><b>9.3.6</b> Creating variable description documents with <em>xtable</em></a></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#chapter-summary-6"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="TablesChapter.html"><a href="TablesChapter.html#appendix-1"><i class="fa fa-check"></i>Appendix</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="FiguresChapter.html"><a href="FiguresChapter.html"><i class="fa fa-check"></i><b>10</b> Showing Results with Figures</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-non-knitted-graphics"><i class="fa fa-check"></i><b>10.1</b> Including Non-knitted Graphics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-latex"><i class="fa fa-check"></i><b>10.1.1</b> Including graphics in LaTeX</a></li>
+<li class="chapter" data-level="10.1.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-graphics-in-markdownhtml"><i class="fa fa-check"></i><b>10.1.2</b> Including graphics in Markdown/HTML</a></li>
+<li class="chapter" data-level="10.1.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#non-knitted-graphics-with-knitrrmarkdown"><i class="fa fa-check"></i><b>10.1.3</b> Non-knitted graphics with <em>knitr</em>/<em>rmarkdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-knitrrmarkdown-figure-options"><i class="fa fa-check"></i><b>10.2</b> Basic <em>knitr</em>/<em>rmarkdown</em> Figure Options</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chunk-options"><i class="fa fa-check"></i><b>10.2.1</b> Chunk options</a></li>
+<li class="chapter" data-level="10.2.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#global-options"><i class="fa fa-check"></i><b>10.2.2</b> Global options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#knitting-rs-default-graphics"><i class="fa fa-check"></i><b>10.3</b> Knitting R’s Default Graphics</a></li>
+<li class="chapter" data-level="10.4" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-ggplot2-graphics"><i class="fa fa-check"></i><b>10.4</b> Including <em>ggplot2</em> Graphics</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#showing-regression-results-with-caterpillar-plots"><i class="fa fa-check"></i><b>10.4.1</b> Showing regression results with caterpillar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-googlevis"><i class="fa fa-check"></i><b>10.5</b> JavaScript Graphs with <em>googleVis</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="FiguresChapter.html"><a href="FiguresChapter.html#basic-googlevis-figures"><i class="fa fa-check"></i><b>10.5.1</b> Basic googleVis figures</a></li>
+<li class="chapter" data-level="10.5.2" data-path="FiguresChapter.html"><a href="FiguresChapter.html#including-googlevis-in-knitted-documents"><i class="fa fa-check"></i><b>10.5.2</b> Including <em>googleVis</em> in knitted documents</a></li>
+<li class="chapter" data-level="10.5.3" data-path="FiguresChapter.html"><a href="FiguresChapter.html#javascript-graphs-with-htmlwidgets-based-packages"><i class="fa fa-check"></i><b>10.5.3</b> JavaScript Graphs with <em>htmlwidgets</em>-based packages</a></li>
+<li class="chapter" data-level="" data-path="FiguresChapter.html"><a href="FiguresChapter.html#chapter-summary-7"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation Documents</b></span></li>
+<li class="chapter" data-level="11" data-path="LatexChapter.html"><a href="LatexChapter.html"><i class="fa fa-check"></i><b>11</b> Presenting with LaTeX</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-basics"><i class="fa fa-check"></i><b>11.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="LatexChapter.html"><a href="LatexChapter.html#getting-started-with-latex-editors"><i class="fa fa-check"></i><b>11.1.1</b> Getting started with LaTeX editors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="LatexChapter.html"><a href="LatexChapter.html#basic-latex-command-syntax"><i class="fa fa-check"></i><b>11.1.2</b> Basic LaTeX command syntax</a></li>
+<li class="chapter" data-level="11.1.3" data-path="LatexChapter.html"><a href="LatexChapter.html#LaTeXPreamble"><i class="fa fa-check"></i><b>11.1.3</b> The LaTeX preamble and body</a></li>
+<li class="chapter" data-level="11.1.4" data-path="LatexChapter.html"><a href="LatexChapter.html#headings"><i class="fa fa-check"></i><b>11.1.4</b> Headings</a></li>
+<li class="chapter" data-level="11.1.5" data-path="LatexChapter.html"><a href="LatexChapter.html#paragraphs-and-spacing"><i class="fa fa-check"></i><b>11.1.5</b> Paragraphs and spacing</a></li>
+<li class="chapter" data-level="11.1.6" data-path="LatexChapter.html"><a href="LatexChapter.html#horizontal-lines"><i class="fa fa-check"></i><b>11.1.6</b> Horizontal lines</a></li>
+<li class="chapter" data-level="11.1.7" data-path="LatexChapter.html"><a href="LatexChapter.html#text-formatting"><i class="fa fa-check"></i><b>11.1.7</b> Text formatting</a></li>
+<li class="chapter" data-level="11.1.8" data-path="LatexChapter.html"><a href="LatexChapter.html#MathLaTeX"><i class="fa fa-check"></i><b>11.1.8</b> Math</a></li>
+<li class="chapter" data-level="11.1.9" data-path="LatexChapter.html"><a href="LatexChapter.html#lists"><i class="fa fa-check"></i><b>11.1.9</b> Lists</a></li>
+<li class="chapter" data-level="11.1.10" data-path="LatexChapter.html"><a href="LatexChapter.html#footnotes"><i class="fa fa-check"></i><b>11.1.10</b> Footnotes</a></li>
+<li class="chapter" data-level="11.1.11" data-path="LatexChapter.html"><a href="LatexChapter.html#cross-references"><i class="fa fa-check"></i><b>11.1.11</b> Cross-references</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="LatexChapter.html"><a href="LatexChapter.html#BibTeXBib"><i class="fa fa-check"></i><b>11.2</b> Bibliographies with BibTeX</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="LatexChapter.html"><a href="LatexChapter.html#the-.bib-file"><i class="fa fa-check"></i><b>11.2.1</b> The <em>.bib</em> file</a></li>
+<li class="chapter" data-level="11.2.2" data-path="LatexChapter.html"><a href="LatexChapter.html#including-citations-in-latex-documents"><i class="fa fa-check"></i><b>11.2.2</b> Including citations in LaTeX documents</a></li>
+<li class="chapter" data-level="11.2.3" data-path="LatexChapter.html"><a href="LatexChapter.html#generating-a-bibtex-file-of-r-package-citations"><i class="fa fa-check"></i><b>11.2.3</b> Generating a BibTeX file of R package citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="LatexChapter.html"><a href="LatexChapter.html#latexBeamer"><i class="fa fa-check"></i><b>11.3</b> Presentations with LaTeX Beamer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="LatexChapter.html"><a href="LatexChapter.html#beamer-basics"><i class="fa fa-check"></i><b>11.3.1</b> Beamer basics</a></li>
+<li class="chapter" data-level="11.3.2" data-path="LatexChapter.html"><a href="LatexChapter.html#knitr-with-latex-slideshows"><i class="fa fa-check"></i><b>11.3.2</b> <em>knitr</em> with LaTeX slideshows</a></li>
+<li class="chapter" data-level="" data-path="LatexChapter.html"><a href="LatexChapter.html#chapter-summary-8"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html"><i class="fa fa-check"></i><b>12</b> Presenting in a Variety of Formats with R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#the-basics-1"><i class="fa fa-check"></i><b>12.1</b> The Basics</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#getting-started-with-markdown-editors"><i class="fa fa-check"></i><b>12.1.1</b> Getting started with Markdown editors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#preamble-and-document-structure"><i class="fa fa-check"></i><b>12.1.2</b> Preamble and document structure</a></li>
+<li class="chapter" data-level="12.1.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownHeader"><i class="fa fa-check"></i><b>12.1.3</b> Headings</a></li>
+<li class="chapter" data-level="12.1.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#horizontal-lines-1"><i class="fa fa-check"></i><b>12.1.4</b> Horizontal lines</a></li>
+<li class="chapter" data-level="12.1.5" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#paragraphs-and-new-lines"><i class="fa fa-check"></i><b>12.1.5</b> Paragraphs and new lines</a></li>
+<li class="chapter" data-level="12.1.6" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#italics-and-bold-1"><i class="fa fa-check"></i><b>12.1.6</b> Italics and bold</a></li>
+<li class="chapter" data-level="12.1.7" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#MarkdownLinks"><i class="fa fa-check"></i><b>12.1.7</b> Links</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#special-characters-and-font-customization"><i class="fa fa-check"></i>Special characters and font customization</a></li>
+<li class="chapter" data-level="12.1.8" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#lists-1"><i class="fa fa-check"></i><b>12.1.8</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#escape-characters"><i class="fa fa-check"></i>Escape characters</a></li>
+<li class="chapter" data-level="12.1.9" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#math-with-mathjax"><i class="fa fa-check"></i><b>12.1.9</b> Math with MathJax</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-customizability-with-rmarkdown"><i class="fa fa-check"></i><b>12.2</b> Further Customizability with <em>rmarkdown</em></a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#more-on-rmarkdown-headers"><i class="fa fa-check"></i>More on <em>rmarkdown</em> Headers</a></li>
+<li class="chapter" data-level="12.2.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#css-style-files-and-markdown"><i class="fa fa-check"></i><b>12.2.1</b> CSS style files and Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-r-markdown-and-html"><i class="fa fa-check"></i><b>12.3</b> Slideshows with Markdown, R Markdown, and HTML</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#html-slideshows-with-rmarkdown"><i class="fa fa-check"></i><b>12.3.1</b> HTML slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.2" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#rmarkdownBeamer"><i class="fa fa-check"></i><b>12.3.2</b> LaTeX Beamer slideshows with <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="12.3.3" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#slideshows-with-markdown-and-rstudios-r-presentations"><i class="fa fa-check"></i><b>12.3.3</b> Slideshows with Markdown and RStudio’s R Presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#publishing-html-documents-created-with-r-markdown"><i class="fa fa-check"></i><b>12.4</b> Publishing HTML Documents Created with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#standalone-html-files"><i class="fa fa-check"></i>Standalone HTML files</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#github-pages"><i class="fa fa-check"></i>GitHub Pages</a></li>
+<li class="chapter" data-level="12.4.1" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#further-information-on-r-markdown"><i class="fa fa-check"></i><b>12.4.1</b> Further information on R Markdown</a></li>
+<li class="chapter" data-level="" data-path="MarkdownChapter.html"><a href="MarkdownChapter.html#chapter-summary-9"><i class="fa fa-check"></i>Chapter summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bookconclusion.html"><a href="bookconclusion.html"><i class="fa fa-check"></i><b>13</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bookconclusion.html"><a href="bookconclusion.html#citing-reproducible-research"><i class="fa fa-check"></i><b>13.1</b> Citing Reproducible Research</a></li>
+<li class="chapter" data-level="13.2" data-path="bookconclusion.html"><a href="bookconclusion.html#licensing-your-reproducible-research"><i class="fa fa-check"></i><b>13.2</b> Licensing Your Reproducible Research</a></li>
+<li class="chapter" data-level="13.3" data-path="bookconclusion.html"><a href="bookconclusion.html#sharing-your-code-in-packages"><i class="fa fa-check"></i><b>13.3</b> Sharing Your Code in Packages</a></li>
+<li class="chapter" data-level="13.4" data-path="bookconclusion.html"><a href="bookconclusion.html#project-development-public-or-private"><i class="fa fa-check"></i><b>13.4</b> Project Development: Public or Private?</a></li>
+<li class="chapter" data-level="13.5" data-path="bookconclusion.html"><a href="bookconclusion.html#is-it-possible-to-completely-future-proof-your-research"><i class="fa fa-check"></i><b>13.5</b> Is it Possible to Completely Future-Proof Your Research?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research with R and RStudio (Third Edition)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="StatsModel" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Statistical Modeling and knitr/R Markdown<a href="StatsModel.html#StatsModel" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>When you have your data cleaned and organized, you will begin to examine
+it with statistical analyses. In this book we don’t look at how to do
+statistical analysis in R (a subject that would and does take up many other
+books). Instead, we focus on how to make your analyses really
+reproducible. You do this by dynamically connecting your data gathering and
+analysis source code to your presentation documents. When you
+dynamically connect your data gathering makefiles and analysis source
+code to your markup document, you will be able to completely rerun your
+data gathering and analysis and present the results whenever you compile
+the presentation documents. This makes it very clear how you found
+the results that you are advertising. It also automatically keeps the
+presentation of your results, including tables and figures, up-to-date
+with any changes you make to your data and analyses source code files.</p>
+<p>You can dynamically tie your data gathering, statistical analyses, and
+presentation documents together with knitr/R Markdown. In Chapter <a href="GettingStartedRKnitr.html#GettingStartedRKnitr">3</a> you learned basic <em>knitr</em>/<em>rmarkdown</em> package
+syntax. For the rest of the chapter, I’ll refer to it as “<em>knitr</em>
+syntax”, but it applies to R Markdown as well when it is not specific to LaTeX. In this chapter we will begin to learn knitr syntax in more detail, particularly code chunk
+options for including dynamic code in your presentation documents. This
+includes code that is run in the background, i.e. not shown in the
+presentation document, as well as displaying the code and output in your
+presentation document both as separate blocks and inline with the text.
+We will also learn how to dynamically include code from languages other
+than R. We examine how to use knitr with modular source code files.
+Finally, we will look at how to create reproducible random analyses
+and how to work with computationally intensive code chunks.</p>
+<p>The goal of this and the next two chapters, which cover dynamically
+presenting results in tables and figures, is to show you how to tie data
+gathering and analyses into your presentation documents so closely that
+every time the documents are compiled they actually reproduce your
+analysis and present the results. Please see the next part of this book,
+Part IV, for details on how to create the LaTeX and Markdown documents
+that can include <em>knitr</em> code chunks.</p>
+<p><strong>Reminder:</strong> Before discussing the details of how to incorporate your
+analysis into your source code, it’s important to reiterate something we
+discussed in Chapter <a href="GettingStartedRR.html#GettingStartedRR">2</a>. The syntax and capabilities of R packages and R itself can change with new versions. Also, as we have seen for
+file path names, syntax can change depending on what operating system
+you are using. So it’s important to have your R session info available
+(see Section <a href="GettingStartedRR.html#SessionInfoHow"><strong>??</strong></a> for details) to make your research more
+reproducible and future-proof. If someone reproducing your research has
+this information, they will be able to download your files and use the
+exact version of the software that you used. For example, CRAN maintains
+an archive of previous R package versions that can be downloaded.<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a>
+Previous versions of R itself can also be downloaded through CRAN.<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a></p>
+<div id="incorporating-analyses-into-the-markup" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Incorporating Analyses into the Markup<a href="StatsModel.html#incorporating-analyses-into-the-markup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For a relatively short piece of code that you don’t need to run in
+multiple presentation documents, it may be simplest to type the code
+directly into chunks written in your <em>knitr</em> markup document. In this
+section we will learn how to set <em>knitr</em> options for handling these code
+chunks. For a list of many of the chunk options covered here, see Table <a href="#ChunkOptionsTable"><strong>??</strong></a>.</p>
+<div id="full-code-chunks" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Full code chunks<a href="StatsModel.html#full-code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>By default, <em>knitr</em> code chunks are run by R, and the code and any text
+output (including warnings and error messages) are inserted into the
+text of your presentation documents in blocks. The blocks are positioned
+in the final presentation document text at the points where the code
+chunk was written in the knittable markup. Figures are inserted as well.
+Let’s look at the main options for determining how code chunks are
+handled by <em>knitr</em>.</p>
+<div id="include" class="section level4 unnumbered hasAnchor">
+<h4><code>include</code><a href="StatsModel.html#include" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use <code>include=FALSE</code> if you don’t want to include anything in the text of
+your presentation document, but you still want to evaluate a code chunk.
+It is <code>TRUE</code> by default.</p>
+</div>
+<div id="eval" class="section level4 unnumbered hasAnchor">
+<h4><code>eval</code><a href="StatsModel.html#eval" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>eval</code> option determines whether or not the code in a chunk will be
+run. Set the <code>eval</code> option to <code>FALSE</code> if you would like to include code
+in the presentation document text without actually running the code. By
+default it is set to <code>TRUE</code>, i.e. the code is run. You can alternatively
+use a numerical vector with <code>eval</code>. The numbers in the vector tell
+<em>knitr</em> which expressions in the chunk to evaluate. For example, if you
+only want to evaluate the first two expressions, set <code>eval=1:2</code>.</p>
+</div>
+<div id="echo-1" class="section level4 unnumbered hasAnchor">
+<h4><code>echo</code><a href="StatsModel.html#echo-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you would like to hide a chunk’s code from the presentation document,
+you can set <code>echo=FALSE</code>. Note that if you also have <code>eval=TRUE</code>, then
+the chunk will still be evaluated and the output will be included in
+your presentation document. Clearly, if <code>echo=TRUE</code>, then source code
+will be included in the presentation document. As with <code>eval</code>, you can
+alternatively use a numerical vector in <code>echo</code>. The numbers in the
+vector indicate which expressions to echo in your final document.</p>
+</div>
+<div id="results" class="section level4 unnumbered hasAnchor">
+<h4><code>results</code><a href="StatsModel.html#results" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We will look at the <code>results</code> option in more detail in the next two
+chapters (see especially Section <a href="TablesChapter.html#ResultsOptions">9.1</a>). However, let’s briefly discuss the option value <code>hide</code>. Setting <code>results='hide'</code> is almost the opposite of <code>echo=FALSE</code>. Instead of showing the results of the code chunk and
+hiding the code, <code>results='hide'</code> shows the code, but not the results.
+Warnings, errors, and messages will still be printed.</p>
+</div>
+<div id="warning-message-error" class="section level4 unnumbered hasAnchor">
+<h4><code>warning</code>, <code>message</code>, <code>error</code><a href="StatsModel.html#warning-message-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you don’t want to include the warnings, messages, and error messages
+that R outputs in the text of your presentation documents, just set the
+<code>warning</code>, <code>message</code>, and <code>error</code> options to <code>FALSE</code>. They are set to
+<code>TRUE</code> by default.</p>
+</div>
+<div id="cache" class="section level4 unnumbered hasAnchor">
+<h4><code>cache</code><a href="StatsModel.html#cache" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you want to run a code chunk once and save the output for when you
+knit the document again, rather than running the code chunk every time,
+set the option <code>cache=TRUE</code>. When you do this the first time the
+document is knitted, the chunk will be run and the output stored in a
+sub-directory of the working directory called <em>cache</em>. When the document
+is subsequently knitted, the chunk will only be run if the code in the
+chunk changes or its options change. This is very handy if you have a
+code chunk that is computationally intensive to run. The <code>cache</code> option
+is set to <code>FALSE</code> by default. Later in this chapter (Section <a href="StatsModel.html#CacheVars"><strong>??</strong></a>),
+we will see how to use the <code>cache.vars</code> function to cache only certain
+variables created by a code chunk.</p>
+</div>
+<div id="dependson" class="section level4 unnumbered hasAnchor">
+<h4><code>dependson</code><a href="StatsModel.html#dependson" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Cached chunks are only rerun when their code changes. Sometimes one
+chunk will depend on the results from a prior chunk. In these cases, it
+is good to rerun the chunk if the prior chunk one is also rerun. The
+<code>dependson</code> option allows you to do this automatically.
+You can specify either a
+vector of the labels for the chunks depended on or their numbers in
+order from the start of the document. For example, <code>dependson=c(2, 3)</code>
+specifies that if the second or third chunks are rerun, then the current
+chunk will also be rerun.</p>
+</div>
+<div id="cache.extra" class="section level4 unnumbered hasAnchor">
+<h4><code>cache.extra</code><a href="StatsModel.html#cache.extra" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sometimes to ensure reproducibility, it may be useful to rerun a chunk
+when some other condition changes, such as when a new version of R is
+installed or a dependent file changes. You can feed a list of conditions
+to <code>cache.extra</code> to do this. For instance:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="StatsModel.html#cb224-1" tabindex="-1"></a>cache.extra<span class="ot">=</span><span class="fu">list</span>(<span class="fu">file.info</span>(data.csv)<span class="sc">$</span>mtime, R.version)</span></code></pre></div>
+<p>Here we set two conditions under which the chunk will be rerun. The
+first specifies that the chunk should be rerun whenever the <em>data.csv</em>
+file is modified. The <code>file.info</code> function extracts information about
+the file and <code>mtime</code> gives the last time that the file was modified. If
+this differs from when the chunk was last run, then it will be run
+again. This is very useful for keeping your cached chunks and the files
+they rely on in sync.</p>
+<p>The second condition enabled by <code>R.version</code> reruns the chunk whenever
+the R version or even the operating system changes. If you only want to
+rerun the chunk when the version of R is different, then use
+<code>R.version.string</code>.</p>
+</div>
+<div id="size" class="section level4 unnumbered hasAnchor">
+<h4><code>size</code><a href="StatsModel.html#size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you do want to print part or all of your code chunk into a LaTeX
+document, you may also want to resize the text. To do this, use the
+<code>size</code> option. By default, it is set to <code>size='normalsize'</code>.
+You can use any of the LaTeX font sizes listed in Chapter <a href="LatexChapter.html#LatexChapter">11</a>.</p>
+</div>
+</div>
+<div id="showing-code-and-results-inline" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Showing code and results inline<a href="StatsModel.html#showing-code-and-results-inline" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes you may want to have R code or output show up inline with the
+rest of your presentation document’s text. For example, you may want to
+include a small chunk of stylized code in your text when you discuss how
+you did an analysis. Or you may want to dynamically report the mean of
+some variable in your text so that the text will change when you change
+the data. The <em>knitr</em> syntax for including inline code is different for
+the LaTeX and Markdown languages. We’ll cover both in turn.</p>
+<div id="latex" class="section level4 unnumbered hasAnchor">
+<h4>LaTeX<a href="StatsModel.html#latex" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="inline-static-code" class="section level4 unnumbered hasAnchor">
+<h4><em>Inline static code</em><a href="StatsModel.html#inline-static-code" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are a number of ways to include a code snippet inline with your
+text in LaTeX. You can use the LaTeX function <code>\texttt</code> to have
+text show up in the <code>typewriter</code> font commonly used in LaTeX-produced
+documents to indicate that some text is code (I use typewriter font for
+this purpose in this book, as you have probably noticed). For example,
+using <code>\texttt{2 + 2}</code> will give you <code>2 + 2</code> in your text. Note that in
+LaTeX curly brackets (<code>{}</code>) work exactly like parentheses in R, i.e.
+they enclose a function’s arguments.</p>
+<p>However, the <code>\texttt</code> function isn’t always ideal, because your LaTeX
+compiler will still try to run the code inside of the function as if it
+were LaTeX markup. This can be problematic if you include characters
+like the backslash <code>\</code> or curly brackets <code>{}</code>. They have special
+meanings for LaTeX. The hard way to solve this problem is to use escape
+characters (see Chapter <a href="DirectoriesChapter.html#DirectoriesChapter">4</a>). The backslash is an escape character in LaTeX.</p>
+<p>Probably the better option is to use the <code>\verb</code> function. It is
+equivalent to the <code>eval=FALSE</code> option for full <em>knitr</em> code chunks. To
+use the <code>\verb</code> function, pick some character you will not use in the
+inline code. For example, you could use the vertical bar (<code>|</code>). This
+will be the <code>\verb</code> delimiter. Imagine that we want to actually include
+<code>\texttt</code> in the text. We would type:</p>
+<pre><code>\verb|\texttt|</code></pre>
+<p>The LaTeX compiler will ignore almost anything from the first vertical
+bar up until the second bar following <code>\verb</code>. All of the text
+in-between the delimiter characters is put in typewriter font.<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a></p>
+</div>
+<div id="inline-dynamic-code" class="section level4 unnumbered hasAnchor">
+<h4>Inline dynamic code<a href="StatsModel.html#inline-dynamic-code" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you want to dynamically show the results of some R code in your
+<em>knitr</em> LaTeX-produced text you can use <code>\Sexpr</code>. This is a pseudo-LaTeX
+function; it looks like LaTeX, but it is actually <em>knitr</em> syntax.<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a> Its structure
+is more like a LaTeX function’s structure than <em>knitr</em>’s in that you
+enclose your R code in curly brackets (<code>{}</code>) rather than the
+<code>&lt;&lt;&gt;&gt;= . . . @</code> syntax you use for block code chunks.</p>
+<p>For example, imagine that you wanted to include the mean of a vector of
+river lengths, 591, in the text of your document. The <em>rivers</em> numeric vector, loaded by default in R, has the lengths of 141 major rivers recorded in miles. You can use the <code>mean()</code> function to find the mean and the <code>round()</code> function to round the result to the nearest whole number:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="StatsModel.html#cb226-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(rivers), <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] 591</code></pre>
+<p>To have just the output show up inline with the text of your document,
+you would type something like:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="StatsModel.html#cb228-1" tabindex="-1"></a>The mean length of <span class="dv">141</span> major rivers <span class="cf">in</span> North America is</span>
+<span id="cb228-2"><a href="StatsModel.html#cb228-2" tabindex="-1"></a>\Sexpr{<span class="fu">round</span>(<span class="fu">mean</span>(rivers), <span class="at">digits =</span> <span class="dv">0</span>)} miles.</span></code></pre></div>
+<p>R code included inline with <code>Sexpr</code> is evaluated using current R
+options. So if you want all of the output from <code>Sexpr</code> to be rounded to
+the same number of digits, for example, it might be a good idea to set
+this in a code chunk with R’s <code>options()</code> function.</p>
+</div>
+<div id="markdown" class="section level4 unnumbered hasAnchor">
+<h4>Markdown<a href="StatsModel.html#markdown" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="inline-static-code-1" class="section level4 unnumbered hasAnchor">
+<h4><em>Inline static code</em><a href="StatsModel.html#inline-static-code-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To include static code inline in an R Markdown (and regular Markdown)
+document, enclose the code in single backticks (<code>` . . . `</code>). For
+example:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="StatsModel.html#cb229-1" tabindex="-1"></a>This is example R code<span class="sc">:</span> <span class="st">`</span><span class="at">MeanRiver &lt;- mean(rivers)</span><span class="st">`</span>.</span></code></pre></div>
+<p>produces:<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a></p>
+<p><img src="images/chapter_8/MeanRiverMarkdown.png" /></p>
+</div>
+<div id="inline-dynamic-code-1" class="section level4 unnumbered hasAnchor">
+<h4><em>Inline dynamic code</em><a href="StatsModel.html#inline-dynamic-code-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Including dynamic code in the body of your R Markdown text is similar to
+including static code. The only difference is that you put the letter
+<code>r</code> after the first single backtick.</p>
+</div>
+</div>
+<div id="dynamically-including-non-r-code-in-code-chunks" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Dynamically including non-R code in code chunks<a href="StatsModel.html#dynamically-including-non-r-code-in-code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You are not limited to dynamically including just R code in your
+presentation documents. <em>knitr</em> can run code from a variety of other
+languages including: Python, Ruby, Bash, Julia, and Stan. All you have to do to dynamically include code from one of these languages is use the
+<code>engine</code> code chunk option to tell <em>knitr</em> which language you are using.
+For example, to dynamically include a simple line of Python code in an R
+Markdown document type:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="StatsModel.html#cb230-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r engine=&#39;python&#39;}</span></span>
+<span id="cb230-2"><a href="StatsModel.html#cb230-2" tabindex="-1"></a><span class="at">print &quot;Reproducible Research&quot;</span></span>
+<span id="cb230-3"><a href="StatsModel.html#cb230-3" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>In the final HTML file you will get output that looks like Figure <a href="StatsModel.html#fig:Ch8PythonOutput">8.1</a>.<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Ch8PythonOutput"></span>
+<img src="images/chapter_8/PythonRR.png" alt="Output from Python Engine in HTML Markdown" width="25%" />
+<p class="caption">
+FIGURE 8.1: Output from Python Engine in HTML Markdown
+</p>
+</div>
+<p>Many of the programming language values <code>engine</code> can take are listed in
+Table <a href="#EngineOptions"><strong>??</strong></a>.</p>
+</div>
+</div>
+<div id="dynamically-including-modular-analysis-files" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Dynamically Including Modular Analysis Files<a href="StatsModel.html#dynamically-including-modular-analysis-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are a number of reasons why you might want to have your R source
+code located in separate files from your markup documents even if you
+compile them together with <em>knitr</em>.</p>
+<p>First, it can be unwieldy to edit both your markup and long R source
+code chunks in the same document, even with RStudio’s handy <em>knitr</em> code
+folding and chunk management options. There are just too many things
+going on in one document.</p>
+<p>Second, you may want to use the same code in multiple documents, for example an
+article and slide show presentation. It is nice to not have
+to copy and paste the same code into multiple places. Instead, it is
+easier to have multiple documents link to the same source code file.
+When you make changes to this source code file, the changes will
+automatically be made across all of your presentation documents. You
+don’t need to make the same changes multiple times.</p>
+<p>Third, other researchers trying to replicate your work might only be
+interested in specific parts of your analysis. If you have the analysis
+broken into separate and clearly labeled modular files that are
+explicitly tied together in the markup file with <em>knitr</em>, it is easy for
+them to find the specific bits of code that they are interested in.</p>
+<div id="source-from-a-local-file" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Source from a local file<a href="StatsModel.html#source-from-a-local-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Usually, in the early stages of your research, you may want to run code
+stored in analysis files located on your computer. Doing this is simple.
+The <em>knitr</em> syntax is the same as for block code chunks. The only change
+is that instead of writing all of your code in the chunk, you save it to
+its own file and use the <code>source()</code> function to access it.<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a> For example, in an R Markdown file we could run the R code in a file called
+<em>main-analysis.R</em> from our <em>example-project</em> like this:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb231-1"><a href="StatsModel.html#cb231-1" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
+<span id="cb231-2"><a href="StatsModel.html#cb231-2" tabindex="-1"></a><span class="in"># Run main analysis</span></span>
+<span id="cb231-3"><a href="StatsModel.html#cb231-3" tabindex="-1"></a><span class="in">source(&quot;/example-project/analysis/main-analysis.R&quot;)</span></span>
+<span id="cb231-4"><a href="StatsModel.html#cb231-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>Notice that we set the option <code>include=FALSE</code>. This will run the
+analysis and produce objects created by the analysis code that can be
+used by other code chunks, but the output will not show up in the
+presentation document’s text.</p>
+<div id="sourcing-a-makefile-in-a-code-chunk" class="section level4 unnumbered hasAnchor">
+<h4>Sourcing a makefile in a code chunk<a href="StatsModel.html#sourcing-a-makefile-in-a-code-chunk" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In Chapter <a href="DataGather.html#DataGather">6</a> we created a GNU Makefile to organize our data
+gathering. You can run makefiles every time you compile your
+presentation document. This can keep your data, analyses, figures, and
+tables up-to-date. One way to do this is to run the GNU makefile in an R
+code chunk with the <code>system()</code> function. Perhaps a better way to run makefiles from
+<em>knitr</em> presentation documents is to include the functions in a code
+chunk using the Bash engine. For example, a Sweave-style code chunk for
+running the makefiles in our example project would look like this:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb232-1"><a href="StatsModel.html#cb232-1" tabindex="-1"></a>&lt;<span class="dt">&lt;</span><span class="kw">r</span><span class="ot"> engine</span><span class="op">=</span><span class="st">&#39;bash&#39;</span><span class="er">,</span><span class="ot"> include</span><span class="op">=</span><span class="st">FALSE</span><span class="dt">&gt;</span>&gt;=</span>
+<span id="cb232-2"><a href="StatsModel.html#cb232-2" tabindex="-1"></a><span class="fu"># Change working directory to /example-project/analysis/Data</span></span>
+<span id="cb232-3"><a href="StatsModel.html#cb232-3" tabindex="-1"></a>cd /example-project/analysis/Data/</span>
+<span id="cb232-4"><a href="StatsModel.html#cb232-4" tabindex="-1"></a></span>
+<span id="cb232-5"><a href="StatsModel.html#cb232-5" tabindex="-1"></a><span class="fu"># Run makefile</span></span>
+<span id="cb232-6"><a href="StatsModel.html#cb232-6" tabindex="-1"></a>make cleanMerge all</span>
+<span id="cb232-7"><a href="StatsModel.html#cb232-7" tabindex="-1"></a></span>
+<span id="cb232-8"><a href="StatsModel.html#cb232-8" tabindex="-1"></a><span class="fu"># Change to working directory to /example-project/analysis/</span></span>
+<span id="cb232-9"><a href="StatsModel.html#cb232-9" tabindex="-1"></a>cd /example-project/analysis/</span>
+<span id="cb232-10"><a href="StatsModel.html#cb232-10" tabindex="-1"></a>@</span></code></pre></div>
+<p>Please see Chapter <a href="DataGather.html#DataGather">6</a> for details on the <code>make</code> command arguments used here.</p>
+<p>You can also use R’s <code>source()</code> function to run an R make-like
+data gathering file. Unlike GNU Make, this will rerun all of the data
+gathering files, even if they have not been updated. This may become
+very time consuming depending on the size of your data sets and how they
+are manipulated.</p>
+<p>One final note on including makefiles in your knitr presentation
+document source code: it is important to place the code chunk with the
+makefile before code chunks containing statistical analyses that depend
+on the data file it creates. Placing the makefile first will keep the
+others up-to-date.</p>
+</div>
+</div>
+<div id="SourceSecureURL" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Source from a URL<a href="StatsModel.html#SourceSecureURL" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you are using GitHub or another service that uses secure URLs to host
+your analysis source code files, you need to use the <code>source_url()</code> function
+in the <em>devtools</em> package.<a href="#fn157" class="footnote-ref" id="fnref157"><sup>157</sup></a> For GitHub-based source code, we find the
+file’s URL the same way we did in Chapter <a href="Storing.html#Storing">5</a>. Remember to use the URL for the <em>raw</em> version
+of the file. I have a short script hosted on GitHub for creating a
+scatterplot from data in R’s <em>cars</em> data set. The script’s shortened URL
+is <a href="http://bit.ly/1D5p1w6" class="uri">http://bit.ly/1D5p1w6</a>.<a href="#fn158" class="footnote-ref" id="fnref158"><sup>158</sup></a> To run this code and create the
+scatterplot using <code>source_url()</code>, type:</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="StatsModel.html#cb233-1" tabindex="-1"></a><span class="fu">library</span>(devtools)</span></code></pre></div>
+<pre><code>## Loading required package: usethis</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="StatsModel.html#cb235-1" tabindex="-1"></a><span class="co"># Run the source code to create the scatter plot</span></span>
+<span id="cb235-2"><a href="StatsModel.html#cb235-2" tabindex="-1"></a><span class="fu">source_url</span>(<span class="st">&quot;http://bit.ly/1D5p1w6&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ SHA-1 hash of file is
+##   &quot;ff75a88b90decfcaefc9903bbc283e1fc4cd2339&quot;</code></pre>
+<p><img src="bookdown_files/figure-html/Ch8SourceURLExample-1.png" width="8cm" height="8cm" style="display: block; margin: auto;" /></p>
+<p>You can also use the <em>devtools</em> function <code>source_gist()</code> in a similar way
+to source GitHub Gists. Gists are a handy way to share code over the
+internet. For more details, see: <a href="https://gist.github.com/" class="uri">https://gist.github.com/</a>.</p>
+<p>Similar to what we saw in Chapter <a href="Storing.html#Storing">5</a>
+if you would like to use a particular version of a file stored on
+GitHub, include that version’s URL in the <code>source_url()</code> call. This
+can be useful for replicating particular results. Linking to a
+particular version of a source code file will enable replication even if
+you later make changes to the file. To access the URL for a particular
+version of a file, first click on the file on GitHub’s website, then
+click the <code>History</code> button. This will take you
+to a page listing all of the file’s versions. Click on the <code>Browse Code</code>
+button next to
+the version of the file that you want to use. Finally, click on the
+<code>Raw</code> button to be taken to the text-only version of the file. Copy this
+page’s URL and use it in <code>source_url()</code>.</p>
+</div>
+</div>
+<div id="reproducibly-random-set.seed" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Reproducibly Random: <code>set.seed()</code><a href="StatsModel.html#reproducibly-random-set.seed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>If you include simulations in your analysis it is often a good
+idea to specify the random number generator state you used. This will
+allow others to exactly replicate your ‘randomly’—really
+pseudo-randomly—generated simulation results. Use the <code>set.seed()</code>
+function in your source code files or code chunks to do this. For
+example, use the following code to set the random number generator
+state<a href="#fn159" class="footnote-ref" id="fnref159"><sup>159</sup></a> and randomly draw 1,000 numbers from a standard normal
+distribution with a mean of 0 and a standard deviation of 2.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="StatsModel.html#cb237-1" tabindex="-1"></a><span class="co"># Set seed as 125</span></span>
+<span id="cb237-2"><a href="StatsModel.html#cb237-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">125</span>)</span>
+<span id="cb237-3"><a href="StatsModel.html#cb237-3" tabindex="-1"></a></span>
+<span id="cb237-4"><a href="StatsModel.html#cb237-4" tabindex="-1"></a><span class="co"># Draw 1000 numbers</span></span>
+<span id="cb237-5"><a href="StatsModel.html#cb237-5" tabindex="-1"></a>draw_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb237-6"><a href="StatsModel.html#cb237-6" tabindex="-1"></a></span>
+<span id="cb237-7"><a href="StatsModel.html#cb237-7" tabindex="-1"></a><span class="fu">summary</span>(draw_1)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  -7.211  -1.407  -0.104  -0.122   1.316   5.677</code></pre>
+<p>The <code>rnorm()</code> function draws the 1,000 simulations. The <code>mean</code> argument
+allows us to set the normal distribution’s mean and <code>sd</code> sets its
+standard deviation. Just to show you that we will draw the same numbers
+if we use the same seed, let’s run the code again:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="StatsModel.html#cb239-1" tabindex="-1"></a><span class="co"># Set seed as 125</span></span>
+<span id="cb239-2"><a href="StatsModel.html#cb239-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">125</span>)</span>
+<span id="cb239-3"><a href="StatsModel.html#cb239-3" tabindex="-1"></a></span>
+<span id="cb239-4"><a href="StatsModel.html#cb239-4" tabindex="-1"></a><span class="co"># Draw 1000 numbers</span></span>
+<span id="cb239-5"><a href="StatsModel.html#cb239-5" tabindex="-1"></a>draw_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb239-6"><a href="StatsModel.html#cb239-6" tabindex="-1"></a></span>
+<span id="cb239-7"><a href="StatsModel.html#cb239-7" tabindex="-1"></a><span class="fu">summary</span>(draw_2)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  -7.211  -1.407  -0.104  -0.122   1.316   5.677</code></pre>
+</div>
+<div id="computationally-intensive-analyses" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Computationally Intensive Analyses<a href="StatsModel.html#computationally-intensive-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes you may want to include computationally intensive analyses
+that take a long time to run as part of a knitr document. This can
+make writing the document frustrating because it will take a long time
+to knit it each time you make changes. There are at least two solutions
+to this problem: the <code>cache</code> chunk option and makefiles. We discussed
+makefiles in Chapter <a href="DataGather.html#DataGather">6</a>, so let’s look at how to work with the <code>cache</code>
+option.</p>
+<p>When you set <code>cache=TRUE</code> for the code chunk that contains the analysis,
+the code chunk will only be run when the chunk’s contents change<a href="#fn160" class="footnote-ref" id="fnref160"><sup>160</sup></a> or the chunk options change. This is a very easy solution to the problem.
+It does have a major drawback: other chunks can’t access objects created
+by the chunk or use functions from packages loaded in it. Solve these
+problems by (a) having packages loaded in a separate chunk and (b) save
+objects created by the cached chunk to a separate RData file that can be
+loaded in later chunks (see Section <a href="GettingStartedRKnitr.html#RSave">3.1.3</a> for
+information on saving to RData files).<a href="#fn161" class="footnote-ref" id="fnref161"><sup>161</sup></a></p>
+<p>Imagine that in a cached code chunk we create an object called <em>Sample</em>.
+Then in a later code chunk we want to use the <code>hist()</code> function to create a
+histogram of the sample. In the cached code chunk, we save <em>Sample</em> to a
+file called <em>sample.RData</em>.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb241-1"><a href="StatsModel.html#cb241-1" tabindex="-1"></a>&lt;&lt;Sample, cache=TRUE&gt;&gt;=</span>
+<span id="cb241-2"><a href="StatsModel.html#cb241-2" tabindex="-1"></a>Sample &lt;- (n = 1000, mean = 5, sd = 2)</span>
+<span id="cb241-3"><a href="StatsModel.html#cb241-3" tabindex="-1"></a></span>
+<span id="cb241-4"><a href="StatsModel.html#cb241-4" tabindex="-1"></a>save(Sample, file = &quot;sample.RData&quot;)</span>
+<span id="cb241-5"><a href="StatsModel.html#cb241-5" tabindex="-1"></a>@</span></code></pre></div>
+<p>The latter code chunk for creating the histogram would go something like
+this:<a href="#fn162" class="footnote-ref" id="fnref162"><sup>162</sup></a></p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb242-1"><a href="StatsModel.html#cb242-1" tabindex="-1"></a>&lt;<span class="dt">&lt;</span><span class="kw">Histogram</span><span class="dt">&gt;</span>&gt;=</span>
+<span id="cb242-2"><a href="StatsModel.html#cb242-2" tabindex="-1"></a>load(file = &quot;sample.RData&quot;)</span>
+<span id="cb242-3"><a href="StatsModel.html#cb242-3" tabindex="-1"></a></span>
+<span id="cb242-4"><a href="StatsModel.html#cb242-4" tabindex="-1"></a>hist(Sample)</span>
+<span id="cb242-5"><a href="StatsModel.html#cb242-5" tabindex="-1"></a>@</span></code></pre></div>
+<div id="CacheVars" class="section level4 unnumbered hasAnchor">
+<h4><code>cache.vars</code><a href="StatsModel.html#CacheVars" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If the code chunk you want to cache creates many objects, but you only want to save a few of them, you can use <em>knitr</em>’s <code>cache.vars</code> chunk option. Simply give it a character vector of the objects’ names that you want to save.</p>
+</div>
+<div id="chapter-summary-5" class="section level3 unnumbered hasAnchor">
+<h3>Chapter summary<a href="StatsModel.html#chapter-summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this chapter we covered in more detail key <em>knitr</em> syntax for
+including code chunks in our presentation documents. This and other
+tools we learned in this chapter are important for tying our statistical
+analyses directly to its advertising, i.e. our presentation documents.
+In the next two chapters, we will learn how to take the output from our
+statistical analysis and, using <em>knitr</em>, present the results with
+dynamically created tables and figures.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="150">
+<li id="fn150"><p>See: <a href="http://cran.r-project.org/src/contrib/Archive/" class="uri">http://cran.r-project.org/src/contrib/Archive/</a>.<a href="StatsModel.html#fnref150" class="footnote-back">↩︎</a></p></li>
+<li id="fn151"><p>See: <a href="http://cran.r-project.org/src/base/" class="uri">http://cran.r-project.org/src/base/</a>.<a href="StatsModel.html#fnref151" class="footnote-back">↩︎</a></p></li>
+<li id="fn152"><p>For more details, see the LaTeX Wikibooks page:
+<a href="https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Verbatim_text" class="uri">https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Verbatim_text</a>
+(accessed 21 September 2019). Also, for help troubleshooting, see the
+UK List of Frequently Asked Questions:
+<a href="https://texfaq.org/FAQ-verbwithin" class="uri">https://texfaq.org/FAQ-verbwithin</a>
+(accessed 21 September 2019).<a href="StatsModel.html#fnref152" class="footnote-back">↩︎</a></p></li>
+<li id="fn153"><p>The function directly descends from <em>Sweave</em>.<a href="StatsModel.html#fnref153" class="footnote-back">↩︎</a></p></li>
+<li id="fn154"><p>The exact look of the text depends on the Cascading Style Sheets
+(CSS) style file you are using. The example here was created with
+RStudio’s default style file.<a href="StatsModel.html#fnref154" class="footnote-back">↩︎</a></p></li>
+<li id="fn155"><p>Again, this was created using RStudio’s default CSS style file.<a href="StatsModel.html#fnref155" class="footnote-back">↩︎</a></p></li>
+<li id="fn156"><p>We used the <code>source()</code> function in Chapter <a href="DataGather.html#DataGather">6</a> in our make-like data gathering file.<a href="StatsModel.html#fnref156" class="footnote-back">↩︎</a></p></li>
+<li id="fn157"><p>You can also make the replication code accessible for download and
+either instruct others to change the working directory to the
+replication file or have them change the directory information as
+necessary. You will need to do this with GNU makefiles like those
+included with this book.<a href="StatsModel.html#fnref157" class="footnote-back">↩︎</a></p></li>
+<li id="fn158"><p>The original URL is at
+<a href="https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/SimpleScatter.R" class="uri">https://raw.githubusercontent.com/christophergandrud/Rep-Res-Examples/master/Graphs/SimpleScatter.R</a>.
+This is very long, so I shortened it using bitly. You may notice
+that the shortened URL is not secure. However, it does link to the
+original secure URL.<a href="StatsModel.html#fnref158" class="footnote-back">↩︎</a></p></li>
+<li id="fn159"><p>See the <code>Random</code> help file for detailed information on R’s random
+number generation capabilities by typing <code>?Random</code> into your
+console.<a href="StatsModel.html#fnref159" class="footnote-back">↩︎</a></p></li>
+<li id="fn160"><p>Note that the chunk will not be run if only the contents of a
+file that the chunk sources are changed. Use the <code>dependson</code> option in
+cases where it is important to rerun a chunk when a prior chunk
+changes.<a href="StatsModel.html#fnref160" class="footnote-back">↩︎</a></p></li>
+<li id="fn161"><p>It’s true that when <em>knitr</em> caches a code chunk it saves the
+chunk’s objects to an <code>.RData</code> file. However, it is difficult to
+load this file directly because the file name changes every time the
+cached chunk is rerun.<a href="StatsModel.html#fnref161" class="footnote-back">↩︎</a></p></li>
+<li id="fn162"><p>For reference, <em>Sample</em> was created by using the <code>rnorm()</code> function
+to take a random sample of size 1,000 from a normal distribution
+with a mean of five and standard deviation of two.<a href="StatsModel.html#fnref162" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="TablesChapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/yihui/bookdown-crc/edit/master/10-modeling.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown.pdf", "bookdown.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
